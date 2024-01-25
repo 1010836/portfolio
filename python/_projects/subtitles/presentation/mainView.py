@@ -48,7 +48,7 @@ class class_mainView:
         self.__configure()
         self.__createTimetable()
         self.ttk_tabs.pack(expand=1, fill="both")
-        self.setFileName("D:/ai/A3_python/subtitles/test.srt")
+        self.setFileName("D:/portfolio/python/_projects/subtitles/test.srt")
         mainloop()
 
     def display_file(self, te_content_p : str):
