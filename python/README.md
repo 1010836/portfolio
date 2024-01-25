@@ -1,16 +1,16 @@
 # Python [![back](/assets/back.svg)](../README.md) 
 
-## Research
+<h3 align="center">Python</h3>
 
 1. [Environment](./environment/README.md)
-2. [Language](./environment/README.md)
-3. [Pip](./environment/README.md)
-4. [AI](./environment/README.md)
+2. [Language](./language/README.md)
+3. [Pip](./pip/README.md)
+4. [AI](./ai/README.md)
 
 - - -
 |     |     |
 | --- | --- |
-| 1. [top](#python) | 2. [main page](/README.md) |
+| 1. [top](#Python) | 2. [main page](/README.md) |
 |     |     |
 - - -
 
