@@ -1,6 +1,8 @@
-# Python [![back](/assets/back.svg)](../README.md) 
+### Python/Environment [![back](/assets/back.svg)](../README.md) 
 
-## Environment
+<h3 align="center"> Environment</h3>
+
+- - -
 
 1. Interpreter
 2. VsCode
@@ -13,13 +15,16 @@
 8. Next
 7. REPL
 
-![environment](./assets/environment.gif)
-
+![environment](./environment.gif)
 
 - - -
+
+<br>
+
+
 |     |     |     |
 | --- | --- | --- |
-| 1. [top](#python) | 2. [main page](/README.md) | [3. download](./assets/environment.pptx) |
+| 1. [top](#Environment) | 2. [main page](/README.md) | 3. [download](./environment.pptx) |
 |     |     |     |
-- - -
+
 
