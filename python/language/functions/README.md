@@ -6,7 +6,7 @@
 
 1. Functions
 
-![language](./Functions.gif)
+![language](./functions.gif)
 
 - - -
 
