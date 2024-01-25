@@ -6,6 +6,7 @@
 2. [Language](./language/README.md)
 3. [Pip](./pip/README.md)
 4. [AI](./ai/README.md)
+5. [Projects](./_projects/README.md)
 
 - - -
 |     |     |
