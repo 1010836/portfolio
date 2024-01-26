@@ -24,5 +24,5 @@
 
 |     |     |     |
 | --- | --- | --- |
-| 1. [top](#AWS) | 2. [main page](/README.md) | 3. [download](./docker_aws.gif.pptx) |
+| 1. [top](#AWS) | 2. [main page](/README.md) | 3. [download](./docker_aws.pptx) |
 |     |     |     |
