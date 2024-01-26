@@ -5,8 +5,11 @@ This repository contains a collection of examples and evidence to showcase my ex
 ## Structure
 
 - [Introduction](./introduction/README.md)
-  - Career, CEGID.
+    - Career, CEGID, AI.
 - [Python](./python/README.md)
-  - Python is the most popular programming language for AI.
+    - Research and prototypes that demonstrates the use of python.
+    - **I'M WAITING SINCE OCTOBER/2023 TO GET MY CERTIFICATION**.
+- [Docker](./docker/README.md)
+    - Research and prototype that demonstrates the deployment of a very simple API as a Docker image.
 
 
