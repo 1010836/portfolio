@@ -8,6 +8,7 @@
 2. VsCode
     1. Extensions
 3. Env
+    1. Pipenv
 4. Hello World
 5. Run
 6. Debug
