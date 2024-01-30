@@ -5,11 +5,12 @@
 - - -
 
 1. Svelt APP
-    1. UI
+    1. [Open](http://1010836-chat.000.pe)
+    2. UI
 ![UI](./client_UI.gif) 
-    1. Uses rollup to generate a simple script. 
+    3. Uses rollup to generate a simple script. 
 ![project](./client_project.gif)    
-    2. This script can be added to any web app.
+    4. This script can be added to any web app.
 ![index](./client_index.gif)    
 2. Implementation
     1. When a question is prompted
