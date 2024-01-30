@@ -4,6 +4,20 @@
 
 - - -
 
+1. [Run](http://51.20.133.14)
+2. [Project](./_projects/keyValuePair)
+    - Key-Value-Pair REST API used in the project hackathon   
+    - Runs in a container inside AWS   
+
+![example](./_projects/example.gif)
+
+- - -
+
+1. [Local](./local/README.md)
+2. [AWS](./aws/README.md)
+
+- - -
+
 1. Docker
 2. Process
     1. Standard
@@ -13,13 +27,6 @@
 5. Disadvantages
 
 ![docker](./docker.gif)
-
-6. [Local](./local/README.md)
-7. [AWS](./aws/README.md)
-8. [Project](./_projects/keyValuePair)
-    - Simple REST API to demonstrate the use Docker to support deployment.
-
-![example](./_projects/example.gif)
 
 - - -
 
