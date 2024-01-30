@@ -18,9 +18,6 @@
 4. Google Colab
     1. [GITHUB](./_projects/rag/LlamaRAGCegid.ipynb)
     2. [COLAB](https://colab.research.google.com/drive/15vE7B4DJHfvN-6c675HJQROIXQtDMKlK)   
-5. Implementation
-    1. Lithium class diagram
-![classes](./server_class_diagram.gif)
         
 - - -
 
