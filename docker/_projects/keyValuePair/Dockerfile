@@ -3,5 +3,4 @@ WORKDIR /usr/src/app
 COPY Pipfile ./
 RUN pip install --no-cache-dir pipenv && pipenv install
 COPY app.py .
-COPY tests.py .
 CMD [ "pipenv", "run", "python", "-m", "flask", "run", "--host=0.0.0.0" ]
