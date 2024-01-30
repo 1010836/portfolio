@@ -4,16 +4,16 @@
 
 ## Career
 
-![career](./assets/past.png)
+![career](./past.png)
 
 ## CEGID
 
-![cegid](./assets/past.png)
+    1. TODO 
 
 - - -
 |     |     |
 | --- | --- |
-| 1. [🔼 top](#Introduction) | 2. [main page](/README.md) |
+| 1. [top](#Introduction) | 2. [main page](/README.md) |
 |     |     |
 - - -
 
