@@ -12,8 +12,6 @@ This repository contains a collection of examples and evidence to showcase my ex
     - **I'M WAITING SINCE OCTOBER/2023 TO GET MY CERTIFICATION**.
 - [Docker](./docker/README.md)
     - Research and prototype that demonstrates the deployment of a very simple API as a Docker image.
-- [HuggingFace](./docker/README.md)
-    - Research and prototype that demonstrates the deployment of a very simple API as a Docker image.
 
 ## Projects
 
