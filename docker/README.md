@@ -16,7 +16,7 @@
 
 6. [Local](./local/README.md)
 7. [AWS](./aws/README.md)
-8. [Project](./_projects/keyValuePair/Dockerfile)
+8. [Project](./_projects/keyValuePair)
     - Simple REST API to demonstrate the use Docker to support deployment.
 
 ![example](./_projects/example.gif)
