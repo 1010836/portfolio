@@ -8,7 +8,7 @@
 2. [Client](./client/README.md)
 3. [Video](https://www.youtube.com/watch?v=OhMexqtfJGI)
 
-![hackathon](./hackathon.gif)
+<img src="https://github.com/1010836/portfolio/blob/main/hackathon/hackathon.gif" data-canonical-src="https://github.com/1010836/portfolio/blob/main/hackathon/hackathon.gif" width="200" height="400" />
 
 - - -
 
