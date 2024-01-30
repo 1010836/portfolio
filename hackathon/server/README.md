@@ -11,11 +11,13 @@
     4. Retrieval-augmented generation (RAG)
     5. Lama-index
 2. Data
-    1. [Q&A](./_data/cegid_talentsof_QeA.txt)
+    1. [File](./_data/cegid_talentsof_QeA.txt)
+    2. [Huggingface/Dataset](https://huggingface.co/datasets/E1010836/rag/blob/main/cegid_talentsof_QeA.txt)
 3. Model
     1. [LLAMA II](https://huggingface.co/meta-llama/Llama-2-7b-chat)   
 4. Google Colab
-    1. [API](https://colab.research.google.com/drive/15vE7B4DJHfvN-6c675HJQROIXQtDMKlK)   
+    1. [GITHUB](./_projects/rag/LlamaRAGCegid.ipynb)
+    2. [COLAB](https://colab.research.google.com/drive/15vE7B4DJHfvN-6c675HJQROIXQtDMKlK)   
 5. Implementation
     1. Lithium class diagram
 ![classes](./server_class_diagram.gif)
