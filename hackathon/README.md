@@ -6,6 +6,7 @@
 
 1. [Server](./server/README.md)
 2. [Client](./client/README.md)
+3. [Video](https://www.youtube.com/watch?v=OhMexqtfJGI)
 
 ![hackathon](./hackathon.gif)
 
