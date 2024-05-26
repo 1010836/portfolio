@@ -12,6 +12,8 @@ This repository contains a collection of examples and evidence to showcase my ex
     - **I'M WAITING SINCE OCTOBER/2023 TO GET MY CERTIFICATION**.
 - [Docker](./docker/README.md)
     - Research and prototype that demonstrates the deployment of a very simple API as a Docker image.
+- [Agile](./agile/README.md)
+    - How to implement agile (SCRUM) in one team.
 
 ## Projects
 
