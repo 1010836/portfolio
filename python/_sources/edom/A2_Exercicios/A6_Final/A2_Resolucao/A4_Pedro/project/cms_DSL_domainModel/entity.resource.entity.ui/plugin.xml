@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+	<extension point="org.emftext.access.syntax.ui">
+		<metaInformationProvider class="entity.resource.entity.ui.EntityUIMetaInformation" id="entity.resource.entity.ui.EntityUIMetaInformation">
+		</metaInformationProvider>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors">
+		<editor class="entity.resource.entity.ui.EntityEditor" contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor" extensions="entity" icon="icons/editor_icon.gif" id="entity.resource.entity.ui.EntityEditor" name="EMFText entity Editor">
+			<contentTypeBinding contentTypeId="entity.resource.entity">
+			</contentTypeBinding>
+		</editor>
+	</extension>
+	
+	<extension point="org.eclipse.core.runtime.preferences">
+		<initializer class="entity.resource.entity.ui.EntityPreferenceInitializer">
+		</initializer>
+	</extension>
+	
+	<extension point="org.eclipse.ui.preferencePages">
+		<page name="Entity Text Editor" id="entity.resource.entity.ui.EntityPreferencePage" class="entity.resource.entity.ui.EntityPreferencePage" category="org.eclipse.ui.preferencePages.GeneralTextEditor">
+		</page>
+		<page name="Syntax Coloring" id="entity.resource.entity.ui.EntitySyntaxColoringPreferencePage" class="entity.resource.entity.ui.EntitySyntaxColoringPreferencePage" category="entity.resource.entity.ui.EntityPreferencePage">
+		</page>
+		<page name="Brackets" id="entity.resource.entity.ui.EntityBracketPreferencePage" class="entity.resource.entity.ui.EntityBracketPreferencePage" category="entity.resource.entity.ui.EntityPreferencePage">
+		</page>
+	</extension>
+	
+	<extension point="org.eclipse.ui.newWizards">
+		<category id="org.emftext.runtime.ui.EMFTextFileCategory" name="EMFText File">
+		</category>
+		<wizard category="org.emftext.runtime.ui.EMFTextFileCategory" icon="/icons/default_new_icon.gif" class="entity.resource.entity.ui.EntityNewFileWizard" id="entity.resource.entity.ui.EntityNewFileWizard" name="EMFText .entity file">
+		</wizard>
+		<category id="org.emftext.runtime.ui.EMFTextProjectCategory" name="EMFText Project">
+		</category>
+		<wizard category="org.emftext.runtime.ui.EMFTextProjectCategory" icon="/icons/default_new_icon.gif" class="entity.resource.entity.ui.EntityNewProjectWizard" id="entity.resource.entity.ui.EntityNewProjectWizard" name="EMFText entity project" project="true">
+		</wizard>
+	</extension>
+	
+	<extension point="org.eclipse.ui.ide.markerResolution">
+		<markerResolutionGenerator class="entity.resource.entity.ui.EntityMarkerResolutionGenerator" markerType="entity.resource.entity.problem">
+		</markerResolutionGenerator>
+	</extension>
+	
+	<extension point="org.eclipse.core.filebuffers.annotationModelCreation">
+		<factory class="entity.resource.entity.ui.EntityAnnotationModelFactory" extensions="entity">
+		</factory>
+	</extension>
+	
+	<extension point="org.eclipse.core.contenttype.contentTypes">
+		<content-type id="entity.resource.entity" name=".entity File" base-type="org.eclipse.core.runtime.text" file-extensions="entity">
+		</content-type>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.documentProviders">
+		<provider class="org.eclipse.ui.editors.text.TextFileDocumentProvider" extensions="entity" id="entity.resource.entity.ui.provider">
+		</provider>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.annotationTypes">
+		<type name="entity.resource.entity.ui.occurences">
+		</type>
+		<type name="entity.resource.entity.ui.occurences.declaration" super="entity.resource.entity.ui.occurences">
+		</type>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.markerAnnotationSpecification">
+		<specification annotationType="entity.resource.entity.ui.occurences" label="Occurrences (in .entity files)" icon="/icons/occurrence_icon.gif" textPreferenceKey="entity.occurrenceIndication" textPreferenceValue="false" highlightPreferenceKey="entity.occurrenceHighlighting" highlightPreferenceValue="true" contributesToHeader="false" overviewRulerPreferenceKey="entity.occurrenceIndicationInOverviewRuler" overviewRulerPreferenceValue="true" verticalRulerPreferenceKey="entity.occurrenceIndicationInVerticalRuler" verticalRulerPreferenceValue="false" colorPreferenceKey="entity.occurrenceIndicationColor" colorPreferenceValue="212,212,212" presentationLayer="4" showInNextPrevDropdownToolbarActionKey="entity.showOccurrenceInNextPrevDropdownToolbarAction" showInNextPrevDropdownToolbarAction="true" isGoToNextNavigationTargetKey="entity.isOccurrenceGoToNextNavigationTarget" isGoToNextNavigationTarget="false" isGoToPreviousNavigationTargetKey="entity.isOccurrenceGoToPreviousNavigationTarget" isGoToPreviousNavigationTarget="false" textStylePreferenceKey="entity.occurrenceTextStyle" textStylePreferenceValue="NONE">
+		</specification>
+		<specification annotationType="entity.resource.entity.ui.occurences.declaration" label="Declarations (in .entity files)" textPreferenceKey="entity.declarationIndication" textPreferenceValue="false" highlightPreferenceKey="entity.declarationHighlighting" highlightPreferenceValue="true" overviewRulerPreferenceKey="entity.declarationIndicationInOverviewRuler" overviewRulerPreferenceValue="true" verticalRulerPreferenceKey="entity.declarationIndicationInVerticalRuler" verticalRulerPreferenceValue="false" colorPreferenceKey="entity.declarationIndicationColor" colorPreferenceValue="240,216,168" presentationLayer="4" textStylePreferenceKey="entity.declarationTextStyle" textStylePreferenceValue="NONE">
+		</specification>
+	</extension>
+	
+	<extension point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+		<launchConfigurationTypeImage icon="/icons/launch_type_icon.gif" configTypeID="entity.resource.entity.ui.launchConfigurationType" id="entity.launchImage">
+		</launchConfigurationTypeImage>
+	</extension>
+	
+	<extension point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+		<launchConfigurationTabGroup type="entity.resource.entity.ui.launchConfigurationType" class="entity.resource.entity.ui.launch.EntityLaunchConfigurationTabGroup" id="entity.launchConfigurationTabGroup" helpContextId="entity.launchConfigHelpContext">
+			<launchMode mode="debug" perspective="org.eclipse.debug.ui.DebugPerspective" description="Debug entity model.">
+			</launchMode>
+			<launchMode mode="run" description="Run entity model.">
+			</launchMode>
+		</launchConfigurationTabGroup>
+	</extension>
+	
+	<extension point="org.eclipse.debug.ui.launchShortcuts">
+		<shortcut label="entity Application" icon="/icons/launch_shortcut_icon.gif" helpContextId="entity.launch" modes="run,debug" class="entity.resource.entity.ui.launch.EntityLaunchShortcut" description="Launch a entity model" id="entity.launchShortcut">
+			<description description="Run entity model" mode="run">
+			</description>
+			<description description="Debug entity model" mode="debug">
+			</description>
+			<contextualLaunch>
+				<enablement>
+					<with variable="selection">
+						<count value="1">
+						</count>
+						<iterate>
+							<test property="entity.isLaunchable">
+							</test>
+						</iterate>
+					</with>
+				</enablement>
+			</contextualLaunch>
+			<configurationType id="entity.resource.entity.ui.launchConfigurationType">
+			</configurationType>
+		</shortcut>
+	</extension>
+	
+	<extension point="org.eclipse.core.expressions.propertyTesters">
+		<propertyTester id="entity.PropertyTester" type="java.lang.Object" namespace="entity" properties="isLaunchable" class="entity.resource.entity.ui.EntityPropertyTester">
+		</propertyTester>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.annotationTypes">
+		<type name="entity.resource.entity.ui.debug.lineBreakpoint" markerType="entity.resource.entity.debug.lineBreakpoint.marker" super="org.eclipse.debug.core.breakpoint">
+		</type>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.markerAnnotationSpecification">
+		<specification annotationType="entity.resource.entity.ui.debug.lineBreakpoint" label="Breakpoints (in .entity files)" icon="/icons/breakpoint_icon.gif" textPreferenceKey="entity.resource.entity.ui.lineBreakpoint" textPreferenceValue="false" highlightPreferenceKey="entity.resource.entity.ui.lineBreakpointHighlighting" highlightPreferenceValue="true" contributesToHeader="false" overviewRulerPreferenceKey="entity.resource.entity.ui.lineBreakpointIndicationInOverviewRuler" overviewRulerPreferenceValue="true" verticalRulerPreferenceKey="entity.resource.entity.ui.lineBreakpointIndicationInVerticalRuler" verticalRulerPreferenceValue="false" colorPreferenceKey="entity.resource.entity.ui.lineBreakpointColor" colorPreferenceValue="212,212,212" presentationLayer="4" showInNextPrevDropdownToolbarActionKey="entity.resource.entity.ui.showLineBreakpointInNextPrevDropdownToolbarAction" showInNextPrevDropdownToolbarAction="true" isGoToNextNavigationTargetKey="entity.resource.entity.ui.isLineBreakpointGoToNextNavigationTarget" isGoToNextNavigationTarget="false" isGoToPreviousNavigationTargetKey="entity.resource.entity.ui.isLineBreakpointGoToPreviousNavigationTarget" isGoToPreviousNavigationTarget="false" textStylePreferenceKey="entity.resource.entity.ui.lineBreakpointTextStyle" textStylePreferenceValue="NONE">
+		</specification>
+	</extension>
+	
+	<extension point="org.eclipse.core.runtime.adapters">
+		<factory adaptableType="entity.resource.entity.ui.EntityEditor" class="entity.resource.entity.ui.debug.EntityAdapterFactory">
+			<adapter type="org.eclipse.debug.ui.actions.IToggleBreakpointsTarget">
+			</adapter>
+		</factory>
+		<factory adaptableType="entity.resource.entity.debug.EntityDebugVariable" class="entity.resource.entity.ui.debug.EntityAdapterFactory">
+			<adapter type="org.eclipse.debug.internal.ui.viewers.model.provisional.IElementLabelProvider">
+			</adapter>
+		</factory>
+		<factory adaptableType="entity.resource.entity.debug.EntityDebugVariable" class="entity.resource.entity.ui.debug.EntityAdapterFactory">
+			<adapter type="org.eclipse.debug.internal.ui.viewers.model.provisional.IElementContentProvider">
+			</adapter>
+		</factory>
+	</extension>
+	
+	<extension point="org.eclipse.ui.popupMenus">
+		<viewerContribution id="entity.resource.entity.ui.RulerPopupActions" targetID="entity.resource.entity.EditorRuler">
+			<action id="entity.resource.entity.ui.toggleBreakpointAction" icon="icons/breakpoint_icon.gif" label="Toggle Breakpoint" class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate" menubarPath="debug">
+			</action>
+		</viewerContribution>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editorActions">
+		<editorContribution targetID="entity.resource.entity.ui.EntityEditor" id="entity.resource.entity.ui.BreakpointRulerActions">
+			<action id="entity.resource.entity.ui.debug.RulerToggleBreakpointAction" label="Add breakpoint" class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate" actionID="RulerDoubleClick">
+			</action>
+		</editorContribution>
+	</extension>
+	
+	<extension point="org.eclipse.debug.ui.debugModelPresentations">
+		<debugModelPresentation id="entity.resource.entity.debugModel" class="entity.resource.entity.ui.debug.EntityDebugModelPresentation">
+		</debugModelPresentation>
+	</extension>
+	
+</plugin>

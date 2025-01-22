@@ -1,0 +1,64 @@
+{
+  "applications": [
+    {
+      "id": "pulseapi",
+      "applicationSuiteId": "business-os-dev",
+      "accessTokenValiditySeconds": 3600,
+      "allowClientCredentials": false,
+      "allowOfflineAccess": true,
+      "applicationType": "AuthorizationCodeWithPkce",
+      "clientId": "business-os-dev.app.pulseapi",
+      "clientIdAlias": null,
+      "internalDescription": "Cegid Pulse OS API Token Service",
+      "redirectUris": [
+        "http://localhost:8989/docs/oauth2-redirect",
+        "https://businessos-rest-services.azurewebsites.net/docs/oauth2-redirect",
+        "https://pulse-os-evaluation-api.azurewebsites.net/docs/oauth2-redirect"
+      ],
+      "refreshTokenValiditySeconds": 86400,
+      "requireClientSecret": false,
+      "reusableRefreshToken": true,
+      "scopes": [
+        {
+          "scopeId": "business-os-dev.build.rw",
+          "granted": true
+        },
+        {
+          "scopeId": "business-os-dev.request.rw",
+          "granted": true
+        }
+      ],
+      "signinApplicationClientId": null
+    },
+    {
+      "id": "studio",
+      "applicationSuiteId": "business-os-dev",
+      "accessTokenValiditySeconds": 600,
+      "allowClientCredentials": false,
+      "allowOfflineAccess": true,
+      "applicationType": "AuthorizationCodeWithPkce",
+      "clientId": "business-os-dev.app.studio",
+      "clientIdAlias": null,
+      "internalDescription": "Pulse OS Studio",
+      "redirectUris": [
+        "http://localhost:8000/",
+        "https://businessos-studio.azurewebsites.net/",
+        "https://pulse-os-evaluation-studio.azurewebsites.net/"
+      ],
+      "refreshTokenValiditySeconds": 86400,
+      "requireClientSecret": false,
+      "reusableRefreshToken": false,
+      "scopes": [
+        {
+          "scopeId": "business-os-dev.build.rw",
+          "granted": true
+        },
+        {
+          "scopeId": "business-os-dev.request.rw",
+          "granted": true
+        }
+      ],
+      "signinApplicationClientId": null
+    }
+  ]
+}

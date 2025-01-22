@@ -1,0 +1,156 @@
+Software Engineering Taxonomy
+├── Architecture
+│   ├── Software Architecture
+│   │   ├── Architectural Styles
+│   │   │   ├── Layered (N-Tier)
+│   │   │   ├── Client-Server
+│   │   │   ├── Microservices
+│   │   │   ├── Event-Driven
+│   │   │   ├── Service-Oriented (SOA)
+│   │   │   ├── Microkernel
+│   │   │   ├── Space-Based
+│   │   │   ├── Peer-to-Peer (P2P)
+│   │   │   ├── Serverless
+│   │   ├── Architectural Patterns
+│   │   │   ├── MVC (Model-View-Controller)
+│   │   │   ├── MVP (Model-View-Presenter)
+│   │   │   ├── MVVM (Model-View-ViewModel)
+│   │   │   ├── CQRS (Command Query Responsibility Segregation)
+│   │   │   ├── Event Sourcing
+│   │   │   ├── Broker Pattern
+│   │   │   ├── Microservices Architecture
+│   │   │   ├── Layered Architecture
+│   │   ├── Architectural Decisions
+│   │   │   ├── Technology Selection
+│   │   │   ├── System Decomposition
+│   │   │   ├── Interface Design
+│   │   │   ├── Data Storage Choices
+│   │   │   ├── Scalability Strategies
+│   │   │   ├── Security Considerations
+│   │   │   ├── Performance Optimization
+│   │   │   ├── Disaster Recovery
+│   │   │   ├── Integration Approaches
+│   │   ├── Architectural Documentation
+│   │   │   ├── Views and Viewpoints
+│   │   │   │   ├── Logical View
+│   │   │   │   ├── Development View
+│   │   │   │   ├── Process View
+│   │   │   │   ├── Physical View
+│   │   │   │   ├── Scenarios
+│   │   │   ├── C4 Model
+│   │   │   │   ├── Context Diagram
+│   │   │   │   ├── Container Diagram
+│   │   │   │   ├── Component Diagram
+│   │   │   │   ├── Code Diagram
+│   │   │   ├── UML (Unified Modeling Language)
+│   │   │   │   ├── Class Diagrams
+│   │   │   │   ├── Sequence Diagrams
+│   │   │   │   ├── Use Case Diagrams
+│   │   │   │   ├── Activity Diagrams
+│   │   │   │   ├── State Diagrams
+│   │   ├── Architecture Evaluation
+│   │   │   ├── ATAM (Architecture Tradeoff Analysis Method)
+│   │   │   ├── CBAM (Cost Benefit Analysis Method)
+│   │   │   ├── SAAM (Software Architecture Analysis Method)
+│   │   │   ├── ADR (Architecture Decision Records)
+│   │   │   ├── Quality Attribute Workshops
+│   ├── Cloud Architecture
+│   │   ├── Cloud-Native Architecture
+│   │   ├── Serverless Architecture
+│   │   ├── Microservices in Cloud
+│   │   ├── Multi-Cloud Architecture
+│   │   ├── Hybrid Cloud Architecture
+│   │   ├── Cloud Service Models
+│   │   │   ├── Infrastructure as a Service (IaaS)
+│   │   │   ├── Platform as a Service (PaaS)
+│   │   │   ├── Software as a Service (SaaS)
+│   ├── Network Architecture
+│   │   ├── Peer-to-Peer (P2P) Architecture
+│   │   ├── Client-Server Architecture
+│   │   ├── Distributed Architecture
+│   │   ├── Grid Computing Architecture
+│   │   ├── Edge Computing Architecture
+│   ├── Data Architecture
+│   │   ├── Data Warehousing
+│   │   ├── Data Lakes
+│   │   ├── Data Marts
+│   │   ├── Big Data Architecture
+│   │   ├── Data Integration Architecture
+│   │   ├── Data Governance
+│   │   ├── Master Data Management (MDM)
+│   ├── Security Architecture
+│   │   ├── Zero Trust Architecture
+│   │   ├── Identity and Access Management (IAM)
+│   │   ├── Network Security Architecture
+│   │   ├── Application Security Architecture
+│   │   ├── Cloud Security Architecture
+│   │   ├── Security Information and Event Management (SIEM)
+│   ├── Enterprise Architecture
+│   │   ├── TOGAF (The Open Group Architecture Framework)
+│   │   ├── Zachman Framework
+│   │   ├── Federal Enterprise Architecture (FEA)
+│   │   ├── Gartner Enterprise Architecture Framework
+├── Design
+│   ├── High-Level Design (HLD)
+│   │   ├── System Components
+│   │   ├── Modules
+│   │   ├── Interfaces
+│   │   ├── Interactions
+│   ├── Low-Level Design (LLD)
+│   │   ├── Class Diagrams
+│   │   ├── Object Interactions
+│   │   ├── Algorithms
+│   │   ├── Data Structures
+│   ├── User Interface (UI) Design
+│   │   ├── Layout
+│   │   ├── Navigation
+│   │   ├── Interaction Patterns
+│   │   ├── User Experience
+│   ├── Database Design
+│   │   ├── Tables
+│   │   ├── Relationships
+│   │   ├── Keys
+│   │   ├── Indexes
+│   │   ├── Normalization
+│   ├── Security Design
+│   │   ├── Authentication
+│   │   ├── Authorization
+│   │   ├── Encryption
+│   │   ├── Data Protection
+│   ├── API Design
+│   │   ├── Endpoints
+│   │   ├── Request/Response Formats
+│   │   ├── Error Handling
+│   │   ├── Versioning
+│   ├── Algorithm Design
+│   │   ├── Efficiency
+│   │   ├── Complexity
+│   │   ├── Correctness
+│   │   ├── Specific Algorithms
+│   ├── Component Design
+│   │   ├── Internal Structure
+│   │   ├── Behavior of Components
+│   ├── Design Principles
+│   │   ├── SOLID
+│   │   │   ├── Single Responsibility Principle
+│   │   │   ├── Open/Closed Principle
+│   │   │   ├── Liskov Substitution Principle
+│   │   │   ├── Interface Segregation Principle
+│   │   │   ├── Dependency Inversion Principle
+│   │   ├── DRY (Don't Repeat Yourself)
+│   │   ├── KISS (Keep It Simple, Stupid)
+│   │   ├── YAGNI (You Aren't Gonna Need It)
+│   │   ├── Separation of Concerns
+│   │   ├── High Cohesion
+│   │   ├── Low Coupling
+│   ├── Design Patterns
+│   │   ├── Repository Pattern
+│   │   ├── Adapter Pattern
+│   │   ├── Proxy Pattern
+│   │   ├── Singleton Pattern
+│   │   ├── Factory Pattern
+│   │   ├── Observer Pattern
+│   │   ├── Strategy Pattern
+│   │   ├── Decorator Pattern
+│   │   ├── Facade Pattern
+│   │   ├── Command Pattern

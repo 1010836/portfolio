@@ -1,0 +1,5093 @@
+{
+	"info": {
+		"_postman_id": "e99aec81-7027-4a88-9f84-05b08821e95d",
+		"name": "cegid-pulse-os",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2406683"
+	},
+	"item": [
+		{
+			"name": "model",
+			"item": [
+				{
+					"name": "{model_id}",
+					"item": [
+						{
+							"name": "Read Model",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "scope",
+											"value": "business-os-inte.build.rw business-os-inte.request.rw offline_access",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "https://inte-oauth.cegid.com/token",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "https://inte-oauth.cegid.com/authorize",
+											"type": "string"
+										},
+										{
+											"key": "grant_type",
+											"value": "authorization_code",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/model/:model_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"model",
+										":model_id"
+									],
+									"variable": [
+										{
+											"key": "model_id",
+											"value": "<string>",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "Retrieve a model by ID."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/model/:model_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"model",
+												":model_id"
+											],
+											"variable": [
+												{
+													"key": "model_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"modified_on\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"api_key\": \"<string>\",\n  \"domain\": {\n    \"id\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"modified_on\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"base_url\": \"<string>\",\n  \"api_type\": \"<string>\",\n  \"api_version\": \"<string>\",\n  \"description\": \"<string>\",\n  \"short_term_memory_max_tokens\": \"<integer>\",\n  \"system_resource\": false,\n  \"cache_sid\": \"<integer>\",\n  \"temperature\": \"<number>\"\n}"
+								},
+								{
+									"name": "Validation Error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/model/:model_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"model",
+												":model_id"
+											],
+											"variable": [
+												{
+													"key": "model_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+								}
+							]
+						},
+						{
+							"name": "Update Model",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "scope",
+											"value": "business-os-inte.build.rw business-os-inte.request.rw offline_access",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "https://inte-oauth.cegid.com/token",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "https://inte-oauth.cegid.com/authorize",
+											"type": "string"
+										},
+										{
+											"key": "grant_type",
+											"value": "authorization_code",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"<string>\",\n  \"api_key\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"base_url\": \"<string>\",\n  \"api_type\": \"<string>\",\n  \"api_version\": \"<string>\",\n  \"description\": \"<string>\",\n  \"short_term_memory_max_tokens\": \"<integer>\",\n  \"system_resource\": false,\n  \"cache_sid\": \"<integer>\",\n  \"temperature\": \"<number>\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/model/:model_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"model",
+										":model_id"
+									],
+									"variable": [
+										{
+											"key": "model_id",
+											"value": "<string>",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "Update a model."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"<string>\",\n  \"api_key\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"base_url\": \"<string>\",\n  \"api_type\": \"<string>\",\n  \"api_version\": \"<string>\",\n  \"description\": \"<string>\",\n  \"short_term_memory_max_tokens\": \"<integer>\",\n  \"system_resource\": false,\n  \"cache_sid\": \"<integer>\",\n  \"temperature\": \"<number>\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/model/:model_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"model",
+												":model_id"
+											],
+											"variable": [
+												{
+													"key": "model_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "\"<string>\""
+								},
+								{
+									"name": "Validation Error",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"<string>\",\n  \"api_key\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"base_url\": \"<string>\",\n  \"api_type\": \"<string>\",\n  \"api_version\": \"<string>\",\n  \"description\": \"<string>\",\n  \"short_term_memory_max_tokens\": \"<integer>\",\n  \"system_resource\": false,\n  \"cache_sid\": \"<integer>\",\n  \"temperature\": \"<number>\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/model/:model_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"model",
+												":model_id"
+											],
+											"variable": [
+												{
+													"key": "model_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete Model",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/model/:model_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"model",
+										":model_id"
+									],
+									"variable": [
+										{
+											"key": "model_id",
+											"value": "<string>",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "Delete a model."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/model/:model_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"model",
+												":model_id"
+											],
+											"variable": [
+												{
+													"key": "model_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Validation Error",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/model/:model_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"model",
+												":model_id"
+											],
+											"variable": [
+												{
+													"key": "model_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Read Models",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "scope",
+									"value": "business-os-inte.build.rw business-os-inte.request.rw offline_access",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://inte-oauth.cegid.com/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://inte-oauth.cegid.com/authorize",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/model?name=<string>&base_url=<string>&description=<string>&short_term_memory_max_tokens=<integer>&domain=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"model"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "<string>"
+								},
+								{
+									"key": "base_url",
+									"value": "<string>"
+								},
+								{
+									"key": "description",
+									"value": "<string>"
+								},
+								{
+									"key": "short_term_memory_max_tokens",
+									"value": "<integer>"
+								},
+								{
+									"key": "domain",
+									"value": "<string>"
+								}
+							]
+						},
+						"description": "Retrieve all models."
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "<token>",
+										"description": "Added as a part of security scheme: oauth2"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/model?name=<string>&base_url=<string>&description=<string>&short_term_memory_max_tokens=<integer>&domain=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"model"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "<string>"
+										},
+										{
+											"key": "base_url",
+											"value": "<string>"
+										},
+										{
+											"key": "description",
+											"value": "<string>"
+										},
+										{
+											"key": "short_term_memory_max_tokens",
+											"value": "<integer>"
+										},
+										{
+											"key": "domain",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"id\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"modified_on\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"api_key\": \"<string>\",\n    \"domain\": {\n      \"id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"modified_on\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    \"base_url\": \"<string>\",\n    \"api_type\": \"<string>\",\n    \"api_version\": \"<string>\",\n    \"description\": \"<string>\",\n    \"short_term_memory_max_tokens\": \"<integer>\",\n    \"system_resource\": false,\n    \"cache_sid\": \"<integer>\",\n    \"temperature\": \"<number>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"modified_on\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"api_key\": \"<string>\",\n    \"domain\": {\n      \"id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"modified_on\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    \"base_url\": \"<string>\",\n    \"api_type\": \"<string>\",\n    \"api_version\": \"<string>\",\n    \"description\": \"<string>\",\n    \"short_term_memory_max_tokens\": \"<integer>\",\n    \"system_resource\": false,\n    \"cache_sid\": \"<integer>\",\n    \"temperature\": \"<number>\"\n  }\n]"
+						},
+						{
+							"name": "Validation Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "<token>",
+										"description": "Added as a part of security scheme: oauth2"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/model?name=<string>&base_url=<string>&description=<string>&short_term_memory_max_tokens=<integer>&domain=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"model"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "<string>"
+										},
+										{
+											"key": "base_url",
+											"value": "<string>"
+										},
+										{
+											"key": "description",
+											"value": "<string>"
+										},
+										{
+											"key": "short_term_memory_max_tokens",
+											"value": "<integer>"
+										},
+										{
+											"key": "domain",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Model",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"<string>\",\n  \"api_key\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"base_url\": \"<string>\",\n  \"api_type\": \"<string>\",\n  \"api_version\": \"<string>\",\n  \"description\": \"<string>\",\n  \"short_term_memory_max_tokens\": \"<integer>\",\n  \"system_resource\": false,\n  \"cache_sid\": \"<integer>\",\n  \"temperature\": \"<number>\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/model",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"model"
+							]
+						},
+						"description": "Create a new model."
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "<token>",
+										"description": "Added as a part of security scheme: oauth2"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"<string>\",\n  \"api_key\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"base_url\": \"<string>\",\n  \"api_type\": \"<string>\",\n  \"api_version\": \"<string>\",\n  \"description\": \"<string>\",\n  \"short_term_memory_max_tokens\": \"<integer>\",\n  \"system_resource\": false,\n  \"cache_sid\": \"<integer>\",\n  \"temperature\": \"<number>\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/model",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"model"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "\"<string>\""
+						},
+						{
+							"name": "Validation Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "<token>",
+										"description": "Added as a part of security scheme: oauth2"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"<string>\",\n  \"api_key\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"base_url\": \"<string>\",\n  \"api_type\": \"<string>\",\n  \"api_version\": \"<string>\",\n  \"description\": \"<string>\",\n  \"short_term_memory_max_tokens\": \"<integer>\",\n  \"system_resource\": false,\n  \"cache_sid\": \"<integer>\",\n  \"temperature\": \"<number>\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/model",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"model"
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "skill",
+			"item": [
+				{
+					"name": "{skill_id}",
+					"item": [
+						{
+							"name": "Read Skill",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/skill/:skill_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"skill",
+										":skill_id"
+									],
+									"variable": [
+										{
+											"key": "skill_id",
+											"value": "<string>",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "Retrieve a skill by ID."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/skill/:skill_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"skill",
+												":skill_id"
+											],
+											"variable": [
+												{
+													"key": "skill_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"modified_on\": \"<dateTime>\",\n  \"title\": \"<string>\",\n  \"content\": \"<string>\",\n  \"domain\": {\n    \"id\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"modified_on\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"language\": \"PYTHON\",\n  \"system_resource\": false\n}"
+								},
+								{
+									"name": "Validation Error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/skill/:skill_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"skill",
+												":skill_id"
+											],
+											"variable": [
+												{
+													"key": "skill_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+								}
+							]
+						},
+						{
+							"name": "Update Skill",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"title\": \"<string>\",\n  \"content\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"language\": \"PYTHON\",\n  \"system_resource\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/skill/:skill_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"skill",
+										":skill_id"
+									],
+									"variable": [
+										{
+											"key": "skill_id",
+											"value": "<string>",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "Update a skill."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"title\": \"<string>\",\n  \"content\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"language\": \"PYTHON\",\n  \"system_resource\": false\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/skill/:skill_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"skill",
+												":skill_id"
+											],
+											"variable": [
+												{
+													"key": "skill_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "\"<string>\""
+								},
+								{
+									"name": "Validation Error",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"title\": \"<string>\",\n  \"content\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"language\": \"PYTHON\",\n  \"system_resource\": false\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/skill/:skill_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"skill",
+												":skill_id"
+											],
+											"variable": [
+												{
+													"key": "skill_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete Skill",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/skill/:skill_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"skill",
+										":skill_id"
+									],
+									"variable": [
+										{
+											"key": "skill_id",
+											"value": "<string>",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "Delete a skill."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/skill/:skill_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"skill",
+												":skill_id"
+											],
+											"variable": [
+												{
+													"key": "skill_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Validation Error",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/skill/:skill_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"skill",
+												":skill_id"
+											],
+											"variable": [
+												{
+													"key": "skill_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Read Skills",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/skill",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"skill"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "<string>",
+									"disabled": true
+								},
+								{
+									"key": "content",
+									"value": "<string>",
+									"disabled": true
+								},
+								{
+									"key": "language",
+									"value": "<string>",
+									"disabled": true
+								},
+								{
+									"key": "domain",
+									"value": "<string>",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Retrieve all skills."
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "<token>",
+										"description": "Added as a part of security scheme: oauth2"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/skill?title=<string>&content=<string>&language=<string>&domain=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"skill"
+									],
+									"query": [
+										{
+											"key": "title",
+											"value": "<string>"
+										},
+										{
+											"key": "content",
+											"value": "<string>"
+										},
+										{
+											"key": "language",
+											"value": "<string>"
+										},
+										{
+											"key": "domain",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"id\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"modified_on\": \"<dateTime>\",\n    \"title\": \"<string>\",\n    \"content\": \"<string>\",\n    \"domain\": {\n      \"id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"modified_on\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    \"language\": \"PYTHON\",\n    \"system_resource\": false\n  },\n  {\n    \"id\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"modified_on\": \"<dateTime>\",\n    \"title\": \"<string>\",\n    \"content\": \"<string>\",\n    \"domain\": {\n      \"id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"modified_on\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    \"language\": \"PYTHON\",\n    \"system_resource\": false\n  }\n]"
+						},
+						{
+							"name": "Validation Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "<token>",
+										"description": "Added as a part of security scheme: oauth2"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/skill?title=<string>&content=<string>&language=<string>&domain=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"skill"
+									],
+									"query": [
+										{
+											"key": "title",
+											"value": "<string>"
+										},
+										{
+											"key": "content",
+											"value": "<string>"
+										},
+										{
+											"key": "language",
+											"value": "<string>"
+										},
+										{
+											"key": "domain",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Skill",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"<string>\",\n  \"content\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"language\": \"PYTHON\",\n  \"system_resource\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/skill",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"skill"
+							]
+						},
+						"description": "Create a new skill."
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "<token>",
+										"description": "Added as a part of security scheme: oauth2"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"title\": \"<string>\",\n  \"content\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"language\": \"PYTHON\",\n  \"system_resource\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/skill",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"skill"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "\"<string>\""
+						},
+						{
+							"name": "Validation Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "<token>",
+										"description": "Added as a part of security scheme: oauth2"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"title\": \"<string>\",\n  \"content\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"language\": \"PYTHON\",\n  \"system_resource\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/skill",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"skill"
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "agent",
+			"item": [
+				{
+					"name": "{agent_id}",
+					"item": [
+						{
+							"name": "Read Agent",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/agent/:agent_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"agent",
+										":agent_id"
+									],
+									"variable": [
+										{
+											"key": "agent_id",
+											"value": "<string>",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "Retrieve a agent by ID."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/agent/:agent_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"agent",
+												":agent_id"
+											],
+											"variable": [
+												{
+													"key": "agent_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"modified_on\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"system_message\": \"<string>\",\n  \"description\": \"<string>\",\n  \"domain\": {\n    \"id\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"modified_on\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"code_execution\": {\n    \"work_dir\": \"<string>\",\n    \"last_n_messages\": \"<integer>\",\n    \"use_docker\": false\n  },\n  \"human_input\": \"<string>\",\n  \"max_consecutive_auto_reply\": \"<integer>\",\n  \"settings\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"stage\": \"<string>\",\n  \"is_termination_msg\": \"<string>\",\n  \"system_resource\": \"<boolean>\",\n  \"type\": \"<string>\",\n  \"model\": {\n    \"id\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"modified_on\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"api_key\": \"<string>\",\n    \"base_url\": \"<string>\",\n    \"api_type\": \"<string>\",\n    \"api_version\": \"<string>\",\n    \"description\": \"<string>\",\n    \"short_term_memory_max_tokens\": \"<integer>\",\n    \"system_resource\": false,\n    \"cache_sid\": \"<integer>\",\n    \"temperature\": \"<number>\"\n  },\n  \"skills\": [\n    {\n      \"id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"modified_on\": \"<dateTime>\",\n      \"title\": \"<string>\",\n      \"content\": \"<string>\",\n      \"language\": \"PYTHON\",\n      \"system_resource\": false\n    },\n    {\n      \"id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"modified_on\": \"<dateTime>\",\n      \"title\": \"<string>\",\n      \"content\": \"<string>\",\n      \"language\": \"PYTHON\",\n      \"system_resource\": false\n    }\n  ]\n}"
+								},
+								{
+									"name": "Validation Error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/agent/:agent_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"agent",
+												":agent_id"
+											],
+											"variable": [
+												{
+													"key": "agent_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+								}
+							]
+						},
+						{
+							"name": "Update Agent",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"<string>\",\n  \"system_message\": \"<string>\",\n  \"description\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"code_execution\": {\n    \"work_dir\": \"<string>\",\n    \"last_n_messages\": \"<integer>\",\n    \"use_docker\": false\n  },\n  \"human_input\": \"<string>\",\n  \"max_consecutive_auto_reply\": \"<integer>\",\n  \"settings\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"stage\": \"<string>\",\n  \"is_termination_msg\": \"<string>\",\n  \"system_resource\": \"<boolean>\",\n  \"type\": \"<string>\",\n  \"model\": \"<string>\",\n  \"skills\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/agent/:agent_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"agent",
+										":agent_id"
+									],
+									"variable": [
+										{
+											"key": "agent_id",
+											"value": "<string>",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "Update a agent."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"<string>\",\n  \"system_message\": \"<string>\",\n  \"description\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"code_execution\": {\n    \"work_dir\": \"<string>\",\n    \"last_n_messages\": \"<integer>\",\n    \"use_docker\": false\n  },\n  \"human_input\": \"<string>\",\n  \"max_consecutive_auto_reply\": \"<integer>\",\n  \"settings\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"stage\": \"<string>\",\n  \"is_termination_msg\": \"<string>\",\n  \"system_resource\": \"<boolean>\",\n  \"type\": \"<string>\",\n  \"model\": \"<string>\",\n  \"skills\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/agent/:agent_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"agent",
+												":agent_id"
+											],
+											"variable": [
+												{
+													"key": "agent_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "\"<string>\""
+								},
+								{
+									"name": "Validation Error",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"<string>\",\n  \"system_message\": \"<string>\",\n  \"description\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"code_execution\": {\n    \"work_dir\": \"<string>\",\n    \"last_n_messages\": \"<integer>\",\n    \"use_docker\": false\n  },\n  \"human_input\": \"<string>\",\n  \"max_consecutive_auto_reply\": \"<integer>\",\n  \"settings\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"stage\": \"<string>\",\n  \"is_termination_msg\": \"<string>\",\n  \"system_resource\": \"<boolean>\",\n  \"type\": \"<string>\",\n  \"model\": \"<string>\",\n  \"skills\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/agent/:agent_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"agent",
+												":agent_id"
+											],
+											"variable": [
+												{
+													"key": "agent_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete Agent",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/agent/:agent_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"agent",
+										":agent_id"
+									],
+									"variable": [
+										{
+											"key": "agent_id",
+											"value": "<string>",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "Delete a agent."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/agent/:agent_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"agent",
+												":agent_id"
+											],
+											"variable": [
+												{
+													"key": "agent_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Validation Error",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/agent/:agent_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"agent",
+												":agent_id"
+											],
+											"variable": [
+												{
+													"key": "agent_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Read Agents",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/agent",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"agent"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "<string>",
+									"disabled": true
+								},
+								{
+									"key": "description",
+									"value": "<string>",
+									"disabled": true
+								},
+								{
+									"key": "code_execution",
+									"value": "<boolean>",
+									"disabled": true
+								},
+								{
+									"key": "human_input",
+									"value": "<string>",
+									"disabled": true
+								},
+								{
+									"key": "max_consecutive_auto_reply",
+									"value": "<integer>",
+									"disabled": true
+								},
+								{
+									"key": "model",
+									"value": "<string>",
+									"disabled": true
+								},
+								{
+									"key": "domain",
+									"value": "<string>",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Retrieve all agents."
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "<token>",
+										"description": "Added as a part of security scheme: oauth2"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/agent?name=<string>&description=<string>&code_execution=<boolean>&human_input=<string>&max_consecutive_auto_reply=<integer>&model=<string>&domain=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"agent"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "<string>"
+										},
+										{
+											"key": "description",
+											"value": "<string>"
+										},
+										{
+											"key": "code_execution",
+											"value": "<boolean>"
+										},
+										{
+											"key": "human_input",
+											"value": "<string>"
+										},
+										{
+											"key": "max_consecutive_auto_reply",
+											"value": "<integer>"
+										},
+										{
+											"key": "model",
+											"value": "<string>"
+										},
+										{
+											"key": "domain",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"id\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"modified_on\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"system_message\": \"<string>\",\n    \"description\": \"<string>\",\n    \"domain\": {\n      \"id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"modified_on\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    \"code_execution\": {\n      \"work_dir\": \"<string>\",\n      \"last_n_messages\": \"<integer>\",\n      \"use_docker\": false\n    },\n    \"human_input\": \"<string>\",\n    \"max_consecutive_auto_reply\": \"<integer>\",\n    \"settings\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"stage\": \"<string>\",\n    \"is_termination_msg\": \"<string>\",\n    \"system_resource\": \"<boolean>\",\n    \"type\": \"<string>\",\n    \"model\": {\n      \"id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"modified_on\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"api_key\": \"<string>\",\n      \"base_url\": \"<string>\",\n      \"api_type\": \"<string>\",\n      \"api_version\": \"<string>\",\n      \"description\": \"<string>\",\n      \"short_term_memory_max_tokens\": \"<integer>\",\n      \"system_resource\": false,\n      \"cache_sid\": \"<integer>\",\n      \"temperature\": \"<number>\"\n    },\n    \"skills\": [\n      {\n        \"id\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"modified_on\": \"<dateTime>\",\n        \"title\": \"<string>\",\n        \"content\": \"<string>\",\n        \"language\": \"PYTHON\",\n        \"system_resource\": false\n      },\n      {\n        \"id\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"modified_on\": \"<dateTime>\",\n        \"title\": \"<string>\",\n        \"content\": \"<string>\",\n        \"language\": \"PYTHON\",\n        \"system_resource\": false\n      }\n    ]\n  },\n  {\n    \"id\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"modified_on\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"system_message\": \"<string>\",\n    \"description\": \"<string>\",\n    \"domain\": {\n      \"id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"modified_on\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    \"code_execution\": {\n      \"work_dir\": \"<string>\",\n      \"last_n_messages\": \"<integer>\",\n      \"use_docker\": false\n    },\n    \"human_input\": \"<string>\",\n    \"max_consecutive_auto_reply\": \"<integer>\",\n    \"settings\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"stage\": \"<string>\",\n    \"is_termination_msg\": \"<string>\",\n    \"system_resource\": \"<boolean>\",\n    \"type\": \"<string>\",\n    \"model\": {\n      \"id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"modified_on\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"api_key\": \"<string>\",\n      \"base_url\": \"<string>\",\n      \"api_type\": \"<string>\",\n      \"api_version\": \"<string>\",\n      \"description\": \"<string>\",\n      \"short_term_memory_max_tokens\": \"<integer>\",\n      \"system_resource\": false,\n      \"cache_sid\": \"<integer>\",\n      \"temperature\": \"<number>\"\n    },\n    \"skills\": [\n      {\n        \"id\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"modified_on\": \"<dateTime>\",\n        \"title\": \"<string>\",\n        \"content\": \"<string>\",\n        \"language\": \"PYTHON\",\n        \"system_resource\": false\n      },\n      {\n        \"id\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"modified_on\": \"<dateTime>\",\n        \"title\": \"<string>\",\n        \"content\": \"<string>\",\n        \"language\": \"PYTHON\",\n        \"system_resource\": false\n      }\n    ]\n  }\n]"
+						},
+						{
+							"name": "Validation Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "<token>",
+										"description": "Added as a part of security scheme: oauth2"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/agent?name=<string>&description=<string>&code_execution=<boolean>&human_input=<string>&max_consecutive_auto_reply=<integer>&model=<string>&domain=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"agent"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "<string>"
+										},
+										{
+											"key": "description",
+											"value": "<string>"
+										},
+										{
+											"key": "code_execution",
+											"value": "<boolean>"
+										},
+										{
+											"key": "human_input",
+											"value": "<string>"
+										},
+										{
+											"key": "max_consecutive_auto_reply",
+											"value": "<integer>"
+										},
+										{
+											"key": "model",
+											"value": "<string>"
+										},
+										{
+											"key": "domain",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Agent",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"<string>\",\n  \"system_message\": \"<string>\",\n  \"description\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"code_execution\": {\n    \"work_dir\": \"<string>\",\n    \"last_n_messages\": \"<integer>\",\n    \"use_docker\": false\n  },\n  \"human_input\": \"<string>\",\n  \"max_consecutive_auto_reply\": \"<integer>\",\n  \"settings\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"stage\": \"<string>\",\n  \"is_termination_msg\": \"<string>\",\n  \"system_resource\": \"<boolean>\",\n  \"type\": \"<string>\",\n  \"model\": \"<string>\",\n  \"skills\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/agent",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"agent"
+							]
+						},
+						"description": "Create a new agent."
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "<token>",
+										"description": "Added as a part of security scheme: oauth2"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"<string>\",\n  \"system_message\": \"<string>\",\n  \"description\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"code_execution\": {\n    \"work_dir\": \"<string>\",\n    \"last_n_messages\": \"<integer>\",\n    \"use_docker\": false\n  },\n  \"human_input\": \"<string>\",\n  \"max_consecutive_auto_reply\": \"<integer>\",\n  \"settings\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"stage\": \"<string>\",\n  \"is_termination_msg\": \"<string>\",\n  \"system_resource\": \"<boolean>\",\n  \"type\": \"<string>\",\n  \"model\": \"<string>\",\n  \"skills\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/agent",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"agent"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "\"<string>\""
+						},
+						{
+							"name": "Validation Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "<token>",
+										"description": "Added as a part of security scheme: oauth2"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"<string>\",\n  \"system_message\": \"<string>\",\n  \"description\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"code_execution\": {\n    \"work_dir\": \"<string>\",\n    \"last_n_messages\": \"<integer>\",\n    \"use_docker\": false\n  },\n  \"human_input\": \"<string>\",\n  \"max_consecutive_auto_reply\": \"<integer>\",\n  \"settings\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"stage\": \"<string>\",\n  \"is_termination_msg\": \"<string>\",\n  \"system_resource\": \"<boolean>\",\n  \"type\": \"<string>\",\n  \"model\": \"<string>\",\n  \"skills\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/agent",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"agent"
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "workflow",
+			"item": [
+				{
+					"name": "{workflow_id}",
+					"item": [
+						{
+							"name": "Read Workflow",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/workflow/:workflow_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"workflow",
+										":workflow_id"
+									],
+									"variable": [
+										{
+											"key": "workflow_id",
+											"value": "<string>",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "Retrieve a workflow by ID."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/workflow/:workflow_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"workflow",
+												":workflow_id"
+											],
+											"variable": [
+												{
+													"key": "workflow_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"modified_on\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"domain\": {\n    \"id\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"modified_on\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"agents\": [\n    {\n      \"id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"modified_on\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"system_message\": \"<string>\",\n      \"description\": \"<string>\",\n      \"code_execution\": {\n        \"work_dir\": \"<string>\",\n        \"last_n_messages\": \"<integer>\",\n        \"use_docker\": false\n      },\n      \"human_input\": \"<string>\",\n      \"max_consecutive_auto_reply\": \"<integer>\",\n      \"settings\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"stage\": \"<string>\",\n      \"is_termination_msg\": \"<string>\",\n      \"system_resource\": \"<boolean>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"description\": \"<string>\",\n  \"type\": \"GROUP\",\n  \"summary_method\": \"REFLECTION\",\n  \"max_turns\": 20,\n  \"max_rounds\": 20,\n  \"system_resource\": false\n}"
+								},
+								{
+									"name": "Validation Error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/workflow/:workflow_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"workflow",
+												":workflow_id"
+											],
+											"variable": [
+												{
+													"key": "workflow_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+								}
+							]
+						},
+						{
+							"name": "Update Workflow",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"agents\": [\n    \"<string>\"\n  ],\n  \"description\": \"<string>\",\n  \"type\": \"GROUP\",\n  \"summary_method\": \"REFLECTION\",\n  \"max_turns\": 20,\n  \"max_rounds\": 20,\n  \"system_resource\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/workflow/:workflow_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"workflow",
+										":workflow_id"
+									],
+									"variable": [
+										{
+											"key": "workflow_id",
+											"value": "<string>",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "Update a workflow."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"agents\": [\n    \"<string>\"\n  ],\n  \"description\": \"<string>\",\n  \"type\": \"GROUP\",\n  \"summary_method\": \"REFLECTION\",\n  \"max_turns\": 20,\n  \"max_rounds\": 20,\n  \"system_resource\": false\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/workflow/:workflow_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"workflow",
+												":workflow_id"
+											],
+											"variable": [
+												{
+													"key": "workflow_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "\"<string>\""
+								},
+								{
+									"name": "Validation Error",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"agents\": [\n    \"<string>\"\n  ],\n  \"description\": \"<string>\",\n  \"type\": \"GROUP\",\n  \"summary_method\": \"REFLECTION\",\n  \"max_turns\": 20,\n  \"max_rounds\": 20,\n  \"system_resource\": false\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/workflow/:workflow_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"workflow",
+												":workflow_id"
+											],
+											"variable": [
+												{
+													"key": "workflow_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete Workflow",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/workflow/:workflow_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"workflow",
+										":workflow_id"
+									],
+									"variable": [
+										{
+											"key": "workflow_id",
+											"value": "<string>",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "Delete a workflow."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/workflow/:workflow_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"workflow",
+												":workflow_id"
+											],
+											"variable": [
+												{
+													"key": "workflow_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Validation Error",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/workflow/:workflow_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"workflow",
+												":workflow_id"
+											],
+											"variable": [
+												{
+													"key": "workflow_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Read Workflows",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/workflow",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"workflow"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "<string>",
+									"disabled": true
+								},
+								{
+									"key": "description",
+									"value": "<string>",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": "<string>",
+									"disabled": true
+								},
+								{
+									"key": "summary_method",
+									"value": "<string>",
+									"disabled": true
+								},
+								{
+									"key": "max_turns",
+									"value": "<integer>",
+									"disabled": true
+								},
+								{
+									"key": "max_rounds",
+									"value": "<integer>",
+									"disabled": true
+								},
+								{
+									"key": "domain",
+									"value": "<string>",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Retrieve all workflows."
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "<token>",
+										"description": "Added as a part of security scheme: oauth2"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/workflow?name=<string>&description=<string>&type=<string>&summary_method=<string>&max_turns=<integer>&max_rounds=<integer>&domain=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"workflow"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "<string>"
+										},
+										{
+											"key": "description",
+											"value": "<string>"
+										},
+										{
+											"key": "type",
+											"value": "<string>"
+										},
+										{
+											"key": "summary_method",
+											"value": "<string>"
+										},
+										{
+											"key": "max_turns",
+											"value": "<integer>"
+										},
+										{
+											"key": "max_rounds",
+											"value": "<integer>"
+										},
+										{
+											"key": "domain",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"id\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"modified_on\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"domain\": {\n      \"id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"modified_on\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    \"agents\": [\n      {\n        \"id\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"modified_on\": \"<dateTime>\",\n        \"name\": \"<string>\",\n        \"system_message\": \"<string>\",\n        \"description\": \"<string>\",\n        \"code_execution\": {\n          \"work_dir\": \"<string>\",\n          \"last_n_messages\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"use_docker\": false\n        },\n        \"human_input\": \"<string>\",\n        \"max_consecutive_auto_reply\": \"<integer>\",\n        \"settings\": [\n          \"<object>\",\n          \"<object>\"\n        ],\n        \"stage\": \"<string>\",\n        \"is_termination_msg\": \"<string>\",\n        \"system_resource\": \"<boolean>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"description\": \"<string>\",\n    \"type\": \"GROUP\",\n    \"summary_method\": \"REFLECTION\",\n    \"max_turns\": 20,\n    \"max_rounds\": 20,\n    \"system_resource\": false\n  },\n  {\n    \"id\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"modified_on\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"domain\": {\n      \"id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"modified_on\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    \"agents\": [\n      {\n        \"id\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"modified_on\": \"<dateTime>\",\n        \"name\": \"<string>\",\n        \"system_message\": \"<string>\",\n        \"description\": \"<string>\",\n        \"code_execution\": {\n          \"work_dir\": \"<string>\",\n          \"last_n_messages\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"use_docker\": false\n        },\n        \"human_input\": \"<string>\",\n        \"max_consecutive_auto_reply\": \"<integer>\",\n        \"settings\": [\n          \"<object>\",\n          \"<object>\"\n        ],\n        \"stage\": \"<string>\",\n        \"is_termination_msg\": \"<string>\",\n        \"system_resource\": \"<boolean>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"description\": \"<string>\",\n    \"type\": \"GROUP\",\n    \"summary_method\": \"REFLECTION\",\n    \"max_turns\": 20,\n    \"max_rounds\": 20,\n    \"system_resource\": false\n  }\n]"
+						},
+						{
+							"name": "Validation Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "<token>",
+										"description": "Added as a part of security scheme: oauth2"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/workflow?name=<string>&description=<string>&type=<string>&summary_method=<string>&max_turns=<integer>&max_rounds=<integer>&domain=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"workflow"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "<string>"
+										},
+										{
+											"key": "description",
+											"value": "<string>"
+										},
+										{
+											"key": "type",
+											"value": "<string>"
+										},
+										{
+											"key": "summary_method",
+											"value": "<string>"
+										},
+										{
+											"key": "max_turns",
+											"value": "<integer>"
+										},
+										{
+											"key": "max_rounds",
+											"value": "<integer>"
+										},
+										{
+											"key": "domain",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Workflow",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"agents\": [\n    \"<string>\"\n  ],\n  \"description\": \"<string>\",\n  \"type\": \"GROUP\",\n  \"summary_method\": \"REFLECTION\",\n  \"max_turns\": 20,\n  \"max_rounds\": 20,\n  \"system_resource\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/workflow",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"workflow"
+							]
+						},
+						"description": "Create a new workflow."
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "<token>",
+										"description": "Added as a part of security scheme: oauth2"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"agents\": [\n    \"<string>\"\n  ],\n  \"description\": \"<string>\",\n  \"type\": \"GROUP\",\n  \"summary_method\": \"REFLECTION\",\n  \"max_turns\": 20,\n  \"max_rounds\": 20,\n  \"system_resource\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/workflow",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"workflow"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "\"<string>\""
+						},
+						{
+							"name": "Validation Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "<token>",
+										"description": "Added as a part of security scheme: oauth2"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"agents\": [\n    \"<string>\"\n  ],\n  \"description\": \"<string>\",\n  \"type\": \"GROUP\",\n  \"summary_method\": \"REFLECTION\",\n  \"max_turns\": 20,\n  \"max_rounds\": 20,\n  \"system_resource\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/workflow",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"workflow"
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "domain",
+			"item": [
+				{
+					"name": "{domain_id}",
+					"item": [
+						{
+							"name": "Read Domain",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/domain/:domain_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"domain",
+										":domain_id"
+									],
+									"variable": [
+										{
+											"key": "domain_id",
+											"value": "<string>",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "Retrieve a domain by ID."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/domain/:domain_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"domain",
+												":domain_id"
+											],
+											"variable": [
+												{
+													"key": "domain_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"modified_on\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}"
+								},
+								{
+									"name": "Validation Error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/domain/:domain_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"domain",
+												":domain_id"
+											],
+											"variable": [
+												{
+													"key": "domain_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+								}
+							]
+						},
+						{
+							"name": "Update Domain",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/domain/:domain_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"domain",
+										":domain_id"
+									],
+									"variable": [
+										{
+											"key": "domain_id",
+											"value": "<string>",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "Update a domain."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/domain/:domain_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"domain",
+												":domain_id"
+											],
+											"variable": [
+												{
+													"key": "domain_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "\"<string>\""
+								},
+								{
+									"name": "Validation Error",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/domain/:domain_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"domain",
+												":domain_id"
+											],
+											"variable": [
+												{
+													"key": "domain_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete Domain",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/domain/:domain_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"domain",
+										":domain_id"
+									],
+									"variable": [
+										{
+											"key": "domain_id",
+											"value": "<string>",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "Delete a domain."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/domain/:domain_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"domain",
+												":domain_id"
+											],
+											"variable": [
+												{
+													"key": "domain_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Validation Error",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/domain/:domain_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"domain",
+												":domain_id"
+											],
+											"variable": [
+												{
+													"key": "domain_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Read Domains",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/domain",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"domain"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "<string>",
+									"disabled": true
+								},
+								{
+									"key": "description",
+									"value": "<string>",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Retrieve all domains."
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "<token>",
+										"description": "Added as a part of security scheme: oauth2"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/domain?name=<string>&description=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"domain"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "<string>"
+										},
+										{
+											"key": "description",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"id\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"modified_on\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"modified_on\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n]"
+						},
+						{
+							"name": "Validation Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "<token>",
+										"description": "Added as a part of security scheme: oauth2"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/domain?name=<string>&description=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"domain"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "<string>"
+										},
+										{
+											"key": "description",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Domain",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/domain",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"domain"
+							]
+						},
+						"description": "Create a new domain."
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "<token>",
+										"description": "Added as a part of security scheme: oauth2"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/domain",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"domain"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "\"<string>\""
+						},
+						{
+							"name": "Validation Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "<token>",
+										"description": "Added as a part of security scheme: oauth2"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/domain",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"domain"
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "session",
+			"item": [
+				{
+					"name": "{session_id}",
+					"item": [
+						{
+							"name": "request",
+							"item": [
+								{
+									"name": "{request_id}",
+									"item": [
+										{
+											"name": "Read Request",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/session/:session_id/request/:request_id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"session",
+														":session_id",
+														"request",
+														":request_id"
+													],
+													"query": [
+														{
+															"key": "user_id",
+															"value": "<string>",
+															"disabled": true
+														}
+													],
+													"variable": [
+														{
+															"key": "session_id",
+															"value": "<string>",
+															"description": "(Required) "
+														},
+														{
+															"key": "request_id",
+															"value": "<string>",
+															"description": "(Required) "
+														}
+													]
+												},
+												"description": "Retrieves a request by its ID from a specific session."
+											},
+											"response": [
+												{
+													"name": "Successful Response",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Authorization",
+																"value": "<token>",
+																"description": "Added as a part of security scheme: oauth2"
+															},
+															{
+																"key": "Accept",
+																"value": "application/json"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/session/:session_id/request/:request_id?user_id=<string>",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"session",
+																":session_id",
+																"request",
+																":request_id"
+															],
+															"query": [
+																{
+																	"key": "user_id",
+																	"value": "<string>"
+																}
+															],
+															"variable": [
+																{
+																	"key": "session_id",
+																	"value": "<string>",
+																	"description": "(Required) "
+																},
+																{
+																	"key": "request_id",
+																	"value": "<string>",
+																	"description": "(Required) "
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"id\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"modified_on\": \"<dateTime>\",\n  \"user_id\": \"<string>\",\n  \"user_input\": \"<string>\",\n  \"status\": \"<string>\",\n  \"session\": {\n    \"id\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"modified_on\": \"<dateTime>\",\n    \"user_id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"context\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"secure\": \"<boolean>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"secure\": \"<boolean>\"\n    }\n  ],\n  \"execution\": [\n    {\n      \"index\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"status\": \"<string>\",\n      \"messages\": [\n        {\n          \"sender\": \"<string>\",\n          \"receiver\": \"<string>\",\n          \"message\": \"<string>\"\n        },\n        {\n          \"sender\": \"<string>\",\n          \"receiver\": \"<string>\",\n          \"message\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"index\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"status\": \"<string>\",\n      \"messages\": [\n        {\n          \"sender\": \"<string>\",\n          \"receiver\": \"<string>\",\n          \"message\": \"<string>\"\n        },\n        {\n          \"sender\": \"<string>\",\n          \"receiver\": \"<string>\",\n          \"message\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"output\": {\n    \"structured\": \"<object>\"\n  },\n  \"recommendations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"executed_on\": \"<dateTime>\",\n  \"duration\": 0,\n  \"previous_request\": \"<string>\",\n  \"workflow\": {\n    \"id\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"modified_on\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"type\": \"GROUP\",\n    \"summary_method\": \"REFLECTION\",\n    \"max_turns\": 20,\n    \"max_rounds\": 20,\n    \"system_resource\": false\n  }\n}"
+												},
+												{
+													"name": "Validation Error",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Authorization",
+																"value": "<token>",
+																"description": "Added as a part of security scheme: oauth2"
+															},
+															{
+																"key": "Accept",
+																"value": "application/json"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/session/:session_id/request/:request_id?user_id=<string>",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"session",
+																":session_id",
+																"request",
+																":request_id"
+															],
+															"query": [
+																{
+																	"key": "user_id",
+																	"value": "<string>"
+																}
+															],
+															"variable": [
+																{
+																	"key": "session_id",
+																	"value": "<string>",
+																	"description": "(Required) "
+																},
+																{
+																	"key": "request_id",
+																	"value": "<string>",
+																	"description": "(Required) "
+																}
+															]
+														}
+													},
+													"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+													"code": 422,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+												}
+											]
+										},
+										{
+											"name": "Update Request",
+											"request": {
+												"method": "PATCH",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"execution_step\": {\n    \"index\": \"<integer>\",\n    \"title\": \"<string>\",\n    \"status\": \"<string>\",\n    \"messages\": [\n      {\n        \"sender\": \"<string>\",\n        \"receiver\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      {\n        \"sender\": \"<string>\",\n        \"receiver\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    ]\n  }\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/session/:session_id/request/:request_id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"session",
+														":session_id",
+														"request",
+														":request_id"
+													],
+													"query": [
+														{
+															"key": "user_id",
+															"value": "<string>",
+															"disabled": true
+														}
+													],
+													"variable": [
+														{
+															"key": "session_id",
+															"value": "<string>",
+															"description": "(Required) "
+														},
+														{
+															"key": "request_id",
+															"value": "<string>",
+															"description": "(Required) "
+														}
+													]
+												},
+												"description": "Updates a request in a specific session."
+											},
+											"response": [
+												{
+													"name": "Successful Response",
+													"originalRequest": {
+														"method": "PATCH",
+														"header": [
+															{
+																"key": "Authorization",
+																"value": "<token>",
+																"description": "Added as a part of security scheme: oauth2"
+															},
+															{
+																"key": "Accept",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"execution_step\": {\n    \"index\": \"<integer>\",\n    \"title\": \"<string>\",\n    \"status\": \"<string>\",\n    \"messages\": [\n      {\n        \"sender\": \"<string>\",\n        \"receiver\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      {\n        \"sender\": \"<string>\",\n        \"receiver\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    ]\n  }\n}",
+															"options": {
+																"raw": {
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/session/:session_id/request/:request_id?user_id=<string>",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"session",
+																":session_id",
+																"request",
+																":request_id"
+															],
+															"query": [
+																{
+																	"key": "user_id",
+																	"value": "<string>"
+																}
+															],
+															"variable": [
+																{
+																	"key": "session_id",
+																	"value": "<string>",
+																	"description": "(Required) "
+																},
+																{
+																	"key": "request_id",
+																	"value": "<string>",
+																	"description": "(Required) "
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "\"<string>\""
+												},
+												{
+													"name": "Validation Error",
+													"originalRequest": {
+														"method": "PATCH",
+														"header": [
+															{
+																"key": "Authorization",
+																"value": "<token>",
+																"description": "Added as a part of security scheme: oauth2"
+															},
+															{
+																"key": "Accept",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"execution_step\": {\n    \"index\": \"<integer>\",\n    \"title\": \"<string>\",\n    \"status\": \"<string>\",\n    \"messages\": [\n      {\n        \"sender\": \"<string>\",\n        \"receiver\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      {\n        \"sender\": \"<string>\",\n        \"receiver\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    ]\n  }\n}",
+															"options": {
+																"raw": {
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/session/:session_id/request/:request_id?user_id=<string>",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"session",
+																":session_id",
+																"request",
+																":request_id"
+															],
+															"query": [
+																{
+																	"key": "user_id",
+																	"value": "<string>"
+																}
+															],
+															"variable": [
+																{
+																	"key": "session_id",
+																	"value": "<string>",
+																	"description": "(Required) "
+																},
+																{
+																	"key": "request_id",
+																	"value": "<string>",
+																	"description": "(Required) "
+																}
+															]
+														}
+													},
+													"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+													"code": 422,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "Read Requests",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/session/:session_id/request",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"session",
+												":session_id",
+												"request"
+											],
+											"query": [
+												{
+													"key": "user_id",
+													"value": "<string>",
+													"disabled": true
+												}
+											],
+											"variable": [
+												{
+													"key": "session_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Retrieves a list of requests from a specific session."
+									},
+									"response": [
+										{
+											"name": "Successful Response",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "<token>",
+														"description": "Added as a part of security scheme: oauth2"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/session/:session_id/request?user_id=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"session",
+														":session_id",
+														"request"
+													],
+													"query": [
+														{
+															"key": "user_id",
+															"value": "<string>"
+														}
+													],
+													"variable": [
+														{
+															"key": "session_id",
+															"value": "<string>",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "[\n  {\n    \"id\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"modified_on\": \"<dateTime>\",\n    \"user_id\": \"<string>\",\n    \"user_input\": \"<string>\",\n    \"status\": \"<string>\",\n    \"session\": {\n      \"id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"modified_on\": \"<dateTime>\",\n      \"user_id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"context\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\",\n        \"secure\": \"<boolean>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\",\n        \"secure\": \"<boolean>\"\n      }\n    ],\n    \"execution\": [\n      {\n        \"index\": \"<integer>\",\n        \"title\": \"<string>\",\n        \"status\": \"<string>\",\n        \"messages\": [\n          {\n            \"sender\": \"<string>\",\n            \"receiver\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          {\n            \"sender\": \"<string>\",\n            \"receiver\": \"<string>\",\n            \"message\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"index\": \"<integer>\",\n        \"title\": \"<string>\",\n        \"status\": \"<string>\",\n        \"messages\": [\n          {\n            \"sender\": \"<string>\",\n            \"receiver\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          {\n            \"sender\": \"<string>\",\n            \"receiver\": \"<string>\",\n            \"message\": \"<string>\"\n          }\n        ]\n      }\n    ],\n    \"output\": {\n      \"structured\": \"<object>\"\n    },\n    \"recommendations\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"executed_on\": \"<dateTime>\",\n    \"duration\": 0,\n    \"previous_request\": \"<string>\",\n    \"workflow\": {\n      \"id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"modified_on\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"GROUP\",\n      \"summary_method\": \"REFLECTION\",\n      \"max_turns\": 20,\n      \"max_rounds\": 20,\n      \"system_resource\": false\n    }\n  },\n  {\n    \"id\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"modified_on\": \"<dateTime>\",\n    \"user_id\": \"<string>\",\n    \"user_input\": \"<string>\",\n    \"status\": \"<string>\",\n    \"session\": {\n      \"id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"modified_on\": \"<dateTime>\",\n      \"user_id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"context\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\",\n        \"secure\": \"<boolean>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\",\n        \"secure\": \"<boolean>\"\n      }\n    ],\n    \"execution\": [\n      {\n        \"index\": \"<integer>\",\n        \"title\": \"<string>\",\n        \"status\": \"<string>\",\n        \"messages\": [\n          {\n            \"sender\": \"<string>\",\n            \"receiver\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          {\n            \"sender\": \"<string>\",\n            \"receiver\": \"<string>\",\n            \"message\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"index\": \"<integer>\",\n        \"title\": \"<string>\",\n        \"status\": \"<string>\",\n        \"messages\": [\n          {\n            \"sender\": \"<string>\",\n            \"receiver\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          {\n            \"sender\": \"<string>\",\n            \"receiver\": \"<string>\",\n            \"message\": \"<string>\"\n          }\n        ]\n      }\n    ],\n    \"output\": {\n      \"structured\": \"<object>\"\n    },\n    \"recommendations\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"executed_on\": \"<dateTime>\",\n    \"duration\": 0,\n    \"previous_request\": \"<string>\",\n    \"workflow\": {\n      \"id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"modified_on\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"GROUP\",\n      \"summary_method\": \"REFLECTION\",\n      \"max_turns\": 20,\n      \"max_rounds\": 20,\n      \"system_resource\": false\n    }\n  }\n]"
+										},
+										{
+											"name": "Validation Error",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "<token>",
+														"description": "Added as a part of security scheme: oauth2"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/session/:session_id/request?user_id=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"session",
+														":session_id",
+														"request"
+													],
+													"query": [
+														{
+															"key": "user_id",
+															"value": "<string>"
+														}
+													],
+													"variable": [
+														{
+															"key": "session_id",
+															"value": "<string>",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+											"code": 422,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+										}
+									]
+								},
+								{
+									"name": "Create Request",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"user_input\": \"<string>\",\n  \"context\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"secure\": \"<boolean>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"secure\": \"<boolean>\"\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/session/:session_id/request",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"session",
+												":session_id",
+												"request"
+											],
+											"variable": [
+												{
+													"key": "session_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Creates a new request in a specific session."
+									},
+									"response": [
+										{
+											"name": "Successful Response",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "<token>",
+														"description": "Added as a part of security scheme: oauth2"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"user_input\": \"<string>\",\n  \"context\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"secure\": \"<boolean>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"secure\": \"<boolean>\"\n    }\n  ]\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/session/:session_id/request",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"session",
+														":session_id",
+														"request"
+													],
+													"variable": [
+														{
+															"key": "session_id",
+															"value": "<string>",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "\"<string>\""
+										},
+										{
+											"name": "Validation Error",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "<token>",
+														"description": "Added as a part of security scheme: oauth2"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"user_input\": \"<string>\",\n  \"context\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"secure\": \"<boolean>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"secure\": \"<boolean>\"\n    }\n  ]\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/session/:session_id/request",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"session",
+														":session_id",
+														"request"
+													],
+													"variable": [
+														{
+															"key": "session_id",
+															"value": "<string>",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+											"code": 422,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Read Session",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/session/:session_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"session",
+										":session_id"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "<string>",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "session_id",
+											"value": "<string>",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "Retrieve a session by ID."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/session/:session_id?user_id=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"session",
+												":session_id"
+											],
+											"query": [
+												{
+													"key": "user_id",
+													"value": "<string>"
+												}
+											],
+											"variable": [
+												{
+													"key": "session_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"modified_on\": \"<dateTime>\",\n  \"user_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"workflow\": {\n    \"id\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"modified_on\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"domain\": \"<string>\",\n    \"description\": \"<string>\",\n    \"type\": \"GROUP\",\n    \"summary_method\": \"REFLECTION\",\n    \"max_turns\": 20,\n    \"max_rounds\": 20,\n    \"system_resource\": false\n  },\n  \"requests\": [\n    {\n      \"id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"modified_on\": \"<dateTime>\",\n      \"user_id\": \"<string>\",\n      \"user_input\": \"<string>\",\n      \"status\": \"<string>\",\n      \"context\": [\n        {\n          \"key\": \"<string>\",\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"secure\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"key\": \"<string>\",\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"secure\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"execution\": [\n        {\n          \"index\": \"<integer>\",\n          \"title\": \"<string>\",\n          \"status\": \"<string>\",\n          \"messages\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"index\": \"<integer>\",\n          \"title\": \"<string>\",\n          \"status\": \"<string>\",\n          \"messages\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ],\n      \"output\": {\n        \"structured\": \"<object>\"\n      },\n      \"recommendations\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"executed_on\": \"<dateTime>\",\n      \"duration\": 0\n    },\n    {\n      \"id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"modified_on\": \"<dateTime>\",\n      \"user_id\": \"<string>\",\n      \"user_input\": \"<string>\",\n      \"status\": \"<string>\",\n      \"context\": [\n        {\n          \"key\": \"<string>\",\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"secure\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"key\": \"<string>\",\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"secure\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"execution\": [\n        {\n          \"index\": \"<integer>\",\n          \"title\": \"<string>\",\n          \"status\": \"<string>\",\n          \"messages\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"index\": \"<integer>\",\n          \"title\": \"<string>\",\n          \"status\": \"<string>\",\n          \"messages\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ],\n      \"output\": {\n        \"structured\": \"<object>\"\n      },\n      \"recommendations\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"executed_on\": \"<dateTime>\",\n      \"duration\": 0\n    }\n  ]\n}"
+								},
+								{
+									"name": "Validation Error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/session/:session_id?user_id=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"session",
+												":session_id"
+											],
+											"query": [
+												{
+													"key": "user_id",
+													"value": "<string>"
+												}
+											],
+											"variable": [
+												{
+													"key": "session_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+								}
+							]
+						},
+						{
+							"name": "Update Session",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"user_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"workflow\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/session/:session_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"session",
+										":session_id"
+									],
+									"variable": [
+										{
+											"key": "session_id",
+											"value": "<string>",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "Update a session."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"user_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"workflow\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/session/:session_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"session",
+												":session_id"
+											],
+											"variable": [
+												{
+													"key": "session_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "\"<string>\""
+								},
+								{
+									"name": "Validation Error",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "<token>",
+												"description": "Added as a part of security scheme: oauth2"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"user_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"workflow\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/session/:session_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"session",
+												":session_id"
+											],
+											"variable": [
+												{
+													"key": "session_id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Read Sessions",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/session",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"session"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "<string>",
+									"disabled": true
+								},
+								{
+									"key": "user_id",
+									"value": "<string>",
+									"disabled": true
+								},
+								{
+									"key": "workflow",
+									"value": "<string>",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Retrieve all sessions."
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "<token>",
+										"description": "Added as a part of security scheme: oauth2"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/session?name=<string>&user_id=<string>&workflow=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"session"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "<string>"
+										},
+										{
+											"key": "user_id",
+											"value": "<string>"
+										},
+										{
+											"key": "workflow",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"id\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"modified_on\": \"<dateTime>\",\n    \"user_id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"workflow\": {\n      \"id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"modified_on\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"domain\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"GROUP\",\n      \"summary_method\": \"REFLECTION\",\n      \"max_turns\": 20,\n      \"max_rounds\": 20,\n      \"system_resource\": false\n    }\n  },\n  {\n    \"id\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"modified_on\": \"<dateTime>\",\n    \"user_id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"workflow\": {\n      \"id\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"modified_on\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"domain\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"GROUP\",\n      \"summary_method\": \"REFLECTION\",\n      \"max_turns\": 20,\n      \"max_rounds\": 20,\n      \"system_resource\": false\n    }\n  }\n]"
+						},
+						{
+							"name": "Validation Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "<token>",
+										"description": "Added as a part of security scheme: oauth2"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/session?name=<string>&user_id=<string>&workflow=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"session"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "<string>"
+										},
+										{
+											"key": "user_id",
+											"value": "<string>"
+										},
+										{
+											"key": "workflow",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Session",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "scope",
+									"value": "business-os-inte.build.rw business-os-inte.request.rw offline_access",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://inte-oauth.cegid.com/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://inte-oauth.cegid.com/authorize",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"workflow\": \"<string>\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/session",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"session"
+							]
+						},
+						"description": "Create a new session."
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "<token>",
+										"description": "Added as a part of security scheme: oauth2"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"user_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"workflow\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/session",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"session"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "\"<string>\""
+						},
+						{
+							"name": "Validation Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "<token>",
+										"description": "Added as a part of security scheme: oauth2"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"user_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"workflow\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/session",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"session"
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "tokenName",
+				"value": "cegidAccountToken",
+				"type": "string"
+			},
+			{
+				"key": "clientSecret",
+				"value": "lAnNeCoc3H_MERIs1yA5bJnW3ltrh2fP5l1RFuW55qI",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "tax-dev.app.ctu.dev",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "{{authServerAddr}}/token",
+				"type": "string"
+			},
+			{
+				"key": "authUrl",
+				"value": "{{authServerAddr}}/authorize",
+				"type": "string"
+			},
+			{
+				"key": "useBrowser",
+				"value": true,
+				"type": "boolean"
+			},
+			{
+				"key": "redirect_uri",
+				"value": "",
+				"type": "string"
+			},
+			{
+				"key": "grant_type",
+				"value": "authorization_code_with_pkce",
+				"type": "string"
+			},
+			{
+				"key": "refreshRequestParams",
+				"value": [],
+				"type": "any"
+			},
+			{
+				"key": "tokenRequestParams",
+				"value": [],
+				"type": "any"
+			},
+			{
+				"key": "authRequestParams",
+				"value": [],
+				"type": "any"
+			},
+			{
+				"key": "challengeAlgorithm",
+				"value": "S256",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			},
+			{
+				"key": "client_authentication",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://st-pulse-api.azurewebsites.net/api/v1",
+			"type": "string"
+		}
+	]
+}

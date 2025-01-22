@@ -1,0 +1,61 @@
+{
+  "applications": [
+    {
+      "clientId": "919dfd55-eb25-4d0b-be97-00d1e219e865",
+      "applicationSuiteId": "business-os-dev",
+      "includeRoles": true,
+      "includeCegidLifeServices": false,
+      "useLightToken": false,
+      "label": "LocalhostPulseOS",
+      "redirectUris": [
+        "http://localhost:8000",
+        "http://localhost:8000/signin-oidc"
+      ],
+      "logoutEndpointUri": "https://www.webstore.cegid.com/logout"
+    },
+    {
+      "clientId": "3a5be6e9-6574-44a4-9948-859e7d4dea6f",
+      "applicationSuiteId": "business-os-dev",
+      "includeRoles": true,
+      "includeCegidLifeServices": false,
+      "useLightToken": false,
+      "label": "Localhost",
+      "redirectUris": [
+        "http://localhost:5119/signin-oidc",
+        "http://localhost:5119/redirect"
+      ],
+      "logoutEndpointUri": "https://localhost:5119/local-logout"
+    },
+    {
+      "clientId": "98d11ac6-9c34-4748-be06-1545dc33553f",
+      "applicationSuiteId": "business-os-dev",
+      "includeRoles": true,
+      "includeCegidLifeServices": false,
+      "useLightToken": false,
+      "label": "Web Store",
+      "redirectUris": [
+        "https://www.webstore.cegid.com/store"
+      ],
+      "logoutEndpointUri": "https://www.webstore.cegid.com/logout"
+    },
+    {
+      "clientId": "db2b2a25-1e17-4c08-a244-288db1a5ddec",
+      "applicationSuiteId": "business-os-dev",
+      "includeRoles": true,
+      "includeCegidLifeServices": false,
+      "useLightToken": false,
+      "label": "Pulse",
+      "redirectUris": [
+        "https://businessos-ui.azurewebsites.net/api/auth/callback/pulse",
+        "https://businessos-ui.azurewebsites.net/api/auth/signin/pulse",
+        "https://businessos-ui.azurewebsites.net/api/auth/signin",
+        "https://businessos-ui.azurewebsites.nett/",
+        "http://localhost:3000/api/auth/callback/pulse",
+        "http://localhost:3000/api/auth/signin/pulse",
+        "http://localhost:3000/api/auth/signin",
+        "http://localhost:3000/"
+      ],
+      "logoutEndpointUri": "https://www.webstore.cegid.com/logout"
+    }
+  ]
+}

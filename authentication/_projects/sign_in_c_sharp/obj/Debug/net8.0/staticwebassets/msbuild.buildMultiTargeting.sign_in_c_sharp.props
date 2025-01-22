@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\sign_in_c_sharp.props" />
+</Project>

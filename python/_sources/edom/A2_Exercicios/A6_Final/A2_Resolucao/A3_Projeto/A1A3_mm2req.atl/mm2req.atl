@@ -1,0 +1,76 @@
+-- @atlcompiler emftvm
+-- @path mm=/A1_Final_Assignment/A1_mm.ecore
+-- @path req=/A1_Final_Assignment/A2_req.ecore
+
+module mm2req;
+create OUT : req from IN : mm;
+
+-- A counter for RequirementGroup ID
+helper def: contIdRG: Integer = 0;
+
+-- To increment the counter 
+helper context Integer def: inc(): Integer = self + 1;
+
+--implementation of requirement 1
+rule Map2Model {
+	from
+		s: mm!"Map"
+	to
+		t: req!Model (
+			title <- s.title,
+			groups <- s.elements->select(x | x.oclIsKindOf(mm!Topic) and x.oclAsType(mm!Topic).parent.oclIsUndefined())
+		)
+}
+
+--implementation of requirement 2 : only for root topics
+rule RootTopic2RequirementGroup {
+	from
+		s: mm!Topic ( s.parent.oclIsUndefined() )
+	to
+		t: req!RequirementGroup (
+			name <- s.name,
+			description <- s.description,
+			children <-  s.subtopics
+		)
+	do { 
+		-- if (s.parent.oclIsUndefined())  ('No Parent: '+s.name).debug(); else ('Has Parent: '+s.parent.name).debug();
+		thisModule.contIdRG <- thisModule.contIdRG.inc(); 
+		t.id <- 'G' + thisModule.contIdRG.toString();
+	}
+}
+
+--implementation of requirement 2 : for topics that are not root topics
+rule Topic2RequirementGroup {
+	from
+		s: mm!Topic (not s.parent.oclIsUndefined())
+
+	to
+		t: req!RequirementGroup (
+			name <- s.name,
+			description <- s.description,
+			children <-  s.subtopics,
+			parent <- s.parent,
+			requirements <- Sequence{tt}
+		),
+		tt: req!Requirement (
+			title <- 'Manage ' + s.name,
+			description <- 'CRUD operations for ' + s.name,
+			type <- #FUNCTIONAL,
+			priority <- #MEDIUM,
+			version <- version,
+			state <- #NEW,
+			resolution <- #LATER		
+		),
+		version: req!Version (
+			major <- 1,
+			minor <- 0,
+			service <- 0
+		)
+		
+	do { 
+		-- ('With Parent: '+s.name).debug();
+		-- s.parent.name.debug();		
+		thisModule.contIdRG <- thisModule.contIdRG.inc(); 
+		t.id <- 'G' + thisModule.contIdRG.toString();
+	}
+}

@@ -1,0 +1,20 @@
+Model{
+      title:"Ex5_Text"
+      groups: RequirementGroup {
+      	name: "College"
+      	description: "ISEP"
+      	id: "01"
+      	
+      	children: RequirementGroup {
+      		name: "Student"
+      		description: "That attends classes"
+      		id: "01"
+			parent: College
+			   		
+      	}
+      	requirements:children {
+      	}
+      	
+      	
+      }
+}

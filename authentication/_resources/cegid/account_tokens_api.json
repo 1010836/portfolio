@@ -1,0 +1,18 @@
+{
+    "apis": [
+        {
+            "id": "backend",
+            "applicationSuiteId": "business-os-dev",
+            "clientId": "business-os-dev.api.backend",
+            "scopes": [
+                "business-os-dev.build.rw",
+                "business-os-dev.request.rw"
+            ],
+            "internalDescription": "Cegid Pulse OS backend API to read and write skills, models, agents, workflows, sessions, and requests.",
+            "scopeIds": [
+                "build.rw",
+                "request.rw"
+            ]
+        }
+    ]
+}

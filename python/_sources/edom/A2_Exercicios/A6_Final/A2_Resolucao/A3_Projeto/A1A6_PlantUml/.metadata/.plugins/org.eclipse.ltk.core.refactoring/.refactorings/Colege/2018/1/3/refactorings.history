@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Colege/new_file.PlantUML&apos; to &apos;Colege.PlantUML&apos;" description="Rename resource &apos;new_file.PlantUML&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="new_file.PlantUML" name="Colege.PlantUML" stamp="1516288832696" updateReferences="true"/>
+</session>

@@ -1,0 +1,23 @@
+[project]
+name = "account"
+version = "0.1.0"
+description = "test cegid account"
+authors = [
+    { name = "Evaristo Martins Figueiredo", email = "1010836@gmail.com" },
+]
+dependencies = ["fastapi>=0.115.5", "uvicorn>=0.32.1", "requests>=2.32.3"]
+requires-python = ">=3.12"
+readme = "README.md"
+license = { text = "MIT" }
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+
+[tool.pdm]
+distribution = true
+
+[tool.pdm.scripts]
+install = "pdm install"
+start = "python -m main"

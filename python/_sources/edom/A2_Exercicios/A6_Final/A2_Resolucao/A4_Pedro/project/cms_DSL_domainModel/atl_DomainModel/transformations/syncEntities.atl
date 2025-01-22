@@ -1,0 +1,56 @@
+-- @atlcompiler emftvm 
+
+-- @nsURI DomainModel=http://org/eclipse/dsl/entity
+-- @nsURI Analysis=http://www.eclipse.org/uml2/5.0.0/UML
+-- @nsURI NewDomainModel=http://org/eclipse/dsl/entity
+
+module syncEntities;
+create OUT : NewDomainModel from IN : DomainModel, IN1 : Analysis;
+	
+rule AnalysisToModel {
+	from
+		m1 : DomainModel!Model
+	to 
+		m2 : NewDomainModel!Model (
+			Title <- 'College',
+			rootEntities <- m1.rootEntities
+		)
+}
+
+-- Map Entities
+rule entitySync {
+	from
+		e1 : DomainModel!Entity (
+			Analysis!UseCase.allInstances()->select( us | us.name.split(' ').last() = e1.Name)
+			->asSet()->notEmpty()	
+		)
+	to 
+		e2 : NewDomainModel!Entity (
+			Name <- e1.Name,
+			attributes <- e1.attributes,
+			relations <- e1.relations
+		)
+}
+
+-- Map entities attributes
+rule attributesSync {
+	from 
+		e1 :  DomainModel!Attribute
+	to
+		m2:  NewDomainModel!Attribute (
+			Name <- e1.Name,
+			Type <- e1.Type
+		)
+}
+
+-- map entities relations
+rule relationsSync {
+	from 
+		e1 :  DomainModel!Relation
+	to
+		m2:  NewDomainModel!Relation (
+			Name <- e1.Name,
+			Type <- e1.Type,
+			RelEntity <- e1.RelEntity
+		)
+}

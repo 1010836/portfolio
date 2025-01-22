@@ -1,0 +1,49 @@
+-- @atlcompiler emftvm 
+
+-- @nsURI Analysis=http://www.eclipse.org/uml2/5.0.0/UML
+-- @nsURI Domain=http://org/eclipse/dsl/entity
+-- @nsURI NewAnalysis=http://www.eclipse.org/uml2/5.0.0/UML
+
+module checkAnalysisModel;
+create OUT : NewAnalysis from IN : Analysis, IN1 : Domain;
+
+
+rule Model2Model {
+	from
+		s : Analysis!Model 
+	to
+		t : NewAnalysis!Model (
+		   name <- s.name,
+		   packagedElement <- s.packagedElement,
+		   ownedType <- s.ownedType
+		) 
+}
+
+rule UseCase2UseCase {
+	from
+		s : Analysis!UseCase (
+			Domain!Entity.allInstances()->select( d | d.Name = s.name.split(' ').last())
+			->asSet()->notEmpty()
+	)	
+	to
+		t : NewAnalysis!UseCase (
+			name <-  s.name,		
+			eAnnotations <-  Sequence{tt} --A sequence of created annotations goes to use cases' eAnnotations
+		),
+			
+		tt: NewAnalysis!EAnnotation (  --rule to create eAnnotations
+			source <- 'http://pt.isep.edom/crud'
+			)
+		do{
+		}
+}
+
+rule DataType2DataType {
+	
+	from
+		s : Analysis!DataType
+	to
+		t : NewAnalysis!DataType(
+		   name <- s.name
+		) 
+}

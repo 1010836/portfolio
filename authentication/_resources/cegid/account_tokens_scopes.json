@@ -1,0 +1,20 @@
+{
+    "scopes": [
+        {
+            "id": "build.rw",
+            "applicationSuiteId": "business-os-dev",
+            "scope": "business-os-dev.build.rw",
+            "internalDescription": "Read and write skills, models, agents, and workflows. It also reads and writes sessions and requests. It is designed for an admin/PM profile",
+            "assignedToApiKeyForServices": [],
+            "requiresOwnerConsent": true
+        },
+        {
+            "id": "request.rw",
+            "applicationSuiteId": "business-os-dev",
+            "scope": "business-os-dev.request.rw",
+            "internalDescription": "Read and write sessions and requests. It is designed for an end user profile",
+            "assignedToApiKeyForServices": [],
+            "requiresOwnerConsent": true
+        }
+    ]
+}

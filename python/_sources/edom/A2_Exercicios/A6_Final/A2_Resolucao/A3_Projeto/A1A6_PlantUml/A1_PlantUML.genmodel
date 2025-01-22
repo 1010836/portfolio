@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/A1A6_Plant_UML/src" modelPluginID="A1A6_Plant_UML"
+    modelName="A1_PlantUML" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>A1_PlantUML.ecore</foreignModel>
+  <genPackages prefix="PlantUML" disposableProviderFactory="true" ecorePackage="A1_PlantUML.ecore#/">
+    <genClasses ecoreClass="A1_PlantUML.ecore#//Modelo">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute A1_PlantUML.ecore#//Modelo/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference A1_PlantUML.ecore#//Modelo/element"/>
+    </genClasses>
+    <genClasses ecoreClass="A1_PlantUML.ecore#//UseCase">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute A1_PlantUML.ecore#//UseCase/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute A1_PlantUML.ecore#//UseCase/longName"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

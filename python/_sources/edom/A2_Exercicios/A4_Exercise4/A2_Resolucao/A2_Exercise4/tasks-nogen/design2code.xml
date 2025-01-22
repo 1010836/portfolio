@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Place this file in the target project and call it with "External Tools > Run As > Ant Build" -->
+<!-- You have to change the MODEL and the TARGET values -->
+
+<project basedir="." default="design2code" name="design2code">
+    <property name="ECLIPSE_PROJECT" value="${basedir}/.."/>
+
+    <!-- The classpath with only the dependencies used by the project -->
+    <path id="atlacceleodemo.libraryclasspath">
+        <pathelement location="${ECLIPSE_PROJECT}/bin"/>
+        <pathelement location="${ECLIPSE_PROJECT}/libs/org.eclipse.core.runtime_3.13.0.v20170207-1030.jar"/>
+        <pathelement location="${ECLIPSE_PROJECT}/libs/javax.inject_1.0.0.v20091030.jar"/>
+        <pathelement location="${ECLIPSE_PROJECT}/libs/org.eclipse.osgi_3.12.1.v20170821-1548.jar"/>
+        <pathelement location="${ECLIPSE_PROJECT}/libs/org.eclipse.osgi.compatibility.state_1.1.0.v20170516-1513.jar"/>
+        <pathelement location="${ECLIPSE_PROJECT}/libs/org.eclipse.equinox.common_3.9.0.v20170207-1454.jar"/>
+        <pathelement location="${ECLIPSE_PROJECT}/libs/org.eclipse.core.jobs_3.9.1.v20170714-0547.jar"/>
+        <pathelement location="${ECLIPSE_PROJECT}/libs/org.eclipse.equinox.registry_3.7.0.v20170222-1344.jar"/>
+        <pathelement location="${ECLIPSE_PROJECT}/libs/org.eclipse.equinox.preferences_3.7.0.v20170126-2132.jar"/>
+        <pathelement location="${ECLIPSE_PROJECT}/libs/org.eclipse.core.contenttype_3.6.0.v20170207-1037.jar"/>
+        <pathelement location="${ECLIPSE_PROJECT}/libs/org.eclipse.equinox.app_1.3.400.v20150715-1528.jar"/>
+        <pathelement location="${ECLIPSE_PROJECT}/libs/org.eclipse.uml2.uml_5.3.0.v20170605-1616.jar"/>
+        <pathelement location="${ECLIPSE_PROJECT}/libs/org.eclipse.emf.ecore_2.13.0.v20170609-0707.jar"/>
+        <pathelement location="${ECLIPSE_PROJECT}/libs/org.eclipse.emf.common_2.13.0.v20170609-0707.jar"/>
+        <pathelement location="${ECLIPSE_PROJECT}/libs/org.eclipse.emf.ecore.xmi_2.13.0.v20170609-0707.jar"/>
+        <pathelement location="${ECLIPSE_PROJECT}/libs/org.eclipse.uml2.common_2.1.0.v20170605-1616.jar"/>
+        <pathelement location="${ECLIPSE_PROJECT}/libs/org.eclipse.uml2.types_2.0.0.v20170605-1616.jar"/>
+        <pathelement location="${ECLIPSE_PROJECT}/libs/org.eclipse.emf.mapping.ecore2xml_2.9.0.v20170609-0928.jar"/>
+        <pathelement location="${ECLIPSE_PROJECT}/libs/org.eclipse.ocl_3.6.200.v20170522-1736.jar"/>
+        <pathelement location="${ECLIPSE_PROJECT}/libs/lpg.runtime.java_2.0.17.v201004271640.jar"/>
+        <pathelement location="${ECLIPSE_PROJECT}/libs/org.eclipse.ocl.common_1.4.200.v20160613-1518.jar"/>
+        <pathelement location="${ECLIPSE_PROJECT}/libs/org.eclipse.ocl.ecore_3.6.200.v20170522-1736.jar"/>
+        <pathelement location="${ECLIPSE_PROJECT}/libs/org.eclipse.acceleo.common_3.7.2.201708211328.jar"/>
+        <pathelement location="${ECLIPSE_PROJECT}/libs/org.eclipse.acceleo.model_3.7.2.201708211328.jar"/>
+        <pathelement location="${ECLIPSE_PROJECT}/libs/org.eclipse.acceleo.profiler_3.7.2.201708211328.jar"/>
+        <pathelement location="${ECLIPSE_PROJECT}/libs/org.eclipse.acceleo.engine_3.7.2.201708211328.jar"/>
+        <pathelement location="${ECLIPSE_PROJECT}/libs/org.eclipse.emf.codegen.ecore_2.13.0.v20170609-0928.jar"/>
+        <pathelement location="${ECLIPSE_PROJECT}/libs/org.eclipse.emf.codegen_2.12.0.v20170609-0928.jar"/>
+        <pathelement location="${ECLIPSE_PROJECT}/libs/com.google.guava_21.0.0.v20170206-1425.jar"/>
+    </path>
+
+    <path id="atlacceleodemo.classpath">
+        <path refid="atlacceleodemo.libraryclasspath"/>
+    </path>
+
+    <!-- The default task with the jars used by this project -->
+    <target name="generate">
+        <java classname="atlacceleodemo.main.Generate" classpathref="atlacceleodemo.classpath">
+            <arg value="${model}"/>
+            <arg value="${target}"/>
+        </java>
+    </target>
+
+    <!-- Change the values of MODEL and TARGET to point to your model and output folder -->
+	<property name="MODEL" value="${basedir}/../instances-out/design-model.uml"/>
+	<property name="TARGET" value="${basedir}/../src-gen"/>
+
+	<target name="design2code" description="Generate files in 'TARGET'">
+		<antcall target="generate" >
+			<param name="model" value="${MODEL}"/>
+			<param name="target" value="${TARGET}"/>
+		</antcall>
+	</target>
+</project>

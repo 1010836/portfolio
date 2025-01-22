@@ -1,0 +1,20 @@
+{
+    "scopes": [
+        {
+            "id": "build.rw",
+            "applicationSuiteId": "business-os-inte",
+            "scope": "business-os-inte.build.rw",
+            "internalDescription": "Read and write skills, models, agents, and workflows.",
+            "assignedToApiKeyForServices": [],
+            "requiresOwnerConsent": true
+        },
+        {
+            "id": "request.rw",
+            "applicationSuiteId": "business-os-inte",
+            "scope": "business-os-inte.request.rw",
+            "internalDescription": "Read and write sessions and requests.",
+            "assignedToApiKeyForServices": [],
+            "requiresOwnerConsent": true
+        }
+    ]
+}

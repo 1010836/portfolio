@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_hoWC0PNBEee2cZ6CmMjyLw" name="analysis">
+  <packagedElement xmi:type="uml:Model" xmi:id="_hoWC0fNBEee2cZ6CmMjyLw" name="use-cases">
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_hoWC0_NBEee2cZ6CmMjyLw" name="Manage Contact">
+      <eAnnotations xmi:id="_hoWC1PNBEee2cZ6CmMjyLw" source="http://pt.isep.edom/crud"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_hoWC1fNBEee2cZ6CmMjyLw" name="Manage Student">
+      <eAnnotations xmi:id="_hoWC1vNBEee2cZ6CmMjyLw" source="http://pt.isep.edom/crud"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Model" xmi:id="_hoWC0vNBEee2cZ6CmMjyLw" name="base-types">
+    <packagedElement xmi:type="uml:DataType" xmi:id="_hoWC1_NBEee2cZ6CmMjyLw" name="String"/>
+  </packagedElement>
+</uml:Model>

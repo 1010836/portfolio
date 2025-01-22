@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_4pFhALV8EeeXodUxLXT6vA" name="analysis">
+  <packagedElement xmi:type="uml:Model" xmi:id="_BFfQELizEeeCx8KjjrPtrw" name="domain">
+    <packagedElement xmi:type="uml:Class" xmi:id="_IRe8sLizEeeCx8KjjrPtrw" name="Contact">
+      <eAnnotations xmi:id="_MSSqQLi0EeeCx8KjjrPtrw" source="http://pt.isep.edom/entity"/>
+      <ownedAttribute xmi:id="_ZbCeoLizEeeCx8KjjrPtrw" name="id" type="_3EB8wLizEeeCx8KjjrPtrw"/>
+      <ownedAttribute xmi:id="_6aZboLizEeeCx8KjjrPtrw" name="firstName" type="_3EB8wLizEeeCx8KjjrPtrw"/>
+      <ownedAttribute xmi:id="_BjK1ILi0EeeCx8KjjrPtrw" name="lastName" type="_3EB8wLizEeeCx8KjjrPtrw"/>
+      <ownedAttribute xmi:id="_FsVp8Li0EeeCx8KjjrPtrw" name="emailAddress" type="_3EB8wLizEeeCx8KjjrPtrw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_qpZ9MLi1EeeCx8KjjrPtrw" name="Student">
+      <eAnnotations xmi:id="_S3bcILi9EeeCx8KjjrPtrw" source="http://pt.isep.edom/entity"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Model" xmi:id="_E3m20LizEeeCx8KjjrPtrw" name="use-cases">
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_u78bULizEeeCx8KjjrPtrw" name="Manage Contact">
+      <eAnnotations xmi:id="_RMIHALi0EeeCx8KjjrPtrw" source="http://pt.isep.edom/crud" references="_IRe8sLizEeeCx8KjjrPtrw"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Model" xmi:id="_gg344LizEeeCx8KjjrPtrw" name="base-types">
+    <packagedElement xmi:type="uml:DataType" xmi:id="_3EB8wLizEeeCx8KjjrPtrw" name="String"/>
+  </packagedElement>
+</uml:Model>

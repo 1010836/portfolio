@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated A1_mm -->
+      <package
+            uri="http://org/eclipse/dsl/mindmap"
+            class="mindmap.MindmapPackage"
+            genModel="A1_mm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated A2_req -->
+      <package
+            uri="http://org/eclipse/dsl/requirements"
+            class="requirements.RequirementsPackage"
+            genModel="A2_req.genmodel"/>
+   </extension>
+
+</plugin>

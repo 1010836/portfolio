@@ -1,0 +1,68 @@
+{
+    "issuer": "https://inte-signin.cegid.com/0daf9160-dc03-4adb-8da9-eeffda00ba46/v2.0/",
+    "authorization_endpoint": "https://inte-signin.cegid.com/inte-signin.cegid.com/oauth2/v2.0/authorize?p=b2c_1a_signinoidc-v2",
+    "token_endpoint": "https://inte-signin.cegid.com/inte-signin.cegid.com/oauth2/v2.0/token?p=b2c_1a_signinoidc-v2",
+    "end_session_endpoint": "https://inte-signin.cegid.com/inte-signin.cegid.com/oauth2/v2.0/logout?p=b2c_1a_signinoidc-v2",
+    "jwks_uri": "https://inte-signin.cegid.com/inte-signin.cegid.com/discovery/v2.0/keys?p=b2c_1a_signinoidc-v2",
+    "response_modes_supported": [
+        "query",
+        "fragment",
+        "form_post"
+    ],
+    "response_types_supported": [
+        "code",
+        "code id_token",
+        "code token",
+        "code id_token token",
+        "id_token",
+        "id_token token",
+        "token",
+        "token id_token"
+    ],
+    "scopes_supported": [
+        "openid"
+    ],
+    "subject_types_supported": [
+        "pairwise"
+    ],
+    "id_token_signing_alg_values_supported": [
+        "RS256"
+    ],
+    "token_endpoint_auth_methods_supported": [
+        "client_secret_post",
+        "client_secret_basic"
+    ],
+    "claims_supported": [
+        "sub",
+        "immutableGuid",
+        "idp",
+        "org",
+        "tid",
+        "oid",
+        "upn",
+        "email",
+        "given_name",
+        "family_name",
+        "phone_number",
+        "mobile_phone",
+        "sic_id",
+        "account_id",
+        "coded_title",
+        "coded_language",
+        "coded_job_title",
+        "account_name",
+        "accounting_status",
+        "role",
+        "extended_role",
+        "signin_cegid_slot",
+        "denied_role",
+        "clientIP",
+        "iss",
+        "iat",
+        "exp",
+        "aud",
+        "acr",
+        "nonce",
+        "auth_time"
+    ]
+}

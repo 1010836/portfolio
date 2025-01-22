@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "skunk-debug"
+version = "0.1.0"
+description = ""
+authors = ["Evaristo Martins Figueiredo <1010836@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.10.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+debug = 'skunk_debug.debug:main'
