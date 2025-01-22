@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:org.eclipse.dsl.persons="http://org/eclipse/dsl/persons">
+  <org.eclipse.dsl.persons:Male fullName="Jim March"/>
+  <org.eclipse.dsl.persons:Male fullName="Brandon March"/>
+  <org.eclipse.dsl.persons:Male fullName="Peter Sailor"/>
+  <org.eclipse.dsl.persons:Male fullName="David Sailor"/>
+  <org.eclipse.dsl.persons:Male fullName="Dylan Sailor"/>
+  <org.eclipse.dsl.persons:Female fullName="Cindy March"/>
+  <org.eclipse.dsl.persons:Female fullName="Brenda March"/>
+  <org.eclipse.dsl.persons:Female fullName="Jackie Sailor"/>
+  <org.eclipse.dsl.persons:Female fullName="Kelly Sailor"/>
+</xmi:XMI>

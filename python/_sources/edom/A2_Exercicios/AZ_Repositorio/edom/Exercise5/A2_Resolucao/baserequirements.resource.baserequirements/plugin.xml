@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+	<extension point="org.emftext.access.syntax">
+		<metaInformationProvider class="baserequirements.resource.baserequirements.mopp.BaserequirementsMetaInformation" id="baserequirements.resource.baserequirements.mopp.BaserequirementsMetaInformation">
+		</metaInformationProvider>
+	</extension>
+	
+	<extension id="baserequirements.resource.baserequirements.problem" name="EMFText Problem" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="org.eclipse.core.resources.problemmarker">
+		</super>
+		<super type="org.eclipse.core.resources.textmarker">
+		</super>
+		<super type="org.eclipse.emf.ecore.diagnostic">
+		</super>
+	</extension>
+	
+	<extension id="baserequirements.resource.baserequirements.problem.syntax_error" name="EMFText Problem" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="baserequirements.resource.baserequirements.problem">
+		</super>
+	</extension>
+	
+	<extension id="baserequirements.resource.baserequirements.problem.print_problem" name="EMFText Problem" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="baserequirements.resource.baserequirements.problem">
+		</super>
+	</extension>
+	
+	<extension id="baserequirements.resource.baserequirements.problem.unresolved_reference" name="EMFText Problem" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="baserequirements.resource.baserequirements.problem">
+		</super>
+	</extension>
+	
+	<extension id="baserequirements.resource.baserequirements.problem.analysis_problem" name="EMFText Problem" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="baserequirements.resource.baserequirements.problem">
+		</super>
+	</extension>
+	
+	<extension id="baserequirements.resource.baserequirements.problem.builder_error" name="EMFText Problem" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="baserequirements.resource.baserequirements.problem">
+		</super>
+	</extension>
+	
+	<extension id="baserequirements.resource.baserequirements.nature" name="baserequirements nature" point="org.eclipse.core.resources.natures">
+		<runtime>
+			<run class="baserequirements.resource.baserequirements.mopp.BaserequirementsNature">
+			</run>
+		</runtime>
+		<builder id="baserequirements.resource.baserequirements.builder">
+		</builder>
+	</extension>
+	
+	<extension point="org.eclipse.core.resources.builders" id="baserequirements.resource.baserequirements.builder" name="baserequirements Builder">
+		<builder hasNature="true">
+			<run class="baserequirements.resource.baserequirements.mopp.BaserequirementsBuilderAdapter">
+			</run>
+		</builder>
+	</extension>
+	
+	<extension-point id="baserequirements.resource.baserequirements.default_load_options" name="Default Load Options" schema="schema/default_load_options.exsd">
+	</extension-point>
+	
+	<extension point="org.eclipse.emf.ecore.extension_parser">
+		<parser class="baserequirements.resource.baserequirements.mopp.BaserequirementsResourceFactoryDelegator" type="baserequirements">
+		</parser>
+	</extension>
+	
+	<extension-point id="baserequirements.resource.baserequirements.additional_extension_parser" name="Additional Extension Parser" schema="schema/additional_extension_parser.exsd">
+	</extension-point>
+	
+	<extension point="org.eclipse.debug.core.breakpoints">
+		<breakpoint class="baserequirements.resource.baserequirements.debug.BaserequirementsLineBreakpoint" id="baserequirements.resource.baserequirements.debug.breakpoint" markerType="baserequirements.resource.baserequirements.debug.lineBreakpoint.marker" name="baserequirements Breakpoint">
+		</breakpoint>
+	</extension>
+	
+	<extension id="baserequirements.resource.baserequirements.debug.lineBreakpoint.marker" point="org.eclipse.core.resources.markers">
+		<super type="org.eclipse.debug.core.lineBreakpointMarker">
+		</super>
+		<super type="org.eclipse.core.resources.textmarker">
+		</super>
+		<persistent value="true">
+		</persistent>
+	</extension>
+	
+	<extension point="org.eclipse.debug.core.launchConfigurationTypes">
+		<launchConfigurationType id="baserequirements.resource.baserequirements.ui.launchConfigurationType" delegate="baserequirements.resource.baserequirements.launch.BaserequirementsLaunchConfigurationDelegate" modes="run,debug" name="baserequirements Application" sourceLocatorId="baserequirements.resource.baserequirements.ui.sourceLocator" sourcePathComputerId="baserequirements.resource.baserequirements.ui.sourcePathComputer" delegateName="baserequirements Launch Tooling" delegateDescription="This will run or debug .baserequirements files.">
+		</launchConfigurationType>
+	</extension>
+	
+	<extension point="org.eclipse.debug.core.sourcePathComputers">
+		<sourcePathComputer class="baserequirements.resource.baserequirements.debug.BaserequirementsSourcePathComputerDelegate" id="baserequirements.resource.baserequirements.ui.sourcePathComputer">
+		</sourcePathComputer>
+	</extension>
+	
+	<extension point="org.eclipse.debug.core.sourceLocators">
+		<sourceLocator id="baserequirements.resource.baserequirements.ui.sourceLocator" class="baserequirements.resource.baserequirements.debug.BaserequirementsSourceLocator" name="baserequirements Source Locator">
+		</sourceLocator>
+	</extension>
+	
+</plugin>

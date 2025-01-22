@@ -1,0 +1,445 @@
+-- @atlcompiler emftvm
+
+-- @path Analysis=http://www.eclipse.org/uml2/5.0.0/UML
+-- @path Design=http://www.eclipse.org/uml2/5.0.0/UML
+  
+module analysis2design;
+create OUT : Design from IN : Analysis;
+
+rule Entity2Class {
+	from
+		sm : Analysis!Class (
+			not sm.eAnnotations->select(a | a.source = 'http://pt.isep.edom/entity')->asSet()->isEmpty()	-- must be annotated as entity
+			and Analysis!UseCase.allInstances()->select(
+				uc | uc.eAnnotations->select(
+					a | a.source = 'http://pt.isep.edom/crud' and a.references->includes(sm)
+					)->asSet()->notEmpty()
+				)->asSet()->notEmpty()				-- must be referenced by a CRUD use case
+			)
+    using {
+			modPrincipal : Design!Model = Design!Model->allInstances()->select(d | true)->asSequence()->first();
+    }
+	to 
+		tm : Design!Class (
+			name <- sm.name,
+			ownedAttribute <- sm.ownedAttribute
+		),
+		tmDetails :  Design!Class (
+			name <- sm.name	+ 'Details'
+		),
+		tmPresenter :  Design!Class (
+			name <- sm.name	+ 'sPresenter'
+		),
+		tmPresenter_Display :  Design!Interface (
+			name <- sm.name	+ 'sPresenterDisplay'
+		),
+		tmView :  Design!Class (
+			name <- sm.name	+ 'sView'
+		),
+		tmServiceAsync :  Design!Interface (
+			name <- sm.name	+ 'sServiceAsync'
+		),
+		tmService :  Design!Interface (
+			name <- sm.name	+ 'sService'
+		),
+		tmServiceImpl :  Design!Class (
+			name <- sm.name	+ 'sServiceImpl'
+		)		
+	do {
+		
+		tmDetails.ownedAttribute <- Set{thisModule.newProperty('id'), thisModule.newProperty('displayName')};
+		tm.ownedOperation <- Set{
+								 thisModule.newMethod(
+									                  'getLightWeight' + sm.name,
+													  Set{
+								  	                   	  thisModule.newParameter(
+							  	                   	   	                          'return',
+																	     		  tmDetails,
+																				  #"return"
+																			     )
+														 }
+													 )
+								};
+		tmPresenter.ownedOperation <- Set{
+										  thisModule.newMethod(
+										  	                   'deleteSelected' + sm.name + 's',
+															   Set{}
+															  )
+										 };
+										 
+		tmServiceAsync.ownedOperation <- Set{
+			                                 thisModule.newMethod(
+			                                 	                  'add' + sm.name,
+															      Set{
+										  	                   	      thisModule
+																	    .newParameter(
+										  	                   	   	                  sm.name.toString().toLower(),
+																				      tm,
+																					  #"in"
+																				     ),
+																	  thisModule
+																	    .newTypedParameter(
+																	    	               'callBack',
+																						   'asyncCallBack <' + sm.name +'>',
+																						   #"out"
+																						  )						 
+																  }
+																 ), 
+											 thisModule.newMethod(
+											 	                  'delete' + sm.name,
+															      Set{
+         															   thisModule
+																	    .newTypedParameter(
+																	    	               'id',
+																						   'String',
+																					       #"in"
+																						  ),
+																       thisModule
+																	    .newTypedParameter(
+																	    	               'callBack',
+																						   'asyncCallBack <Boolean>',
+																						   #"out"
+																						  )																							 
+																  }
+																 ), 
+											 thisModule.newMethod(
+											 	                  'delete' + sm.name + 's',
+															      Set{
+         															   thisModule
+																	    .newTypedParameter(
+																	    	               'ids',
+																						   'ArrayList <String>',
+																					       #"in"
+																						  ),
+																       thisModule
+																	    .newTypedParameter(
+																	    	               'callBack',
+																						   'asyncCallBack <ArrayList <' + sm.name +'Details>>',
+																						   #"out"
+																						  )																							 
+																  }
+																 ), 
+											 thisModule.newMethod(
+											 	                  'get' + sm.name + 'Details',
+															      Set{
+										  	                   	      thisModule
+																	    .newTypedParameter(
+                             										    	               'callBack',
+																						   'asyncCallBack <ArrayList <' + sm.name +'Details>>',
+																						   #"out"
+																						  )																	  }
+																 ),
+											 thisModule.newMethod(
+											 	                  'get' + sm.name,
+															      Set{
+										  	                   	      thisModule
+																	    .newTypedParameter(
+																	    	               'id',
+																						   'String',
+																					       #"in"
+																						  ),
+																	  thisModule
+																	    .newTypedParameter(
+																	    	               'callBack', 
+																						   'asyncCallBack <' + sm.name +'>',
+																						   #"out"
+																						  )																	  }
+																 ), 
+											 thisModule.newMethod(
+											 	                  'update' + sm.name,
+												                  Set{
+										  	                   	      thisModule
+																	    .newParameter(
+										  	                   	   	                  sm.name.toString().toLower(),
+																				      tm,
+																					  #"in"
+																				     ),
+																	  thisModule
+																	    .newTypedParameter(
+																	    	               'callBack', 
+																						   'asyncCallBack <' + sm.name +'>',
+																						   #"out"
+																						  ) 
+																  }	
+											 	                 )
+											};
+		tmService.ownedOperation <- Set{
+		                                 thisModule.newMethod(
+		                                 	                  'add' + sm.name,
+														      Set{
+									  	                   	      thisModule
+																    .newParameter(
+									  	                   	   	                  sm.name.toString().toLower(),
+																			      tm,
+																				  #"in"
+																			     ),
+																  thisModule
+																    .newParameter(
+									  	                   	   	                  sm.name.toString().toLower(),
+																			      tm,
+																				  #"return"
+																			     )						 
+															  }
+															 ), 
+										 thisModule.newMethod(
+										 	                  'delete' + sm.name,
+														      Set{
+	 															   thisModule
+																    .newTypedParameter(
+																    	               'id',
+																					   'String',
+																				       #"in"
+																					  ),
+															       thisModule
+																    .newTypedParameter(
+																    	               'callBack',
+																					   'Boolean',
+																					   #"return"
+																					  )																							 
+															  }
+															 ), 
+										 thisModule.newMethod(
+										 	                  'delete' + sm.name + 's',
+														      Set{
+	 															   thisModule
+																    .newTypedParameter(
+																    	               'ids',
+																					   'ArrayList <String>',
+																				       #"in"
+																					  ),
+															       thisModule
+																    .newTypedParameter(
+                        										    	               'callBack',
+																					   'ArrayList <' + sm.name +'Details>',
+																					   #"return"
+																					  )																							 
+															  }
+															 ), 
+										 thisModule.newMethod(
+										 	                  'get' + sm.name + 'Details',
+														      Set{
+									  	                   	      thisModule
+																    .newTypedParameter(
+																    	               'callBack',
+																					   'ArrayList <' + sm.name +'Details>',
+																					   #"return"
+																					  )																	  }
+															 ),
+										 thisModule.newMethod(
+										 	                  'get' + sm.name,
+														      Set{
+									  	                   	      thisModule
+																    .newTypedParameter(
+																    	               'id',
+																					   'String',
+								                                                       #"in"
+																					  ),
+																  thisModule
+																    .newParameter(
+									  	                   	   	                  sm.name.toString().toLower(),
+																			      tm,
+																				  #"return"
+																			     )																	  }
+															 ), 
+										 thisModule.newMethod(
+										 	                  'update' + sm.name,
+											                  Set{
+									  	                   	      thisModule
+																    .newParameter(
+									  	                   	   	                  sm.name.toString().toLower(),
+																			      tm,
+																				  #"in"
+																			     ),
+																  thisModule
+																    .newParameter(
+									  	                   	   	                  sm.name.toString().toLower(),
+																			      tm,
+																				  #"return"
+																			     ) 
+															  }	
+										 	                 )
+										};
+		tmServiceImpl.ownedOperation <- Set{
+			                                 thisModule.newMethod(
+			                                 	                  'add' + sm.name,
+															      Set{
+										  	                   	      thisModule
+																	    .newParameter(
+										  	                   	   	                  sm.name.toString().toLower(),
+																				      tm,
+																					  #"in"
+																				     ),
+																	  thisModule
+																	    .newParameter(
+  							  	                   	   	                              sm.name.toString().toLower(),
+																				      tm,
+																					  #"return"
+																				     )						 
+																  }
+																 ), 
+											 thisModule.newMethod(
+											 	                  'delete' + sm.name,
+															      Set{
+		 															   thisModule
+																	    .newTypedParameter(
+																	    	               'id',
+																						   'String',
+																					       #"in"
+																						  ),
+																       thisModule
+																	    .newTypedParameter(
+																	    	               'callBack',
+																						   'Boolean',
+																						   #"return"
+																						  )																							 
+																  }
+																 ), 
+											 thisModule.newMethod(
+											 	                  'delete' + sm.name + 's',
+															      Set{
+		 															   thisModule
+																	    .newTypedParameter(
+																	    	               'ids',
+																						   'ArrayList <String>',
+																					       #"in"
+																						  ),
+																       thisModule
+																	    .newTypedParameter(
+																	    	               'callBack',
+																						   'ArrayList <' + sm.name +'Details>',
+																						   #"return"
+																						  )																							 
+																  }
+																 ), 
+											 thisModule.newMethod(
+											 	                  'get' + sm.name + 'Details',
+															      Set{
+										  	                   	      thisModule
+																	    .newTypedParameter(
+																	    	               'callBack',
+																						   'ArrayList <' + sm.name +'Details>',
+																						   #"return"
+																						  )																	  }
+																 ),
+											 thisModule.newMethod(
+											 	                  'get' + sm.name,
+															      Set{
+										  	                   	      thisModule
+																	    .newTypedParameter(
+																	    	               'id',
+																						   'String',
+																					       #"in"
+																						  ),
+																	  thisModule
+																	    .newParameter(
+										  	                   	   	                  sm.name.toString().toLower(),
+																				      tm,
+																					  #"return"
+																				     )																	  }
+																 ), 
+											 thisModule.newMethod(
+											 	                  'update' + sm.name,
+												                  Set{
+										  	                   	      thisModule
+																	    .newParameter(
+										  	                   	   	                  sm.name.toString().toLower(),
+																				      tm,
+																					  #"in"
+																				     ),
+																	  thisModule
+																	    .newParameter(
+										  	                   	   	                  sm.name.toString().toLower(),
+																				      tm,
+																					  #"return"
+																				     ) 
+																  }	
+											 	                 )
+											};
+	   }										
+}
+
+rule newDataType(n : String) {
+
+	to
+		m : Design!DataType (
+							 name <- n
+                            )
+	do 	{
+			m;
+		}
+	
+}
+	
+rule newProperty(n : String) {
+
+	to
+		m : Design!Property (
+							 name <- n,
+							 type <- Design!DataType->allInstances()->select(d | true)->asSequence()->first()
+                            )
+	do 	{
+			m;
+		}
+	
+}
+
+rule newMethod(n : String, t : Set(Design!Parameter)) {
+
+	to
+		m : Design!Operation (
+							  name <- n,
+							  ownedParameter <- t
+							 )
+	do 	{
+			m;
+		}
+	
+}
+
+rule newParameter(n : String, t : Design!Type, d : Design!ParameterDirectionKind) {
+
+	to
+		m : Design!Parameter (
+							  name <- n,
+							  type <- t,
+							  direction <- d
+                             )
+	do 	{
+			m;
+		}
+	
+}
+
+rule newTypedParameter(n : String, teTypeP : String, d : Design!ParameterDirectionKind) {
+
+	to
+		m : Design!Parameter (
+							  name <- n,
+							  type <- thisModule.newDataType(teTypeP),
+							  direction <- d
+                             )
+	do 	{
+			m;
+		}
+	
+}
+
+rule Properties2Properties {
+	from
+		sm : Analysis!Property(
+			                   not sm.class.eAnnotations->select(a | a.source = 'http://pt.isep.edom/entity')->asSet()->isEmpty()
+							   and Analysis!UseCase.allInstances()->select( 
+							   	                                           uc | uc.eAnnotations->select( 
+							   	                                           							    anot |
+																					                        anot.source = 'http://pt.isep.edom/crud' 
+																										and anot.references->includes(sm.class)
+																				                       )->asSet()->notEmpty()
+																		  )->asSet()->notEmpty()
+							  )	
+	to
+		tm : Design!Property (
+			name <- sm.name,
+			type <- sm.type
+		)
+}
+

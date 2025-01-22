@@ -1,0 +1,53 @@
+-- @atlcompiler emftvm 
+
+-- @nsURI MMUML=http://www.eclipse.org/uml2/5.0.0/UML
+-- @path MMRequirements=/Edom_ex3/metamodels/requirements.ecore
+
+module Req2UC;
+create OUT : MMUML from IN : MMRequirements;
+
+--implementation of requirement 1
+rule ModelReq2ModelUML {
+	from
+		s: MMRequirements!Model
+	to
+		t: MMUML!Model (
+			name <- s.title,
+			packagedElement <- s.groups
+		)
+}
+
+--implementation of requirement 2
+rule ReqGroup2CompUML {
+	from
+		s: MMRequirements!RequirementGroup ( not s.children.isEmpty() )
+	to
+		t: MMUML!Component (
+			name <- s.name,
+			packagedElement <- s.children  
+		)
+}
+
+--implementation of requirement 3
+rule OtherRequirementGroup2Component {
+	from
+		s : MMRequirements!RequirementGroup ( s.children.isEmpty() ) 
+	to
+		t: MMUML!Component (
+			name <- s.name  , 
+			ownedUseCase <- s.requirements -> select (r | (r.type = #FUNCTIONAL) )
+		)
+}
+
+
+rule Req2UC {
+	from 
+		s : MMRequirements!Requirement (s.type=#FUNCTIONAL)
+	to
+		t : MMUML!UseCase (
+		 	name <-  s.title,
+			ownedUseCase <- s.children -> select (r | (r.type = #FUNCTIONAL) )
+		)
+}
+
+

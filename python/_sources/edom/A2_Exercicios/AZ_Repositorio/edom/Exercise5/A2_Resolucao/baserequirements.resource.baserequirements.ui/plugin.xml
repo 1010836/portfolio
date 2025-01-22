@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+	<extension point="org.emftext.access.syntax.ui">
+		<metaInformationProvider class="baserequirements.resource.baserequirements.ui.BaserequirementsUIMetaInformation" id="baserequirements.resource.baserequirements.ui.BaserequirementsUIMetaInformation">
+		</metaInformationProvider>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors">
+		<editor class="baserequirements.resource.baserequirements.ui.BaserequirementsEditor" contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor" extensions="baserequirements" icon="icons/editor_icon.gif" id="baserequirements.resource.baserequirements.ui.BaserequirementsEditor" name="EMFText baserequirements Editor">
+			<contentTypeBinding contentTypeId="baserequirements.resource.baserequirements">
+			</contentTypeBinding>
+		</editor>
+	</extension>
+	
+	<extension point="org.eclipse.core.runtime.preferences">
+		<initializer class="baserequirements.resource.baserequirements.ui.BaserequirementsPreferenceInitializer">
+		</initializer>
+	</extension>
+	
+	<extension point="org.eclipse.ui.preferencePages">
+		<page name="Baserequirements Text Editor" id="baserequirements.resource.baserequirements.ui.BaserequirementsPreferencePage" class="baserequirements.resource.baserequirements.ui.BaserequirementsPreferencePage" category="org.eclipse.ui.preferencePages.GeneralTextEditor">
+		</page>
+		<page name="Syntax Coloring" id="baserequirements.resource.baserequirements.ui.BaserequirementsSyntaxColoringPreferencePage" class="baserequirements.resource.baserequirements.ui.BaserequirementsSyntaxColoringPreferencePage" category="baserequirements.resource.baserequirements.ui.BaserequirementsPreferencePage">
+		</page>
+		<page name="Brackets" id="baserequirements.resource.baserequirements.ui.BaserequirementsBracketPreferencePage" class="baserequirements.resource.baserequirements.ui.BaserequirementsBracketPreferencePage" category="baserequirements.resource.baserequirements.ui.BaserequirementsPreferencePage">
+		</page>
+	</extension>
+	
+	<extension point="org.eclipse.ui.newWizards">
+		<category id="org.emftext.runtime.ui.EMFTextFileCategory" name="EMFText File">
+		</category>
+		<wizard category="org.emftext.runtime.ui.EMFTextFileCategory" icon="/icons/default_new_icon.gif" class="baserequirements.resource.baserequirements.ui.BaserequirementsNewFileWizard" id="baserequirements.resource.baserequirements.ui.BaserequirementsNewFileWizard" name="EMFText .baserequirements file">
+		</wizard>
+		<category id="org.emftext.runtime.ui.EMFTextProjectCategory" name="EMFText Project">
+		</category>
+		<wizard category="org.emftext.runtime.ui.EMFTextProjectCategory" icon="/icons/default_new_icon.gif" class="baserequirements.resource.baserequirements.ui.BaserequirementsNewProjectWizard" id="baserequirements.resource.baserequirements.ui.BaserequirementsNewProjectWizard" name="EMFText baserequirements project" project="true">
+		</wizard>
+	</extension>
+	
+	<extension point="org.eclipse.ui.ide.markerResolution">
+		<markerResolutionGenerator class="baserequirements.resource.baserequirements.ui.BaserequirementsMarkerResolutionGenerator" markerType="baserequirements.resource.baserequirements.problem">
+		</markerResolutionGenerator>
+	</extension>
+	
+	<extension point="org.eclipse.core.filebuffers.annotationModelCreation">
+		<factory class="baserequirements.resource.baserequirements.ui.BaserequirementsAnnotationModelFactory" extensions="baserequirements">
+		</factory>
+	</extension>
+	
+	<extension point="org.eclipse.core.contenttype.contentTypes">
+		<content-type id="baserequirements.resource.baserequirements" name=".baserequirements File" base-type="org.eclipse.core.runtime.text" file-extensions="baserequirements">
+		</content-type>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.documentProviders">
+		<provider class="org.eclipse.ui.editors.text.TextFileDocumentProvider" extensions="baserequirements" id="baserequirements.resource.baserequirements.ui.provider">
+		</provider>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.annotationTypes">
+		<type name="baserequirements.resource.baserequirements.ui.occurences">
+		</type>
+		<type name="baserequirements.resource.baserequirements.ui.occurences.declaration" super="baserequirements.resource.baserequirements.ui.occurences">
+		</type>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.markerAnnotationSpecification">
+		<specification annotationType="baserequirements.resource.baserequirements.ui.occurences" label="Occurrences (in .baserequirements files)" icon="/icons/occurrence_icon.gif" textPreferenceKey="baserequirements.occurrenceIndication" textPreferenceValue="false" highlightPreferenceKey="baserequirements.occurrenceHighlighting" highlightPreferenceValue="true" contributesToHeader="false" overviewRulerPreferenceKey="baserequirements.occurrenceIndicationInOverviewRuler" overviewRulerPreferenceValue="true" verticalRulerPreferenceKey="baserequirements.occurrenceIndicationInVerticalRuler" verticalRulerPreferenceValue="false" colorPreferenceKey="baserequirements.occurrenceIndicationColor" colorPreferenceValue="212,212,212" presentationLayer="4" showInNextPrevDropdownToolbarActionKey="baserequirements.showOccurrenceInNextPrevDropdownToolbarAction" showInNextPrevDropdownToolbarAction="true" isGoToNextNavigationTargetKey="baserequirements.isOccurrenceGoToNextNavigationTarget" isGoToNextNavigationTarget="false" isGoToPreviousNavigationTargetKey="baserequirements.isOccurrenceGoToPreviousNavigationTarget" isGoToPreviousNavigationTarget="false" textStylePreferenceKey="baserequirements.occurrenceTextStyle" textStylePreferenceValue="NONE">
+		</specification>
+		<specification annotationType="baserequirements.resource.baserequirements.ui.occurences.declaration" label="Declarations (in .baserequirements files)" textPreferenceKey="baserequirements.declarationIndication" textPreferenceValue="false" highlightPreferenceKey="baserequirements.declarationHighlighting" highlightPreferenceValue="true" overviewRulerPreferenceKey="baserequirements.declarationIndicationInOverviewRuler" overviewRulerPreferenceValue="true" verticalRulerPreferenceKey="baserequirements.declarationIndicationInVerticalRuler" verticalRulerPreferenceValue="false" colorPreferenceKey="baserequirements.declarationIndicationColor" colorPreferenceValue="240,216,168" presentationLayer="4" textStylePreferenceKey="baserequirements.declarationTextStyle" textStylePreferenceValue="NONE">
+		</specification>
+	</extension>
+	
+	<extension point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+		<launchConfigurationTypeImage icon="/icons/launch_type_icon.gif" configTypeID="baserequirements.resource.baserequirements.ui.launchConfigurationType" id="baserequirements.launchImage">
+		</launchConfigurationTypeImage>
+	</extension>
+	
+	<extension point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+		<launchConfigurationTabGroup type="baserequirements.resource.baserequirements.ui.launchConfigurationType" class="baserequirements.resource.baserequirements.ui.launch.BaserequirementsLaunchConfigurationTabGroup" id="baserequirements.launchConfigurationTabGroup" helpContextId="baserequirements.launchConfigHelpContext">
+			<launchMode mode="debug" perspective="org.eclipse.debug.ui.DebugPerspective" description="Debug baserequirements model.">
+			</launchMode>
+			<launchMode mode="run" description="Run baserequirements model.">
+			</launchMode>
+		</launchConfigurationTabGroup>
+	</extension>
+	
+	<extension point="org.eclipse.debug.ui.launchShortcuts">
+		<shortcut label="baserequirements Application" icon="/icons/launch_shortcut_icon.gif" helpContextId="baserequirements.launch" modes="run,debug" class="baserequirements.resource.baserequirements.ui.launch.BaserequirementsLaunchShortcut" description="Launch a baserequirements model" id="baserequirements.launchShortcut">
+			<description description="Run baserequirements model" mode="run">
+			</description>
+			<description description="Debug baserequirements model" mode="debug">
+			</description>
+			<contextualLaunch>
+				<enablement>
+					<with variable="selection">
+						<count value="1">
+						</count>
+						<iterate>
+							<test property="baserequirements.isLaunchable">
+							</test>
+						</iterate>
+					</with>
+				</enablement>
+			</contextualLaunch>
+			<configurationType id="baserequirements.resource.baserequirements.ui.launchConfigurationType">
+			</configurationType>
+		</shortcut>
+	</extension>
+	
+	<extension point="org.eclipse.core.expressions.propertyTesters">
+		<propertyTester id="baserequirements.PropertyTester" type="java.lang.Object" namespace="baserequirements" properties="isLaunchable" class="baserequirements.resource.baserequirements.ui.BaserequirementsPropertyTester">
+		</propertyTester>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.annotationTypes">
+		<type name="baserequirements.resource.baserequirements.ui.debug.lineBreakpoint" markerType="baserequirements.resource.baserequirements.debug.lineBreakpoint.marker" super="org.eclipse.debug.core.breakpoint">
+		</type>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.markerAnnotationSpecification">
+		<specification annotationType="baserequirements.resource.baserequirements.ui.debug.lineBreakpoint" label="Breakpoints (in .baserequirements files)" icon="/icons/breakpoint_icon.gif" textPreferenceKey="baserequirements.resource.baserequirements.ui.lineBreakpoint" textPreferenceValue="false" highlightPreferenceKey="baserequirements.resource.baserequirements.ui.lineBreakpointHighlighting" highlightPreferenceValue="true" contributesToHeader="false" overviewRulerPreferenceKey="baserequirements.resource.baserequirements.ui.lineBreakpointIndicationInOverviewRuler" overviewRulerPreferenceValue="true" verticalRulerPreferenceKey="baserequirements.resource.baserequirements.ui.lineBreakpointIndicationInVerticalRuler" verticalRulerPreferenceValue="false" colorPreferenceKey="baserequirements.resource.baserequirements.ui.lineBreakpointColor" colorPreferenceValue="212,212,212" presentationLayer="4" showInNextPrevDropdownToolbarActionKey="baserequirements.resource.baserequirements.ui.showLineBreakpointInNextPrevDropdownToolbarAction" showInNextPrevDropdownToolbarAction="true" isGoToNextNavigationTargetKey="baserequirements.resource.baserequirements.ui.isLineBreakpointGoToNextNavigationTarget" isGoToNextNavigationTarget="false" isGoToPreviousNavigationTargetKey="baserequirements.resource.baserequirements.ui.isLineBreakpointGoToPreviousNavigationTarget" isGoToPreviousNavigationTarget="false" textStylePreferenceKey="baserequirements.resource.baserequirements.ui.lineBreakpointTextStyle" textStylePreferenceValue="NONE">
+		</specification>
+	</extension>
+	
+	<extension point="org.eclipse.core.runtime.adapters">
+		<factory adaptableType="baserequirements.resource.baserequirements.ui.BaserequirementsEditor" class="baserequirements.resource.baserequirements.ui.debug.BaserequirementsAdapterFactory">
+			<adapter type="org.eclipse.debug.ui.actions.IToggleBreakpointsTarget">
+			</adapter>
+		</factory>
+		<factory adaptableType="baserequirements.resource.baserequirements.debug.BaserequirementsDebugVariable" class="baserequirements.resource.baserequirements.ui.debug.BaserequirementsAdapterFactory">
+			<adapter type="org.eclipse.debug.internal.ui.viewers.model.provisional.IElementLabelProvider">
+			</adapter>
+		</factory>
+		<factory adaptableType="baserequirements.resource.baserequirements.debug.BaserequirementsDebugVariable" class="baserequirements.resource.baserequirements.ui.debug.BaserequirementsAdapterFactory">
+			<adapter type="org.eclipse.debug.internal.ui.viewers.model.provisional.IElementContentProvider">
+			</adapter>
+		</factory>
+	</extension>
+	
+	<extension point="org.eclipse.ui.popupMenus">
+		<viewerContribution id="baserequirements.resource.baserequirements.ui.RulerPopupActions" targetID="baserequirements.resource.baserequirements.EditorRuler">
+			<action id="baserequirements.resource.baserequirements.ui.toggleBreakpointAction" icon="icons/breakpoint_icon.gif" label="Toggle Breakpoint" class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate" menubarPath="debug">
+			</action>
+		</viewerContribution>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editorActions">
+		<editorContribution targetID="baserequirements.resource.baserequirements.ui.BaserequirementsEditor" id="baserequirements.resource.baserequirements.ui.BreakpointRulerActions">
+			<action id="baserequirements.resource.baserequirements.ui.debug.RulerToggleBreakpointAction" label="Add breakpoint" class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate" actionID="RulerDoubleClick">
+			</action>
+		</editorContribution>
+	</extension>
+	
+	<extension point="org.eclipse.debug.ui.debugModelPresentations">
+		<debugModelPresentation id="baserequirements.resource.baserequirements.debugModel" class="baserequirements.resource.baserequirements.ui.debug.BaserequirementsDebugModelPresentation">
+		</debugModelPresentation>
+	</extension>
+	
+</plugin>

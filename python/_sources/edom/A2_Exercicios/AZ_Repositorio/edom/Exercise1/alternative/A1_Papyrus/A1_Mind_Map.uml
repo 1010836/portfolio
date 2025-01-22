@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_w_rI4Kc0EeevQOpZFqMWXg" name="RootElement" visibility="public">
+  <ownedComment xmi:type="uml:Comment" xmi:id="_rb2-MKc4EeevQOpZFqMWXg"/>
+  <ownedComment xmi:type="uml:Comment" xmi:id="_swTBkKc4EeevQOpZFqMWXg" annotatedElement="_rb2-MKc4EeevQOpZFqMWXg"/>
+  <ownedComment xmi:type="uml:Comment" xmi:id="_-1P0wKc4EeevQOpZFqMWXg" annotatedElement="_CjCVIKc5EeevQOpZFqMWXg">
+    <body>Course edition</body>
+  </ownedComment>
+  <ownedComment xmi:type="uml:Comment" xmi:id="_CjCVIKc5EeevQOpZFqMWXg">
+    <body>Class section</body>
+  </ownedComment>
+  <packagedElement xmi:type="uml:StateMachine" xmi:id="_xHExYKc0EeevQOpZFqMWXg" name="StateMachine1">
+    <region xmi:type="uml:Region" xmi:id="_xIjYEKc0EeevQOpZFqMWXg" name="Region1"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interaction" xmi:id="_xJE8gKc0EeevQOpZFqMWXg" name="Interaction1"/>
+  <packagedElement xmi:type="uml:Activity" xmi:id="_xJhBYKc0EeevQOpZFqMWXg" visibility="package" node="_qy57kK09EeechvFFgUyl9A _MyKG8K1MEeechvFFgUyl9A _j6X_sK1MEeechvFFgUyl9A _yFXewK1MEeechvFFgUyl9A _4JFUsK1MEeechvFFgUyl9A _4s3-QK1MEeechvFFgUyl9A _AKcjEK1NEeechvFFgUyl9A _FXvHUK1NEeechvFFgUyl9A _JLnooK1NEeechvFFgUyl9A _PTZfMK1NEeechvFFgUyl9A _Rgr2IK1NEeechvFFgUyl9A _UxjxAK1NEeechvFFgUyl9A">
+    <edge xmi:type="uml:ControlFlow" xmi:id="_VNSgMK1MEeechvFFgUyl9A" target="_qy57kK09EeechvFFgUyl9A" source="_MyKG8K1MEeechvFFgUyl9A"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_apw6gK1NEeechvFFgUyl9A" target="_MyKG8K1MEeechvFFgUyl9A" source="_j6X_sK1MEeechvFFgUyl9A"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_dLGO0K1NEeechvFFgUyl9A" target="_j6X_sK1MEeechvFFgUyl9A" source="_yFXewK1MEeechvFFgUyl9A"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_gPNgEK1NEeechvFFgUyl9A" target="_yFXewK1MEeechvFFgUyl9A" source="_4s3-QK1MEeechvFFgUyl9A"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_krooEK1NEeechvFFgUyl9A" target="_4JFUsK1MEeechvFFgUyl9A" source="_4s3-QK1MEeechvFFgUyl9A"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_nbSsQK1NEeechvFFgUyl9A" target="_4s3-QK1MEeechvFFgUyl9A" source="_AKcjEK1NEeechvFFgUyl9A"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_q6HjkK1NEeechvFFgUyl9A" target="_FXvHUK1NEeechvFFgUyl9A" source="_AKcjEK1NEeechvFFgUyl9A"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_rfbQEK1NEeechvFFgUyl9A" target="_JLnooK1NEeechvFFgUyl9A" source="_AKcjEK1NEeechvFFgUyl9A"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_sO7aYK1NEeechvFFgUyl9A" target="_PTZfMK1NEeechvFFgUyl9A" source="_AKcjEK1NEeechvFFgUyl9A"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_sxyP0K1NEeechvFFgUyl9A" target="_Rgr2IK1NEeechvFFgUyl9A" source="_AKcjEK1NEeechvFFgUyl9A"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_tOv4oK1NEeechvFFgUyl9A" target="_UxjxAK1NEeechvFFgUyl9A" source="_PTZfMK1NEeechvFFgUyl9A"/>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="_qy57kK09EeechvFFgUyl9A" name="Class section" incoming="_VNSgMK1MEeechvFFgUyl9A"/>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="_MyKG8K1MEeechvFFgUyl9A" name="Course edition" incoming="_apw6gK1NEeechvFFgUyl9A" outgoing="_VNSgMK1MEeechvFFgUyl9A"/>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="_j6X_sK1MEeechvFFgUyl9A" name="Course" incoming="_dLGO0K1NEeechvFFgUyl9A" outgoing="_apw6gK1NEeechvFFgUyl9A"/>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="_yFXewK1MEeechvFFgUyl9A" name="Plan of study" incoming="_gPNgEK1NEeechvFFgUyl9A" outgoing="_dLGO0K1NEeechvFFgUyl9A"/>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="_4JFUsK1MEeechvFFgUyl9A" name="Degree" incoming="_krooEK1NEeechvFFgUyl9A"/>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="_4s3-QK1MEeechvFFgUyl9A" name="Program" incoming="_nbSsQK1NEeechvFFgUyl9A" outgoing="_gPNgEK1NEeechvFFgUyl9A _krooEK1NEeechvFFgUyl9A"/>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="_AKcjEK1NEeechvFFgUyl9A" name="College" outgoing="_nbSsQK1NEeechvFFgUyl9A _q6HjkK1NEeechvFFgUyl9A _rfbQEK1NEeechvFFgUyl9A _sO7aYK1NEeechvFFgUyl9A _sxyP0K1NEeechvFFgUyl9A"/>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="_FXvHUK1NEeechvFFgUyl9A" name="Student" incoming="_q6HjkK1NEeechvFFgUyl9A"/>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="_JLnooK1NEeechvFFgUyl9A" name="Teacher" incoming="_rfbQEK1NEeechvFFgUyl9A"/>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="_PTZfMK1NEeechvFFgUyl9A" name="Department" incoming="_sO7aYK1NEeechvFFgUyl9A" outgoing="_tOv4oK1NEeechvFFgUyl9A"/>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="_Rgr2IK1NEeechvFFgUyl9A" name="Room" incoming="_sxyP0K1NEeechvFFgUyl9A"/>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="_UxjxAK1NEeechvFFgUyl9A" name="Director" incoming="_tOv4oK1NEeechvFFgUyl9A"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DeploymentSpecification" xmi:id="_zdp8UKc2EeevQOpZFqMWXg" name="Class Section" deploymentLocation=""/>
+  <packagedElement xmi:type="uml:InformationItem" xmi:id="_zRR3wKc3EeevQOpZFqMWXg" name="a"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_9oKWkKc4EeevQOpZFqMWXg" name="Class1"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_YnHQUKc5EeevQOpZFqMWXg" name="Class2"/>
+  <packagedElement xmi:type="uml:InformationFlow" xmi:id="_bOeUIKc5EeevQOpZFqMWXg" informationSource="_YnHQUKc5EeevQOpZFqMWXg" informationTarget="_9oKWkKc4EeevQOpZFqMWXg"/>
+</uml:Model>

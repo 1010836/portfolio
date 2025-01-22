@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ASCII"?>
+<uml:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" name="CollegeMap">
+  <packagedElement xsi:type="uml:Component" name="College">
+    <packagedElement xsi:type="uml:Component" name="Student">
+      <ownedUseCase name="Student Child">
+        <ownedUseCase name="Student Child 1"/>
+      </ownedUseCase>
+    </packagedElement>
+    <packagedElement xsi:type="uml:Component" name="Teacher">
+      <ownedUseCase name="Teacher Child">
+        <ownedUseCase name="Teacher Child 1"/>
+      </ownedUseCase>
+    </packagedElement>
+    <packagedElement xsi:type="uml:Component" name="Departement">
+      <packagedElement xsi:type="uml:Component" name="Director"/>
+    </packagedElement>
+    <packagedElement xsi:type="uml:Component" name="Room"/>
+    <packagedElement xsi:type="uml:Component" name="Program">
+      <packagedElement xsi:type="uml:Component" name="Degree"/>
+      <packagedElement xsi:type="uml:Component" name="Plan of Study">
+        <packagedElement xsi:type="uml:Component" name="Course">
+          <packagedElement xsi:type="uml:Component" name="Course Edition">
+            <packagedElement xsi:type="uml:Component" name="Class Section"/>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

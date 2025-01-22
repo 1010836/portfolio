@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<requirements:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:requirements="http://www.example.org/requirements">
+  <groups name="College">
+    <children name="Program">
+      <children name="Degree"/>
+      <children name="Plan of Study">
+        <children name="Course">
+          <children name="Course Edition">
+            <children name="Class Section"/>
+          </children>
+        </children>
+      </children>
+      <requirements title="t1" id="id1"/>
+    </children>
+    <children name="Student"/>
+    <children name="Teacher"/>
+    <children name="Departement">
+      <children name="Director"/>
+    </children>
+    <children name="Room"/>
+  </groups>
+</requirements:Model>

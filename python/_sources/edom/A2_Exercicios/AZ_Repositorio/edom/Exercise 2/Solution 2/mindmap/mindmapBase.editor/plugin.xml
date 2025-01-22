@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated mindmapBase -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="mindmapBase.presentation.MindmapBaseModelWizardID"
+            name="%_UI_MindmapBaseModelWizard_label"
+            class="mindmapBase.presentation.MindmapBaseModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/MindmapBaseModelFile.gif">
+         <description>%_UI_MindmapBaseModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated mindmapBase -->
+      <editor
+            id="mindmapBase.presentation.MindmapBaseEditorID"
+            name="%_UI_MindmapBaseEditor_label"
+            icon="icons/full/obj16/MindmapBaseModelFile.gif"
+            extensions="mindmapbase"
+            class="mindmapBase.presentation.MindmapBaseEditor"
+            contributorClass="mindmapBase.presentation.MindmapBaseActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

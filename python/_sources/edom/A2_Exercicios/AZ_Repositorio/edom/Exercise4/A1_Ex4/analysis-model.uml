@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_4pFhALV8EeeXodUxLXT6vA" name="analysis">
+  <packagedElement xmi:type="uml:Model" xmi:id="_BFfQELizEeeCx8KjjrPtrw" name="domain">
+    <packagedElement xmi:type="uml:Class" xmi:id="_qpZ9MLi1EeeCx8KjjrPtrw" name="Student">
+      <eAnnotations xmi:id="_S3bcILi9EeeCx8KjjrPtrw" source="http://pt.isep.edom/entity"/>
+      <ownedAttribute xmi:id="_wDYG8NReEeePJ_D4qJLCrg" name="id" type="_3EB8wLizEeeCx8KjjrPtrw" isID="true"/>
+      <ownedAttribute xmi:id="_4fhz4NReEeePJ_D4qJLCrg" name="firstName" type="_3EB8wLizEeeCx8KjjrPtrw"/>
+      <ownedAttribute xmi:id="_-_VTcNRfEeePJ_D4qJLCrg" name="lastName" type="_3EB8wLizEeeCx8KjjrPtrw"/>
+      <ownedAttribute xmi:id="_AFlJ0NRgEeePJ_D4qJLCrg" name="emailAddress" type="_3EB8wLizEeeCx8KjjrPtrw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_GitlUNRgEeePJ_D4qJLCrg" name="Teacher">
+      <eAnnotations xmi:id="_GiuMYNRgEeePJ_D4qJLCrg" source="http://pt.isep.edom/entity"/>
+      <ownedAttribute xmi:id="_GiuMYdRgEeePJ_D4qJLCrg" name="id" type="_3EB8wLizEeeCx8KjjrPtrw" isID="true"/>
+      <ownedAttribute xmi:id="_GiuMYtRgEeePJ_D4qJLCrg" name="firstName" type="_3EB8wLizEeeCx8KjjrPtrw"/>
+      <ownedAttribute xmi:id="_GiuMY9RgEeePJ_D4qJLCrg" name="lastName" type="_3EB8wLizEeeCx8KjjrPtrw"/>
+      <ownedAttribute xmi:id="_GiuMZNRgEeePJ_D4qJLCrg" name="emailAddress" type="_3EB8wLizEeeCx8KjjrPtrw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_OwNLMNRgEeePJ_D4qJLCrg" name="Department">
+      <eAnnotations xmi:id="_OwNLMdRgEeePJ_D4qJLCrg" source="http://pt.isep.edom/entity"/>
+      <ownedAttribute xmi:id="_OwNLMtRgEeePJ_D4qJLCrg" name="id" type="_3EB8wLizEeeCx8KjjrPtrw" isID="true"/>
+      <ownedAttribute xmi:id="_OwNLM9RgEeePJ_D4qJLCrg" name="name" type="_3EB8wLizEeeCx8KjjrPtrw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_XZCCMNRgEeePJ_D4qJLCrg" name="Director">
+      <eAnnotations xmi:id="_XZCCMdRgEeePJ_D4qJLCrg" source="http://pt.isep.edom/entity"/>
+      <ownedAttribute xmi:id="_XZCCMtRgEeePJ_D4qJLCrg" name="id" type="_3EB8wLizEeeCx8KjjrPtrw" isID="true"/>
+      <ownedAttribute xmi:id="_XZCCM9RgEeePJ_D4qJLCrg" name="firstName" type="_3EB8wLizEeeCx8KjjrPtrw"/>
+      <ownedAttribute xmi:id="_XZCCNNRgEeePJ_D4qJLCrg" name="lastName" type="_3EB8wLizEeeCx8KjjrPtrw"/>
+      <ownedAttribute xmi:id="_XZCCNdRgEeePJ_D4qJLCrg" name="emailAddress" type="_3EB8wLizEeeCx8KjjrPtrw"/>
+      <ownedAttribute xmi:id="_c4zdkNRgEeePJ_D4qJLCrg" name="deparementId" type="_3EB8wLizEeeCx8KjjrPtrw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lBy98NRgEeePJ_D4qJLCrg" name="Room">
+      <eAnnotations xmi:id="_lBy98dRgEeePJ_D4qJLCrg" source="http://pt.isep.edom/entity"/>
+      <ownedAttribute xmi:id="_lBy98tRgEeePJ_D4qJLCrg" name="id" type="_3EB8wLizEeeCx8KjjrPtrw" isID="true"/>
+      <ownedAttribute xmi:id="_lBy989RgEeePJ_D4qJLCrg" name="number" type="_3EB8wLizEeeCx8KjjrPtrw"/>
+      <ownedAttribute xmi:id="_lBy99NRgEeePJ_D4qJLCrg" name="building" type="_3EB8wLizEeeCx8KjjrPtrw"/>
+      <ownedAttribute xmi:id="_lBy99dRgEeePJ_D4qJLCrg" name="floor" type="_3EB8wLizEeeCx8KjjrPtrw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_0g6-YNRgEeePJ_D4qJLCrg" name="Class_Section">
+      <eAnnotations xmi:id="_0g6-YdRgEeePJ_D4qJLCrg" source="http://pt.isep.edom/entity"/>
+      <ownedAttribute xmi:id="_0g6-YtRgEeePJ_D4qJLCrg" name="id" type="_3EB8wLizEeeCx8KjjrPtrw" isID="true"/>
+      <ownedAttribute xmi:id="_0g6-Y9RgEeePJ_D4qJLCrg" name="designation" type="_3EB8wLizEeeCx8KjjrPtrw"/>
+      <ownedAttribute xmi:id="_U-YIMNRhEeePJ_D4qJLCrg" name="courseEditionId" type="_3EB8wLizEeeCx8KjjrPtrw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_LfRwgNRhEeePJ_D4qJLCrg" name="Course_Edition">
+      <eAnnotations xmi:id="_LfRwgdRhEeePJ_D4qJLCrg" source="http://pt.isep.edom/entity"/>
+      <ownedAttribute xmi:id="_LfRwgtRhEeePJ_D4qJLCrg" name="id" type="_3EB8wLizEeeCx8KjjrPtrw" isID="true"/>
+      <ownedAttribute xmi:id="_LfRwg9RhEeePJ_D4qJLCrg" name="designation" type="_3EB8wLizEeeCx8KjjrPtrw"/>
+      <ownedAttribute xmi:id="_SFCjkNRhEeePJ_D4qJLCrg" name="year" type="_3EB8wLizEeeCx8KjjrPtrw"/>
+      <ownedAttribute xmi:id="_gX6MQNRhEeePJ_D4qJLCrg" name="courseId" type="_3EB8wLizEeeCx8KjjrPtrw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_dZyOQNRhEeePJ_D4qJLCrg" name="Course">
+      <eAnnotations xmi:id="_dZyOQdRhEeePJ_D4qJLCrg" source="http://pt.isep.edom/entity"/>
+      <ownedAttribute xmi:id="_dZyOQtRhEeePJ_D4qJLCrg" name="id" type="_3EB8wLizEeeCx8KjjrPtrw" isID="true"/>
+      <ownedAttribute xmi:id="_dZyOQ9RhEeePJ_D4qJLCrg" name="designation" type="_3EB8wLizEeeCx8KjjrPtrw"/>
+      <ownedAttribute xmi:id="_6VnrcNRhEeePJ_D4qJLCrg" name="planOfStudyId" type="_3EB8wLizEeeCx8KjjrPtrw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_qKwmYNRhEeePJ_D4qJLCrg" name="Plan_Of_Study">
+      <eAnnotations xmi:id="_qKwmYdRhEeePJ_D4qJLCrg" source="http://pt.isep.edom/entity"/>
+      <ownedAttribute xmi:id="_qKwmYtRhEeePJ_D4qJLCrg" name="id" type="_3EB8wLizEeeCx8KjjrPtrw" isID="true"/>
+      <ownedAttribute xmi:id="_qKwmY9RhEeePJ_D4qJLCrg" name="designation" type="_3EB8wLizEeeCx8KjjrPtrw"/>
+      <ownedAttribute xmi:id="_OwGLkNRiEeePJ_D4qJLCrg" name="programId" type="_3EB8wLizEeeCx8KjjrPtrw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_CimT8NRiEeePJ_D4qJLCrg" name="Degree">
+      <eAnnotations xmi:id="_CimT8dRiEeePJ_D4qJLCrg" source="http://pt.isep.edom/entity"/>
+      <ownedAttribute xmi:id="_CimT8tRiEeePJ_D4qJLCrg" name="id" type="_3EB8wLizEeeCx8KjjrPtrw" isID="true"/>
+      <ownedAttribute xmi:id="_CimT89RiEeePJ_D4qJLCrg" name="designation" type="_3EB8wLizEeeCx8KjjrPtrw"/>
+      <ownedAttribute xmi:id="_SRxikNRiEeePJ_D4qJLCrg" name="programId" type="_3EB8wLizEeeCx8KjjrPtrw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_HdL-oNRiEeePJ_D4qJLCrg" name="Program">
+      <eAnnotations xmi:id="_HdL-odRiEeePJ_D4qJLCrg" source="http://pt.isep.edom/entity"/>
+      <ownedAttribute xmi:id="_HdL-otRiEeePJ_D4qJLCrg" name="id" type="_3EB8wLizEeeCx8KjjrPtrw" isID="true"/>
+      <ownedAttribute xmi:id="_HdL-o9RiEeePJ_D4qJLCrg" name="designation" type="_3EB8wLizEeeCx8KjjrPtrw"/>
+      <ownedAttribute xmi:id="_Y7WeoNRiEeePJ_D4qJLCrg" name="collegeId" type="_3EB8wLizEeeCx8KjjrPtrw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Vm3PENRiEeePJ_D4qJLCrg" name="College">
+      <eAnnotations xmi:id="_Vm3PEdRiEeePJ_D4qJLCrg" source="http://pt.isep.edom/entity"/>
+      <ownedAttribute xmi:id="_Vm3PEtRiEeePJ_D4qJLCrg" name="id" type="_3EB8wLizEeeCx8KjjrPtrw" isID="true"/>
+      <ownedAttribute xmi:id="_Vm3PE9RiEeePJ_D4qJLCrg" name="designation" type="_3EB8wLizEeeCx8KjjrPtrw"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Model" xmi:id="_E3m20LizEeeCx8KjjrPtrw" name="use-cases">
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_u78bULizEeeCx8KjjrPtrw" name="Manage_Student">
+      <eAnnotations xmi:id="_RMIHALi0EeeCx8KjjrPtrw" source="http://pt.isep.edom/crud" references="_qpZ9MLi1EeeCx8KjjrPtrw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_qVRX0NRiEeePJ_D4qJLCrg" name="Manage_Teacher">
+      <eAnnotations xmi:id="_qVRX0dRiEeePJ_D4qJLCrg" source="http://pt.isep.edom/crud" references="_GitlUNRgEeePJ_D4qJLCrg"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Model" xmi:id="_gg344LizEeeCx8KjjrPtrw" name="base-types">
+    <packagedElement xmi:type="uml:DataType" xmi:id="_3EB8wLizEeeCx8KjjrPtrw" name="String"/>
+  </packagedElement>
+</uml:Model>

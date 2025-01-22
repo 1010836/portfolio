@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/mindmapAlternative/src" modelPluginID="mindmapAlternative"
+    modelName="MindmapAlternative" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>mindmapAlternative.ecore</foreignModel>
+  <genPackages prefix="Mindmap" disposableProviderFactory="true" ecorePackage="mindmapAlternative.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="mindmapAlternative.ecore#//Priority">
+      <genEnumLiterals ecoreEnumLiteral="mindmapAlternative.ecore#//Priority/HIGH"/>
+      <genEnumLiterals ecoreEnumLiteral="mindmapAlternative.ecore#//Priority/MEDIUM"/>
+      <genEnumLiterals ecoreEnumLiteral="mindmapAlternative.ecore#//Priority/LOW"/>
+    </genEnums>
+    <genClasses ecoreClass="mindmapAlternative.ecore#//Map">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mindmapAlternative.ecore#//Map/title"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mindmapAlternative.ecore#//Map/created"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mindmapAlternative.ecore#//Map/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="mindmapAlternative.ecore#//Topic">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mindmapAlternative.ecore#//Topic/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mindmapAlternative.ecore#//Topic/start"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mindmapAlternative.ecore#//Topic/end"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mindmapAlternative.ecore#//Topic/links"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mindmapAlternative.ecore#//Topic/priority"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mindmapAlternative.ecore#//Topic/subtopics"/>
+    </genClasses>
+    <genClasses ecoreClass="mindmapAlternative.ecore#//Link">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mindmapAlternative.ecore#//Link/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mindmapAlternative.ecore#//Link/target"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

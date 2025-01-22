@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ASCII"?>
+<org.eclipse.dsl.baserequirements:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:org.eclipse.dsl.baserequirements="http://org/eclipse/dsl/baseRequirements" title="BaseCollege">
+  <groups name="College" description="College" id="G1">
+    <children name="Student" description="Student" id="G2"/>
+    <children name="Teacher" description="Teacher" id="G3"/>
+    <children name="Department" description="Department" id="G5">
+      <children name="Director" description="Director" id="G6"/>
+    </children>
+    <children name="Room" description="Room" id="G4"/>
+    <children name="Program" description="Program" id="G7">
+      <children name="Degree" description="Degree" id="G8"/>
+      <children name="PlanOfStudy" description="PlanOfStudy" id="G9">
+        <children name="Course" description="Course" id="G10">
+          <children name="CourseEdition" description="CourseEdition" id="G11">
+            <children name="ClassSection" description="ClassSection" id="G12"/>
+          </children>
+        </children>
+      </children>
+    </children>
+  </groups>
+</org.eclipse.dsl.baserequirements:Model>

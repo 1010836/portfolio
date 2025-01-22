@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: EMFText Parser Plugin: baseRequirements
+Bundle-SymbolicName: baserequirements.resource.baseRequirements;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Vendor: Software Technology Group - TU Dresden Germany
+Require-Bundle: org.eclipse.core.runtime;resolution:=optional,
+  org.eclipse.emf.ecore,
+  org.eclipse.emf.ecore.change,
+  org.eclipse.emf.validation;resolution:=optional,
+  org.emftext.access;resolution:=optional,
+  org.eclipse.debug.core;resolution:=optional,
+  org.emftext.commons.antlr3_4_0,
+  ex5emftext
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: baserequirements.resource.baseRequirements,
+  baserequirements.resource.baseRequirements.analysis,
+  baserequirements.resource.baseRequirements.mopp,
+  baserequirements.resource.baseRequirements.debug,
+  baserequirements.resource.baseRequirements.launch,
+  baserequirements.resource.baseRequirements.grammar,
+  baserequirements.resource.baseRequirements.util
+Bundle-Activator: baserequirements.resource.baseRequirements.mopp.BaseRequirementsPlugin

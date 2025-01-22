@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_C5_0YK1fEee4IM7k4vwFKA" name="RootElement">
+  <packagedElement xmi:type="uml:Activity" xmi:id="_C6VLkK1fEee4IM7k4vwFKA" name="Registar horario para uma turma e disciplina" node="_W5u5QK1fEee4IM7k4vwFKA _keiiEK1fEee4IM7k4vwFKA _q0u10K1kEee4IM7k4vwFKA _FYtq0K1lEee4IM7k4vwFKA _lVNcoK1lEee4IM7k4vwFKA _00-WQK1lEee4IM7k4vwFKA _5XamsK1lEee4IM7k4vwFKA _F-c_sK1mEee4IM7k4vwFKA _VJ9gkK1mEee4IM7k4vwFKA _gkNWUK1mEee4IM7k4vwFKA _kKKwYK1mEee4IM7k4vwFKA _6jC24K1mEee4IM7k4vwFKA _C5-FkK1nEee4IM7k4vwFKA _Tf_AIK1oEee4IM7k4vwFKA _8aMT0K1oEee4IM7k4vwFKA __XJ0MK1oEee4IM7k4vwFKA _Dsk8UK1pEee4IM7k4vwFKA _Q0BTsK1pEee4IM7k4vwFKA _7W4KwK1qEee4IM7k4vwFKA _BX4q8K1rEee4IM7k4vwFKA _iVTHMK1rEee4IM7k4vwFKA _9qn5kK1rEee4IM7k4vwFKA __kKOEK1rEee4IM7k4vwFKA _Dm31kK1sEee4IM7k4vwFKA _EnWbIK1sEee4IM7k4vwFKA _fXVr0K1sEee4IM7k4vwFKA _uKhzUK1sEee4IM7k4vwFKA _xhl1wK1sEee4IM7k4vwFKA _1Xvn8K1sEee4IM7k4vwFKA _LmwAwK1tEee4IM7k4vwFKA _hO5N4K1tEee4IM7k4vwFKA _thF_UK1tEee4IM7k4vwFKA _6p5ooK1tEee4IM7k4vwFKA _BI66gK1uEee4IM7k4vwFKA _UN7cgK1uEee4IM7k4vwFKA _gSVCgK1uEee4IM7k4vwFKA _ocMFkK1uEee4IM7k4vwFKA _u2VegK1uEee4IM7k4vwFKA _-VeGAK1uEee4IM7k4vwFKA _MiRi8K1vEee4IM7k4vwFKA">
+    <edge xmi:type="uml:ControlFlow" xmi:id="_0Gtw0K1fEee4IM7k4vwFKA" target="_keiiEK1fEee4IM7k4vwFKA" source="_W5u5QK1fEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_L5l94K1lEee4IM7k4vwFKA" name="Sucesso" target="_FYtq0K1lEee4IM7k4vwFKA" source="_keiiEK1fEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_sqnj8K1lEee4IM7k4vwFKA" name="Não" target="_q0u10K1kEee4IM7k4vwFKA" source="_FYtq0K1lEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_vBgi0K1lEee4IM7k4vwFKA" target="_lVNcoK1lEee4IM7k4vwFKA" source="_q0u10K1kEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_KnPvwK1mEee4IM7k4vwFKA" name="Sim" target="_00-WQK1lEee4IM7k4vwFKA" source="_FYtq0K1lEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_PzYdcK1mEee4IM7k4vwFKA" target="_5XamsK1lEee4IM7k4vwFKA" source="_00-WQK1lEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_YzX3QK1mEee4IM7k4vwFKA" target="_VJ9gkK1mEee4IM7k4vwFKA" source="_5XamsK1lEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_cYp74K1mEee4IM7k4vwFKA" name="Sucesso" target="_F-c_sK1mEee4IM7k4vwFKA" source="_VJ9gkK1mEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_mBxyQK1mEee4IM7k4vwFKA" name="Não" target="_gkNWUK1mEee4IM7k4vwFKA" source="_F-c_sK1mEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_mo41kK1mEee4IM7k4vwFKA" target="_kKKwYK1mEee4IM7k4vwFKA" source="_gkNWUK1mEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_-SBqEK1mEee4IM7k4vwFKA" name="Sim" target="_6jC24K1mEee4IM7k4vwFKA" source="_F-c_sK1mEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_HLzHIK1nEee4IM7k4vwFKA" target="_C5-FkK1nEee4IM7k4vwFKA" source="_6jC24K1mEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_ZpSgsK1oEee4IM7k4vwFKA" target="_Tf_AIK1oEee4IM7k4vwFKA" source="_C5-FkK1nEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_Fu0g4K1pEee4IM7k4vwFKA" name="Sucesso" target="_8aMT0K1oEee4IM7k4vwFKA" source="_Tf_AIK1oEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_IHK4UK1pEee4IM7k4vwFKA" name="Não" target="__XJ0MK1oEee4IM7k4vwFKA" source="_8aMT0K1oEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_Ky_lYK1pEee4IM7k4vwFKA" target="_Dsk8UK1pEee4IM7k4vwFKA" source="__XJ0MK1oEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_yvQNoK1qEee4IM7k4vwFKA" name="Sim" target="_Q0BTsK1pEee4IM7k4vwFKA" source="_8aMT0K1oEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_Vq54MK1rEee4IM7k4vwFKA" name="Sucesso" target="_7W4KwK1qEee4IM7k4vwFKA" source="_Q0BTsK1pEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_YGslMK1rEee4IM7k4vwFKA" name="Não" target="_BX4q8K1rEee4IM7k4vwFKA" source="_7W4KwK1qEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_0j_sQK1rEee4IM7k4vwFKA" name="Sim" target="_iVTHMK1rEee4IM7k4vwFKA" source="_7W4KwK1qEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_JJ6AUK1sEee4IM7k4vwFKA" target="_EnWbIK1sEee4IM7k4vwFKA" source="_BX4q8K1rEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_KGyfUK1sEee4IM7k4vwFKA" name="Sucesso" target="_9qn5kK1rEee4IM7k4vwFKA" source="_iVTHMK1rEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_MKVEYK1sEee4IM7k4vwFKA" name="Não" target="__kKOEK1rEee4IM7k4vwFKA" source="_9qn5kK1rEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_NQI14K1sEee4IM7k4vwFKA" target="_Dm31kK1sEee4IM7k4vwFKA" source="__kKOEK1rEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_lEifMK1sEee4IM7k4vwFKA" name="Sim" target="_fXVr0K1sEee4IM7k4vwFKA" source="_9qn5kK1rEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_5iKZ8K1sEee4IM7k4vwFKA" name="Sucesso" target="_uKhzUK1sEee4IM7k4vwFKA" source="_fXVr0K1sEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="__8AQ4K1sEee4IM7k4vwFKA" name="Não" target="_xhl1wK1sEee4IM7k4vwFKA" source="_uKhzUK1sEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_GLzbAK1tEee4IM7k4vwFKA" target="_1Xvn8K1sEee4IM7k4vwFKA" source="_xhl1wK1sEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_V6zDcK1tEee4IM7k4vwFKA" name="Sim" target="_LmwAwK1tEee4IM7k4vwFKA" source="_uKhzUK1sEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_qQ7PEK1tEee4IM7k4vwFKA" target="_hO5N4K1tEee4IM7k4vwFKA" source="_LmwAwK1tEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_16TF8K1tEee4IM7k4vwFKA" target="_thF_UK1tEee4IM7k4vwFKA" source="_hO5N4K1tEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_HciNoK1uEee4IM7k4vwFKA" name="Valida" target="_6p5ooK1tEee4IM7k4vwFKA" source="_thF_UK1tEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_K3M9sK1uEee4IM7k4vwFKA" name="Não" target="_BI66gK1uEee4IM7k4vwFKA" source="_6p5ooK1tEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_NGFQEK1uEee4IM7k4vwFKA" target="_LmwAwK1tEee4IM7k4vwFKA" source="_BI66gK1uEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_Yq6lMK1uEee4IM7k4vwFKA" name="Sim" target="_UN7cgK1uEee4IM7k4vwFKA" source="_6p5ooK1tEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_ykhngK1uEee4IM7k4vwFKA" name="Sucesso" target="_gSVCgK1uEee4IM7k4vwFKA" source="_UN7cgK1uEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_4QBxwK1uEee4IM7k4vwFKA" name="Não" target="_ocMFkK1uEee4IM7k4vwFKA" source="_gSVCgK1uEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_69DYsK1uEee4IM7k4vwFKA" target="_u2VegK1uEee4IM7k4vwFKA" source="_ocMFkK1uEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_GKlBEK1vEee4IM7k4vwFKA" name="Sim" target="_-VeGAK1uEee4IM7k4vwFKA" source="_gSVCgK1uEee4IM7k4vwFKA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_QcKloK1vEee4IM7k4vwFKA" target="_MiRi8K1vEee4IM7k4vwFKA" source="_-VeGAK1uEee4IM7k4vwFKA"/>
+    <node xmi:type="uml:InitialNode" xmi:id="_W5u5QK1fEee4IM7k4vwFKA" outgoing="_0Gtw0K1fEee4IM7k4vwFKA"/>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="_keiiEK1fEee4IM7k4vwFKA" name="Obter lista de turmas" incoming="_0Gtw0K1fEee4IM7k4vwFKA" outgoing="_L5l94K1lEee4IM7k4vwFKA"/>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="_q0u10K1kEee4IM7k4vwFKA" name="Apresentar erro" incoming="_sqnj8K1lEee4IM7k4vwFKA" outgoing="_vBgi0K1lEee4IM7k4vwFKA"/>
+    <node xmi:type="uml:DecisionNode" xmi:id="_FYtq0K1lEee4IM7k4vwFKA" name="" incoming="_L5l94K1lEee4IM7k4vwFKA" outgoing="_sqnj8K1lEee4IM7k4vwFKA _KnPvwK1mEee4IM7k4vwFKA"/>
+    <node xmi:type="uml:ActivityFinalNode" xmi:id="_lVNcoK1lEee4IM7k4vwFKA" incoming="_vBgi0K1lEee4IM7k4vwFKA"/>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="_00-WQK1lEee4IM7k4vwFKA" name="Listar turmas" incoming="_KnPvwK1mEee4IM7k4vwFKA" outgoing="_PzYdcK1mEee4IM7k4vwFKA"/>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="_5XamsK1lEee4IM7k4vwFKA" name="Ler escolha de turma" incoming="_PzYdcK1mEee4IM7k4vwFKA" outgoing="_YzX3QK1mEee4IM7k4vwFKA"/>
+    <node xmi:type="uml:DecisionNode" xmi:id="_F-c_sK1mEee4IM7k4vwFKA" incoming="_cYp74K1mEee4IM7k4vwFKA" outgoing="_mBxyQK1mEee4IM7k4vwFKA _-SBqEK1mEee4IM7k4vwFKA">
+      <name xsi:nil="true"/>
+    </node>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="_VJ9gkK1mEee4IM7k4vwFKA" name="Obter lista de disciplinas" incoming="_YzX3QK1mEee4IM7k4vwFKA" outgoing="_cYp74K1mEee4IM7k4vwFKA"/>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="_gkNWUK1mEee4IM7k4vwFKA" name="Apresentar erro" incoming="_mBxyQK1mEee4IM7k4vwFKA" outgoing="_mo41kK1mEee4IM7k4vwFKA"/>
+    <node xmi:type="uml:ActivityFinalNode" xmi:id="_kKKwYK1mEee4IM7k4vwFKA" incoming="_mo41kK1mEee4IM7k4vwFKA"/>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="_6jC24K1mEee4IM7k4vwFKA" name="Listar disciplinas" incoming="_-SBqEK1mEee4IM7k4vwFKA" outgoing="_HLzHIK1nEee4IM7k4vwFKA"/>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="_C5-FkK1nEee4IM7k4vwFKA" name="Ler escolha de disciplina" incoming="_HLzHIK1nEee4IM7k4vwFKA" outgoing="_ZpSgsK1oEee4IM7k4vwFKA"/>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="_Tf_AIK1oEee4IM7k4vwFKA" name="Obter minutos de ensino e tipo de aulas" incoming="_ZpSgsK1oEee4IM7k4vwFKA" outgoing="_Fu0g4K1pEee4IM7k4vwFKA"/>
+    <node xmi:type="uml:DecisionNode" xmi:id="_8aMT0K1oEee4IM7k4vwFKA" incoming="_Fu0g4K1pEee4IM7k4vwFKA" outgoing="_IHK4UK1pEee4IM7k4vwFKA _yvQNoK1qEee4IM7k4vwFKA">
+      <name xsi:nil="true"/>
+    </node>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="__XJ0MK1oEee4IM7k4vwFKA" name="Apresentar erro" incoming="_IHK4UK1pEee4IM7k4vwFKA" outgoing="_Ky_lYK1pEee4IM7k4vwFKA"/>
+    <node xmi:type="uml:ActivityFinalNode" xmi:id="_Dsk8UK1pEee4IM7k4vwFKA" incoming="_Ky_lYK1pEee4IM7k4vwFKA"/>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="_Q0BTsK1pEee4IM7k4vwFKA" name="Obter salas para tipos de aulas" incoming="_yvQNoK1qEee4IM7k4vwFKA" outgoing="_Vq54MK1rEee4IM7k4vwFKA"/>
+    <node xmi:type="uml:DecisionNode" xmi:id="_7W4KwK1qEee4IM7k4vwFKA" incoming="_Vq54MK1rEee4IM7k4vwFKA" outgoing="_YGslMK1rEee4IM7k4vwFKA _0j_sQK1rEee4IM7k4vwFKA">
+      <name xsi:nil="true"/>
+    </node>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="_BX4q8K1rEee4IM7k4vwFKA" name="Apresentar erro" incoming="_YGslMK1rEee4IM7k4vwFKA" outgoing="_JJ6AUK1sEee4IM7k4vwFKA"/>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="_iVTHMK1rEee4IM7k4vwFKA" name="Obter professores para disciplina/tipo aula" incoming="_0j_sQK1rEee4IM7k4vwFKA" outgoing="_KGyfUK1sEee4IM7k4vwFKA"/>
+    <node xmi:type="uml:DecisionNode" xmi:id="_9qn5kK1rEee4IM7k4vwFKA" incoming="_KGyfUK1sEee4IM7k4vwFKA" outgoing="_MKVEYK1sEee4IM7k4vwFKA _lEifMK1sEee4IM7k4vwFKA">
+      <name xsi:nil="true"/>
+    </node>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="__kKOEK1rEee4IM7k4vwFKA" name="Apresentar erro" incoming="_MKVEYK1sEee4IM7k4vwFKA" outgoing="_NQI14K1sEee4IM7k4vwFKA"/>
+    <node xmi:type="uml:ActivityFinalNode" xmi:id="_Dm31kK1sEee4IM7k4vwFKA" incoming="_NQI14K1sEee4IM7k4vwFKA"/>
+    <node xmi:type="uml:ActivityFinalNode" xmi:id="_EnWbIK1sEee4IM7k4vwFKA" incoming="_JJ6AUK1sEee4IM7k4vwFKA"/>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="_fXVr0K1sEee4IM7k4vwFKA" name="Obter horario existentes da disciplina" incoming="_lEifMK1sEee4IM7k4vwFKA" outgoing="_5iKZ8K1sEee4IM7k4vwFKA"/>
+    <node xmi:type="uml:DecisionNode" xmi:id="_uKhzUK1sEee4IM7k4vwFKA" incoming="_5iKZ8K1sEee4IM7k4vwFKA" outgoing="__8AQ4K1sEee4IM7k4vwFKA _V6zDcK1tEee4IM7k4vwFKA">
+      <name xsi:nil="true"/>
+    </node>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="_xhl1wK1sEee4IM7k4vwFKA" name="Apresentar erro" incoming="__8AQ4K1sEee4IM7k4vwFKA" outgoing="_GLzbAK1tEee4IM7k4vwFKA"/>
+    <node xmi:type="uml:ActivityFinalNode" xmi:id="_1Xvn8K1sEee4IM7k4vwFKA" incoming="_GLzbAK1tEee4IM7k4vwFKA"/>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="_LmwAwK1tEee4IM7k4vwFKA" name="Mostrar dados obtidos" incoming="_V6zDcK1tEee4IM7k4vwFKA _NGFQEK1uEee4IM7k4vwFKA" outgoing="_qQ7PEK1tEee4IM7k4vwFKA"/>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="_hO5N4K1tEee4IM7k4vwFKA" name="Ler escolha de horario" incoming="_qQ7PEK1tEee4IM7k4vwFKA" outgoing="_16TF8K1tEee4IM7k4vwFKA"/>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="_thF_UK1tEee4IM7k4vwFKA" name="Validar escolha" incoming="_16TF8K1tEee4IM7k4vwFKA" outgoing="_HciNoK1uEee4IM7k4vwFKA"/>
+    <node xmi:type="uml:DecisionNode" xmi:id="_6p5ooK1tEee4IM7k4vwFKA" incoming="_HciNoK1uEee4IM7k4vwFKA" outgoing="_K3M9sK1uEee4IM7k4vwFKA _Yq6lMK1uEee4IM7k4vwFKA">
+      <name xsi:nil="true"/>
+    </node>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="_BI66gK1uEee4IM7k4vwFKA" name="Apresentar erro" incoming="_K3M9sK1uEee4IM7k4vwFKA" outgoing="_NGFQEK1uEee4IM7k4vwFKA"/>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="_UN7cgK1uEee4IM7k4vwFKA" name="Registar horário" incoming="_Yq6lMK1uEee4IM7k4vwFKA" outgoing="_ykhngK1uEee4IM7k4vwFKA"/>
+    <node xmi:type="uml:DecisionNode" xmi:id="_gSVCgK1uEee4IM7k4vwFKA" incoming="_ykhngK1uEee4IM7k4vwFKA" outgoing="_4QBxwK1uEee4IM7k4vwFKA _GKlBEK1vEee4IM7k4vwFKA">
+      <name xsi:nil="true"/>
+    </node>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="_ocMFkK1uEee4IM7k4vwFKA" name="Apresentar erro" incoming="_4QBxwK1uEee4IM7k4vwFKA" outgoing="_69DYsK1uEee4IM7k4vwFKA"/>
+    <node xmi:type="uml:ActivityFinalNode" xmi:id="_u2VegK1uEee4IM7k4vwFKA" incoming="_69DYsK1uEee4IM7k4vwFKA"/>
+    <node xmi:type="uml:CreateObjectAction" xmi:id="_-VeGAK1uEee4IM7k4vwFKA" name="Apresentar mensagem de sucesso" incoming="_GKlBEK1vEee4IM7k4vwFKA" outgoing="_QcKloK1vEee4IM7k4vwFKA"/>
+    <node xmi:type="uml:ActivityFinalNode" xmi:id="_MiRi8K1vEee4IM7k4vwFKA" incoming="_QcKloK1vEee4IM7k4vwFKA"/>
+  </packagedElement>
+</uml:Model>

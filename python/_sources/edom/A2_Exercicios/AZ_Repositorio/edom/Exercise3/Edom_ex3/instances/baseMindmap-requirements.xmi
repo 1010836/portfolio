@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="ASCII"?>
+<requirements:Model
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:requirements="http://www.example.org/requirements"
+    title="CollegeMap">
+  <groups name="College"
+      id="G1">
+    <children
+        name="Room"
+        id="G11">
+      <requirements
+          title="Manage Room"
+          description="CRUD operations for Room"
+          priority="MEDIUM"
+          id="R&lt;2>">
+        <children
+            title="Manage Room Child"/>
+      </requirements>
+    </children>
+    <children
+        name="Departement"
+        id="G10">
+      <children
+          name="Director"
+          id="G12">
+        <requirements
+            title="Director"
+            description="CRUD operations for Director"
+            priority="MEDIUM"
+            id="R&lt;6>"/>
+      </children>
+      <requirements
+          title="Manage Departement"
+          description="CRUD operations for Departement"
+          priority="MEDIUM"
+          id="R&lt;3>">
+        <children
+            title="Manage Departement Child"/>
+      </requirements>
+    </children>
+    <children
+        name="Teacher"
+        id="G9">
+      <requirements
+          title="Manage Teacher"
+          description="CRUD operations for Teacher"
+          priority="MEDIUM"
+          id="R&lt;4>"/>
+    </children>
+    <children
+        name="Student"
+        id="G8">
+      <requirements
+          title="Manage Student"
+          description="CRUD operations for Student"
+          priority="MEDIUM"
+          id="R&lt;5>"/>
+    </children>
+  </groups>
+  <groups name="Program"
+      id="G2">
+    <children
+        name="Degree"
+        id="G3">
+      <requirements
+          title="Manage Degree"
+          description="CRUD operations for Degree"
+          id="R&lt;7>"/>
+    </children>
+    <children
+        name="Plan of Study"
+        id="G4">
+      <children
+          name="Course"
+          id="G5">
+        <children
+            name="Course Edition"
+            id="G6">
+          <children
+              name="Class Section"
+              id="G7">
+            <requirements
+                title="Manage Class Section"
+                description="CRUD operations for Class Section"
+                priority="MEDIUM"
+                id="R&lt;11>"/>
+          </children>
+          <requirements
+              title="Manage Course Edition"
+              description="CRUD operations for Course Edition"
+              priority="MEDIUM"
+              id="R&lt;10>"/>
+        </children>
+        <requirements
+            title="Manage Course"
+            description="CRUD operations for Course"
+            priority="MEDIUM"
+            id="R&lt;9>"/>
+      </children>
+      <requirements
+          title="Manage Plan of Study"
+          description="CRUD operations for Plan of Study"
+          priority="MEDIUM"
+          id="R&lt;8>"/>
+    </children>
+    <requirements
+        title="Manage Program"
+        description="CRUD operations for Program"
+        priority="MEDIUM"
+        id="R&lt;1>"/>
+  </groups>
+</requirements:Model>
