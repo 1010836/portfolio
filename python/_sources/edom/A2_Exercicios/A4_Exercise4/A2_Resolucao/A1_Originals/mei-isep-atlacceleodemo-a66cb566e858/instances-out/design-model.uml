@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
-  <uml:Model xmi:id="_RqojEMOYEeesLY2zb3YblQ" name="design-model">
-    <packagedElement xmi:type="uml:Class" xmi:id="_RqojEcOYEeesLY2zb3YblQ" name="Contact"/>
-  </uml:Model>
-  <uml:Class xmi:id="_RqojEsOYEeesLY2zb3YblQ" name="ContactDetails"/>
-  <uml:Class xmi:id="_RqojE8OYEeesLY2zb3YblQ" name="ContactsPresenter"/>
-</xmi:XMI>
