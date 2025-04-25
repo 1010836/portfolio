@@ -1,0 +1,70 @@
+I need to use the Chat GPT feature: "deep research".  
+I'm going to give you a description of what I want to ask: 
+"Create a comprehensive and detailed report that allows me to start implementing my 
+new project and produce the first version in the minimal time possible.
+1. Project Description:
+	1.1 Name: c0dice 
+	1.2 Summary: 
+		Orchestrate/manage/run execution flows of external software components is 
+    the center/brain that runs execution flows 
+	1.3 Objective: 
+		Centralize, coordinate, orchestrate, manage, analyze, observe the creation and 
+    running of   execution flows for the orchestration and interaction of multiple 
+    software components to achieve coherent final goals.
+	1.4 Characteristics: 
+		Must be intelligent using AI 
+		The orchestrations should be automated  
+		Should allow for human intervention and clarification
+		Should allow managing multiple orchestrations  
+    Should allow us to manage visually the static definition of orchestration  
+	  Should allow to manage/control the runtime execution of the orchestration 
+		Should provide monitoring/observability   
+	1.5 UI: 
+    The main way to display and interact with the information is visual using 
+    diagrams  
+	1.6 Components to be executed in the "execution flows":
+		Are external to the system 
+		The system uses interfaces for the components that can be added and 
+		removed to the system
+		1.6.1 Characteristics: 
+			Completely decentralized, Different technologies, Different computer 
+			languages, Different Operating systems 
+		1.6.2 Examples: 
+			sh script, AI agents, web/desktop/console app, REST api, C# function, 
+      python script, Existing software libraries, etc.
+2. Available resources
+  2.1 One, very good, PHD level, 35 year of experience software engineer/data scientist
+	2.2 Artificial Intelligence
+	2.3 Access to any tool/software needed provided by my company
+3. Implementation methodology
+  3.1 Extreme AGILE:
+    1 Produce a POC 
+    2 Deploy 
+    3 Receive feedback
+    4 Research
+    5 Use current POC version to create the next POC version
+    6 Repeat from 2
+4. Possible approach
+	4.1 My thesis is that the best approach is:
+    4.1.1 Discover existent software (or parts of some software) that can be used  
+          to implement:
+            Event driven systems
+            AI agents
+            Model Driven Engineering
+            Low/0 Code apps (with or without AI)
+          Relevant in the context of my project
+    4.1.2 Compare all the software discovered
+    4.1.3 Select the best parts of all this software
+    4.1.4 Generate a step-by-step detailed tutorial on how to create a first version of 
+          the system (using the selected software) and how to run it, then use it to create the next 
+          version
+    4.1.5 This report must allow for the only developer in the project to understand the 
+          minimum possible on how to install and operate the chosen software so he can use it to 
+          generate the first version of my project
+  4.2 this is just a sugestion to help no one has to script folow it"
+
+ I need to optimize the efficiency of the "Deep Research" feature of the CHAT GPT. 
+ I need You to understand what the best way is to prompt the "Deep research" feature of CHAT GPT 
+ and then transform the text inside commas, I gave you, accordingly
+ so it is the perfect prompt for-me to get the best result. 
+
