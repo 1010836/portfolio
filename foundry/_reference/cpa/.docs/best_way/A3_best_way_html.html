@@ -1,0 +1,487 @@
+Great. I’ll generate a detailed HTML-formatted technical report that identifies and justifies the best solution for dynamically integrating client-deployed custom engines into a Python application on Azure Kubernetes Service (AKS). Each Celery worker processes tasks from a Redis queue and must support running isolated client engines within its own process.
+
+The report will:
+
+* Compare dynamic module loading, plugin systems, and containerized engine approaches.
+* Recommend the best approach based on scalability, security, and ease of use.
+* Include step-by-step guidance, code snippets, and deployment instructions.
+* Cover necessary modifications to the Celery worker logic.
+* Address security and isolation concerns.
+* Be presented in HTML format, with diagrams where helpful.
+
+I’ll get started and notify you when the report is ready for review.
+
+
+<h1>Dynamic Integration of Client-Developed Engines in an AKS-Based Celery Application</h1>
+
+<h2>Introduction &amp; Problem Statement</h2>
+
+<p>The current system is a Python application on Azure Kubernetes Service (AKS) that processes tasks asynchronously using Celery. Its architecture consists of a REST API (fixed scaling) for receiving requests, a Redis queue for buffering tasks, and Celery worker pods (scaled by KEDA based on queue length) for executing tasks. Each Celery worker currently uses a single “standard” engine (a Python module) to process tasks. The new requirement is to allow clients to develop and deploy their own custom engines that implement a defined Python interface. Each task placed on the Redis queue will specify which engine to use (standard or a specific custom engine), and the Celery worker must dynamically execute the task using the requested engine. Importantly, these custom engines should run within the Celery worker’s execution environment (not as permanently running independent services), though they could be isolated in separate containers or pods if needed for security.</p>
+
+<p>This raises several challenges: How do we **dynamically integrate** arbitrary client-provided code into a running Celery worker? What architecture allows loading or running different engines on the fly? How do we ensure **scalability** (leveraging KEDA to scale out for many tasks), **security** (since client code may be untrusted), **maintainability** (not complicating the codebase or deployment process), and **ease of integration** for client developers? Below, we evaluate possible strategies and then present the recommended solution with a detailed implementation guide.</p>
+
+<h2>Possible Strategies for Dynamic Engine Integration</h2>
+
+<p>Several architectural approaches were considered for enabling dynamic plugin-like behavior in the Celery workers:</p>
+
+<h3>1. Dynamic Module Loading at Runtime</h3>
+
+<p>In this approach, the Celery worker would load and execute custom engine code dynamically within its own process using Python’s import mechanisms. For example, the worker could receive the engine name from the task, import the corresponding module or script (perhaps from a predefined directory or package), and invoke a standard interface (like a function or class method) to process the task data. Python’s <code>importlib</code> makes it straightforward to load modules by name or file path at runtime:contentReference[oaicite:0]{index=0}. This dynamic loading technique is powerful and allows building very extensible systems without much upfront complexity:contentReference[oaicite:1]{index=1}. Essentially, the Celery application acts as a host that can plug in new modules on the fly.</p>
+
+<p><strong>Pros:</strong> Dynamic loading is flexible and fast. New engines can be integrated simply by placing their code where the worker can import them (or by installing a new Python package). No container or inter-process communication overhead is incurred; the task runs in-process, which means performance is as high as running the standard engine. This approach fits naturally with Python’s dynamic nature and can be implemented with minimal changes to the Celery worker logic.</p>
+
+<p><strong>Cons:</strong> The biggest concern is **security** and **stability**. Running untrusted client code in the **same process** as the worker carries significant risk: a malicious or buggy engine could crash the worker or compromise the entire application. In-process sandboxing in Python is notoriously hard – simply stripping builtins or restricting imports is not sufficient:contentReference[oaicite:2]{index=2}:contentReference[oaicite:3]{index=3}. Clever attackers can break out of naive in-language sandboxes and gain access to the runtime or file system, as demonstrated by exploits that recover builtins and perform dangerous operations:contentReference[oaicite:4]{index=4}. Without true isolation, a rogue engine could potentially read or modify data in memory, interfere with other tasks, or even drop into an infinite loop and block the worker. While Python’s dynamic imports make extension easy, maintaining **robust multi-tenant isolation** in this model is very challenging. We could mitigate some issues by running each engine invocation in a separate thread or subprocess with a time limit, but even then the lack of strong isolation means the kernel and memory are shared (a subprocess is lighter isolation than a full container/VM, and has historically been error-prone:contentReference[oaicite:5]{index=5}). Another drawback is dependency management: all custom engines running in-process must share the Python environment. Conflicting library versions or large requirements for one engine could affect others. Managing a growing set of client dependencies in one environment can become a maintenance headache.</p>
+
+<p>In summary, dynamic in-process loading is **simple and high-performance**, but raises red flags for security and maintainability in a multi-client scenario. It might be acceptable for trusted or internal plugins, but for arbitrary client-supplied code, it’s risky without further sandboxing measures (discussed later in security considerations).</p>
+
+<h3>2. Plugin-Based Architecture (Structured Modules or Entry-Points)</h3>
+
+<p>This strategy is a more structured variant of dynamic loading. The application would be designed with a **plugin interface** for engines. Clients would develop their engine as a plugin module adhering to an abstract base class or a specific set of functions. These plugins could be discovered and loaded by the Celery worker either at startup or on-demand. Common ways to implement this include:</p>
+
+<ul>
+  <li><strong>Module Discovery:</strong> Define a folder or package where engine modules reside. The worker scans this location (e.g., using <code>pkgutil.iter_modules</code> or a naming convention) and imports each engine module. Each module could register itself (e.g., via a known variable or function) so the worker knows what engine name it implements.</li>
+  <li><strong>Setuptools Entry Points:</strong> If engines are installed as packages (e.g., via pip), they can declare an entry point (a plugin hook) in <code>setup.py</code>/<code>setup.cfg</code>. The Celery worker can use <code>importlib.metadata.entry_points</code> to find all installed engine plugins under a certain group. This is a robust way to allow drop-in plugins that the core application discovers automatically at runtime:contentReference[oaicite:6]{index=6}.</li>
+  <li><strong>Plugin Manager Libraries:</strong> Utilize an existing plugin framework (such as **Pluggy** or **Stevedore**). These provide patterns for registering plugins and loading them, making it easier to manage plugin lifecycles.</li>
+</ul>
+
+<p>The plugin approach still ultimately uses dynamic importing under the hood, but it introduces a clear **boundary and interface** between the core system and extensions. The core system (Celery worker) doesn’t need to know details of each engine – it just calls a known method (for example, <code>engine_instance.process(data)</code>) defined in the interface. New engines can be added without modifying the core codebase at all:contentReference[oaicite:7]{index=7}, which improves maintainability and modularity. As one source notes, the plugin architecture pattern “allows for the extension of software applications without the need to modify the existing structure,” yielding a flexible, modular design:contentReference[oaicite:8]{index=8}.</p>
+
+<p><strong>Pros:</strong> In addition to the flexibility of dynamic loading, a plugin system enforces **organization**. Each engine is a self-contained module or package. This makes it easier to manage multiple engines. For instance, each plugin could have its own version control and deployment pipeline (clients can develop their engine independently as long as they implement the interface). The core application remains clean, and enabling a new engine might be as simple as dropping in a file or installing a wheel. From a scalability perspective, the performance characteristics are similar to dynamic loading (the code runs in-process). We can also choose whether to load all plugins at startup or load on first use to reduce memory overhead.</p>
+
+<p><strong>Cons:</strong> The primary con is that the plugin code still runs in the **same process** as the worker (unless we combine this approach with isolation techniques). Thus, all the security and dependency concerns mentioned for dynamic loading apply here as well. A plugin architecture doesn’t inherently solve the sandbox problem; it just organizes the code better. We would still need to address how to sandbox or restrict untrusted plugin code. Another consideration is deployment: how do clients “deploy” their plugin to the running system? This could involve providing a wheel or source, which then has to be installed into the worker’s environment (possibly triggering a restart or reload). If the system requires downtime or manual steps to add a new plugin, it’s not truly dynamic. One could imagine a mechanism to upload a plugin at runtime (e.g., the worker watches a storage location for new plugins), but that adds complexity and potential risk (dynamically installing code while the system is running). In terms of scaling, if a particular engine plugin is very popular or resource-intensive, all Celery workers might end up loading it, consuming a lot of memory. Without careful resource management, one heavy plugin could bloat each worker process.</p>
+
+<p>Overall, a plugin architecture improves code maintainability and is a **natural choice** if we want to treat engines as first-class extensions. It would work well if we can trust the plugins or if we add further isolation. However, by itself it doesn’t fully address running untrusted code safely – it mainly provides a clean way to organize and load multiple engines.</p>
+
+<h3>3. Containerized Engine Execution</h3>
+
+<p>This approach shifts from in-process execution to **out-of-process isolation** using containers. Instead of loading client code directly into the Celery process, the idea is to package each custom engine as a lightweight **Docker container** image. When a Celery task for a custom engine is received, the worker can spawn an instance of the corresponding container to run the engine code and produce results, then return the result back to the workflow. The Celery worker would act as an orchestrator, delegating execution to isolated containers on demand.</p>
+
+<p>There are a couple of ways this could be implemented in Kubernetes/Azure:</p>
+
+<ul>
+  <li><strong>Kubernetes Job per task:</strong> The Celery worker uses the Kubernetes API to create a short-lived Job (or Pod) that runs the engine container with the task input. The worker can pass input data via mounted files, environment variables, or command-line arguments. The container runs to completion (processing the data with the client’s code) and exits, and then the worker collects the output (perhaps by reading a result file or the pod logs).</li>
+  <li><strong>In-Worker Container Runtime:</strong> If the worker node allows, the Celery process could invoke the Docker/container runtime directly (e.g., via the Docker Python SDK or CLI) to run a container on the same host. However, in Kubernetes this is not straightforward unless the container is part of the pod or the pod is privileged to access the Docker socket. It’s generally cleaner to let Kubernetes handle scheduling new containers as separate pods/jobs rather than embedding Docker control within a pod.</li>
+  <li><strong>Sidecar or Warm Pool:</strong> A possible optimization is to keep a sidecar container or a pool of engine containers running (especially if engine startup time is high), and feed tasks to them via IPC. However, managing a dynamic pool of per-engine sidecars complicates the design and potentially wastes resources. For a first iteration, one container per task (ephemeral) is simpler and safest, ensuring a fresh environment each time.</li>
+</ul>
+
+<p>Packaging engines as containers brings strong isolation. Each engine runs in its own process space with its own dependencies. As one reference explains, “Containers provide an isolated environment where the software can run with all its dependencies. Containers provide their own file-system, so the app that runs inside the container cannot access the host’s original file-system”:contentReference[oaicite:9]{index=9}:contentReference[oaicite:10]{index=10}. In other words, a misbehaving engine is largely confined to its container and cannot directly harm the host system or other containers. We can enforce limits on CPU, memory, and runtime for each container at the Kubernetes level. This approach is analogous to how serverless platforms or CI systems run untrusted user code – often in ephemeral containers or VMs to protect the host. In fact, Azure provides Container Instances (ACI) which run containers with Hyper-V isolation (each container group has its own hypervisor boundary) for multi-tenant security:contentReference[oaicite:11]{index=11}. AKS can integrate with ACI to “burst” isolated workloads off the cluster nodes if needed:contentReference[oaicite:12]{index=12}. This could be an avenue to run particularly untrusted or heavy engines with even stronger isolation.</p>
+
+<p><strong>Pros:</strong> **Security and isolation** are the biggest advantages. A fault or exploit in a custom engine would be contained in the engine’s container, not compromising the Celery worker process or other clients’ tasks. This addresses the multi-tenant risk: it’s similar to giving each client their own sandbox. We can even run these engine containers with restricted OS privileges (non-root user, read-only file system, seccomp/AppArmor profiles etc.) to further limit what the code can do. Another benefit is **dependency flexibility**: each engine’s container can include whatever Python libraries it needs without worrying about conflicts with others. One engine might need pandas 1.x and another needs pandas 2.x – in containers, that’s no problem, whereas in a single environment it’s impossible to satisfy both. Scalability is achieved by the fact that multiple containers can run in parallel on the cluster, and KEDA can still scale the number of Celery worker pods based on queue length. In fact, containerized execution complements KEDA: the Celery workers might become more of orchestrators (offloading heavy compute to engine containers), so the workers themselves can remain lightweight and numerous to handle many requests. This approach is also **technology-agnostic** for the engine code – although we are limiting engines to Python for now, in theory a container could run any language implementation of the interface, as long as it produces the expected output.</p>
+
+<p><strong>Cons:</strong> The main drawbacks are **performance overhead and complexity**. Spawning a container for each task has overhead (pulling the image if not cached, container startup time, scheduling latency). If tasks are very frequent and short, this overhead could reduce throughput significantly compared to in-process calls. We can mitigate this by keeping images pre-pulled on nodes and optimizing container startup, but it will never be as fast as a function call. Complexity-wise, we now have to manage an additional layer: building and storing container images for each engine, orchestrating jobs, handling failures and timeouts of those jobs, and collecting results. Monitoring and debugging across process boundaries is slightly more involved (though logs can be aggregated). Another consideration is resource usage: a swarm of containers might use more memory/CPU than the equivalent in-process threads due to overhead of separate Python interpreters, etc., especially if tasks are small. However, for large tasks the difference may be negligible. We also need a strategy to keep the system responsive if an engine container hangs or fails – e.g., use Kubernetes active deadline seconds (time to live) so stuck containers get killed, and have Celery handle such errors. Finally, clients will need to containerize their code, which is an extra step compared to just providing a Python file. This adds a bit of DevOps burden on the clients (though with guidance and perhaps a base image, this can be streamlined).</p>
+
+<p>Despite the cons, containerized execution is a robust solution for running untrusted extensions in a multi-tenant environment. It is inspired by best practices from cloud platforms: rather than running foreign code in-process, isolate it at the OS level. Given that Azure AKS is already a container orchestration platform, leveraging containers for custom engines aligns well with the infrastructure. We can use open-source tools (Docker/Kubernetes) and Azure-native features (ACR for images, AKS for scheduling, ACI for isolation) to implement this approach.</p>
+
+<h3>Comparison Summary</h3>
+
+<p>The table below summarizes the trade-offs of the three strategies:</p>
+
+<ul>
+  <li><em>Dynamic Loading (In-Process):</em> **Greatest performance** and simplest implementation, but **weakest security** and potential dependency conflicts. Risk of one engine crashing or exploiting the entire worker. Hard to sandbox effectively in pure Python.</li>
+  <li><em>Plugin Architecture (In-Process with Structure):</em> Improves maintainability and organization; similar performance to dynamic loading and shares its security issues unless combined with other safeguards. Suitable if we can trust plugins or control the environment. By itself, still not safe for arbitrary untrusted code.</li>
+  <li><em>Containerized Engines (Out-of-Process):</em> **Strong isolation** and flexible dependencies, at the cost of some runtime overhead and added complexity in orchestration. Much safer for untrusted code. Aligns with cloud-native practices for multi-tenant code execution (akin to sandboxing each task). Scalability remains good (KEDA can scale orchestrator workers, and containers can run in parallel across the cluster), though individual task latency may increase slightly.</li>
+</ul>
+
+<p>Considering the multi-tenant scenario (clients deploying code) and the importance of security, the **containerized engine approach emerges as the best solution**. It provides a clear isolation boundary, which is critical when running untrusted client code. The plugin architecture by itself, while elegant, does not solve the safety problem unless we severely restrict or sandbox the code (which is an uphill battle in Python). Dynamic loading is similarly risky. Containerization, on the other hand, is a well-understood method to sandbox code execution:contentReference[oaicite:13]{index=13}, and is supported natively by our deployment platform (Kubernetes). We will proceed with a solution that treats each custom engine as a containerized plugin, and we’ll address how to implement this in detail.</p>
+
+<h2>Recommended Solution: Containerized Plugin Execution Architecture</h2>
+
+<p><strong>Solution Overview:</strong> Each custom engine will be packaged as a Docker container that implements a standard Python interface (e.g., a certain function to execute the task). Celery workers will dynamically execute engines by launching these containers on demand, passing the task data to them, and retrieving the results. Standard tasks can still be executed with the built-in engine code in-process, while custom engine tasks will incur an external call to a container. This design maintains the current task workflow (REST API -> Redis -> Celery) and KEDA-based scaling, but augments the Celery workers with the ability to run isolated engine containers. The diagram below illustrates the high-level architecture and flow of a task using this approach:</p>
+
+<pre><code>
++------------+      +-----------+      +--------------------------+
+| REST API   +----->+ Redis     +----->| Celery Worker Pod (KEDA) |
+| (Client)   |      | Queue     |      | - pulls task from queue  |
++------------+      +-----------+      | - reads engine ID        |
+                                      | - if standard engine:    |
+                                      |     use built-in code    |
+                                      | - if custom engine:      |
+                                      |     launch engine container |
+                                      +-----------+--------------+
+                                                  |
+                                                  v
+                                         [ Engine Container runs ]
+                                                  |
+                                                  v
+                                           +---------------+
+                                           |  Result back  |
+                                           +---------------+
+</code></pre>
+
+<p>In this flow, when a custom engine task is processed, the Celery worker triggers a new container (or Job) to execute the client’s code. The worker waits for the container to finish and then continues, treating the output as if the engine function returned normally. From the perspective of the REST API and client, the asynchronous task still behaves the same – the difference is purely in how the worker fulfills the task internally.</p>
+
+<p>Now, let’s break down the implementation of this solution step by step, covering the interface definition, client packaging, worker modifications, and security measures.</p>
+
+<h3>1. Defining the Engine Interface (Contract)</h3>
+
+<p>First, we establish a clear **interface** that all custom engines must implement. Since only Python is allowed for engine logic, we can define this interface in Python code and also describe it in documentation for clients. There are a few ways to specify the contract:</p>
+
+<ul>
+  <li>A base abstract class (e.g., <code>EngineBase</code> with an abstract method <code>process(data)</code>). Clients would subclass <code>EngineBase</code> and implement <code>process</code>. This could be overkill if we aren’t loading classes directly, but it provides type safety and clarity.</li>
+  <li>A simpler functional interface: Require the engine to provide a function with a known name (e.g., <code>run_engine(task_data: dict) -> dict</code>) that the Celery worker can invoke to get results. This could be a standalone function or a class method; the key is that the worker knows how to call it.</li>
+  <li>Input/Output format: Decide how data is passed to the engine and how results are returned. For example, we might standardize on JSON-serializable dictionaries. The Celery task payload could be JSON; the engine function takes a dict and returns a dict (or possibly writes to stdout). Consistency here will simplify the orchestration code.</li>
+</ul>
+
+<p>For concreteness, let’s assume the interface is a function called <code>process_task(data: dict) -> dict</code>. The client’s engine code will implement this function to handle the task input and produce an output. We will provide a small Python module (let’s call it <code>engine_interface.py</code>) that contains the definitions or base class. For example:</p>
+
+<pre><code class="language-python"># engine_interface.py (provided in the base environment)
+from abc import ABC, abstractmethod
+
+class EngineBase(ABC):
+    @abstractmethod
+    def process_task(self, data: dict) -> dict:
+        """Process the task data and return the result."""
+        pass
+</code></pre>
+
+<p>A client can either subclass this or simply ensure they have a compatible function. In a basic scenario, we might skip the abstract class and just document: “Your engine must have a function <code>process_task(data)</code> or a callable class with <code>process_task</code> method.” The Celery worker will look for that function when running the engine.</p>
+
+<h3>2. Client Engine Development: Packaging and Deployment</h3>
+
+<p><strong>Engine Implementation:</strong> Clients will implement their custom logic in Python, following the interface. For example, a client could create a file <code>my_engine.py</code>:</p>
+
+<pre><code class="language-python"># my_engine.py - Client's custom engine example
+import json
+
+# (Optional) subclassing the interface for clarity
+from engine_interface import EngineBase
+
+class MyEngine(EngineBase):
+    def process_task(self, data: dict) -> dict:
+        # Custom logic here. For example:
+        numbers = data.get("numbers", [])
+        result = sum(numbers)
+        return {"sum": result}
+
+# If using a function-based interface, you could also provide:
+def process_task(data: dict) -> dict:
+    return MyEngine().process_task(data)
+</code></pre>
+
+<p>Here the engine simply sums a list of numbers. Real engines could be arbitrarily complex, but must ultimately produce a Python dict (or other serializable) as output.</p>
+
+<p><strong>Containerizing the Engine:</strong> To deploy this engine to the platform, the client needs to package it as a container image. We will provide a **base Docker image** that includes the necessary environment to run the engine. This base image would have:</p>
+
+<ul>
+  <li>A Python runtime (matching the version used in Celery workers, e.g., Python 3.10).</li>
+  <li>The <code>engine_interface.py</code> module and any common libraries or SDK needed.</li>
+  <li>A default entrypoint script that knows how to find and execute the engine’s code.</li>
+</ul>
+
+<p>For example, the base image could contain an entrypoint like <code>run_engine.py</code> that does the following: reads input (perhaps from a mounted file or environment variable), imports the client’s engine module, finds the <code>process_task</code> function or class, executes it with the input, and writes the output to stdout or a result file. We’ll discuss input passing in the next section. The base image approach means clients don’t have to reinvent the wheel; they just add their code on top of it.</p>
+
+<p>A sample Dockerfile for a client engine could look like this:</p>
+
+<pre><code class="language-docker"># Base image with Celery engine interface and any needed libraries
+FROM myregistry.azurecr.io/celery-engine-base:latest
+
+# Add the custom engine code
+COPY my_engine.py /app/my_engine.py
+
+# (Optional) If the engine has additional requirements:
+# COPY requirements.txt /app/requirements.txt
+# RUN pip install -r requirements.txt
+
+# Specify the default command to run the engine (using the base entrypoint)
+CMD ["python", "-m", "run_engine", "my_engine", "--input", "/mnt/task/input.json", "--output", "/mnt/task/output.json"]
+</code></pre>
+
+<p>In this Dockerfile:</p>
+
+<ul>
+  <li>We start from <code>celery-engine-base</code>, an image that our system maintainers provide. It contains Python and the engine interface module, plus the <code>run_engine</code> utility.</li>
+  <li>We copy in the client’s <code>my_engine.py</code>. In a real scenario, the client might have a small project with multiple files; they can copy those or use a wheel. The key is the code ends up in the image.</li>
+  <li>If there are Python dependencies specific to the engine, the client can include a <code>requirements.txt</code> and pip install them in the image. This way, each engine’s dependencies are isolated to its container.</li>
+  <li>The <code>CMD</code> (command) uses the base’s <code>run_engine</code> module. We assume this script takes parameters like the module name (<code>my_engine</code>) and paths for input and output JSON. It will internally import <code>my_engine</code>, call <code>process_task</code>, and write the result. We’ll need to mount or pass the actual task data – more on that shortly.</li>
+</ul>
+
+<p>Clients would build this image (e.g., <code>docker build -t myregistry.azurecr.io/engine-myengine:1.0 .</code>) and push it to a container registry (Azure Container Registry or another accessible registry). Each engine image should be tagged/versioned, and the client (or system admin) would register the engine in the system by providing the image name and an identifier (engine name) that tasks will use.</p>
+
+<p>For example, suppose a client “ACME Corp” develops an engine “acme_transformation”. They produce an image <code>acme/engine-transformation:1.0</code> in ACR. They inform the system that engine ID “acme_transformation” corresponds to that image (this could be via an API call or configuration file update). This mapping needs to be available to the Celery workers so they know which image to pull when a task specifies that engine.</p>
+
+<h3>3. Orchestration in the Celery Worker</h3>
+
+<p>Now we modify the Celery worker code to support dynamic engine execution. In pseudocode, the worker’s task handler might look like this:</p>
+
+<pre><code class="language-python">from kubernetes import client as k8s_client, config as k8s_config
+# (Assume we have the Kubernetes client library available in the worker image)
+
+# A mapping from engine names to container image references.
+ENGINE_IMAGE_MAP = {
+    "standard": None,  # standard engine runs in-process
+    "acme_transformation": "myregistry.azurecr.io/acme/engine-transformation:1.0",
+    # ... other engines
+}
+
+# Celery task function
+@app.task(bind=True)
+def process_task(self, data, engine="standard"):
+    if engine == "standard":
+        # Use the built-in standard engine directly
+        return standard_engine.process_task(data)
+    else:
+        image = ENGINE_IMAGE_MAP.get(engine)
+        if image is None:
+            raise ValueError(f"Unknown engine '{engine}'")
+        result = run_engine_in_container(image, data)
+        return result
+</code></pre>
+
+<p>In the above snippet, <code>process_task</code> is the Celery task function that all tasks use. It checks the engine parameter. If it’s “standard”, we directly call the existing internal engine (e.g., <code>standard_engine.process_task</code>) as before. If it’s a custom engine, we look up the corresponding container image and delegate to <code>run_engine_in_container</code>. The result (likely a dict or JSON-serializable object) is then returned normally – Celery will send it back to the caller or store it in the result backend as configured.</p>
+
+<p>The heavy lifting is in <code>run_engine_in_container(image, data)</code>. This function will:</p>
+
+<ol>
+  <li>Serialize the <code>data</code> (task input) to a format that can be passed to the container. JSON is a convenient choice. We can write it to a temporary file (e.g., <code>/mnt/task/input.json</code> if the worker pod has an emptyDir volume mounted at <code>/mnt/task</code>, or perhaps use a ConfigMap or `kubectl exec` to pipe it in).</li>
+  <li>Launch the container image in a way the worker can manage. In Kubernetes, the worker can create a Job resource. We would use the Kubernetes Python API (or call <code>kubectl</code> via subprocess) to submit a Job that runs the engine container with the input. For example:</li>
+</ol>
+
+<pre><code class="language-python">def run_engine_in_container(image: str, data: dict) -> dict:
+    # 1. Prepare input data JSON
+    import uuid, json, os
+    os.makedirs("/mnt/task", exist_ok=True)
+    input_path = f"/mnt/task/input-{uuid.uuid4()}.json"
+    with open(input_path, "w") as f:
+        json.dump(data, f)
+    output_path = f"/mnt/task/output-{uuid.uuid4()}.json"
+    
+    # 2. Define the Kubernetes job spec for the engine
+    job_name = "engine-job-" + str(uuid.uuid4())[:8]
+    job_manifest = {
+        "apiVersion": "batch/v1",
+        "kind": "Job",
+        "metadata": {"name": job_name},
+        "spec": {
+            "template": {
+                "spec": {
+                    "containers": [{
+                        "name": "engine",
+                        "image": image,
+                        "args": ["--input", "/mnt/task/input.json", "--output", "/mnt/task/output.json"],
+                        "volumeMounts": [{
+                            "name": "task-vol", "mountPath": "/mnt/task"
+                        }]
+                    }],
+                    "volumes": [{
+                        "name": "task-vol",
+                        "hostPath": {"path": "/mnt/task"}  # Assuming hostPath or emptyDir
+                    }],
+                    "restartPolicy": "Never"
+                }
+            },
+            "backoffLimit": 0
+        }
+    }
+    # 3. Create the Job in Kubernetes
+    batch_api = k8s_client.BatchV1Api()
+    batch_api.create_namespaced_job(namespace="default", body=job_manifest)
+    
+    # 4. Wait for job to finish (poll status or use watch API)
+    # (For brevity, not showing full polling loop)
+    import time
+    while True:
+        job_status = batch_api.read_namespaced_job_status(job_name, "default")
+        if job_status.status.succeeded == 1:
+            break
+        if job_status.status.failed and job_status.status.failed > 0:
+            raise RuntimeError(f"Engine job {job_name} failed")
+        time.sleep(1)
+    
+    # 5. Retrieve the output
+    with open("/mnt/task/output.json", "r") as f:
+        result = json.load(f)
+    
+    # 6. Cleanup (delete job and temp files)
+    batch_api.delete_namespaced_job(job_name, "default", propagation_policy="Foreground")
+    os.remove(input_path); os.remove(output_path)
+    return result
+</code></pre>
+
+<p><em>Note:</em> The above code is a **conceptual illustration**. In practice, one would need to adjust volume mounts (for example, using Kubernetes <code>emptyDir</code> volumes mounted in both the worker and the job’s pod via Shared Volume or by writing to a PVC or using some other intermediate storage for input/output). The example uses a hostPath mount for simplicity, assuming the Celery pod can share a host path with the job pod – in many AKS setups, that might not be allowed or desirable due to scheduling on possibly different nodes. A more cloud-native approach would be to use an emptyDir volume within a single pod, but since the job runs in a separate pod, we could use a persistent volume claim or even pass the data via Kubernetes API (like attach the JSON as part of the job spec environment variable or ConfigMap). Another approach is to simply retrieve the job’s logs if the engine prints the result to stdout. For instance, the engine container could <code>print(json.dumps(result))</code> to stdout, and the Celery worker could call <code>read_namespaced_pod_log</code> to get it. This avoids needing shared storage. For brevity, we won’t delve too deep into these variations, but they are implementation details that can be solved.</p>
+
+<p>The key point is that the Celery worker coordinates the execution of the engine container and waits for it to complete, then collects the output. This is synchronous from the worker’s perspective (the task will not complete until the engine container returns). It is also possible to design this asynchronously (the worker could submit the job and immediately return, and another mechanism could collect results when ready), but that complicates the Celery flow. Keeping it synchronous within the task ensures the Celery task’s lifecycle encompasses the engine execution.</p>
+
+<p>We must ensure the worker has permissions to create and monitor jobs in Kubernetes. In AKS, this means configuring the worker’s ServiceAccount with the proper RBAC roles (allow create/delete of jobs, read pods/logs in its namespace). This is straightforward to set up via Kubernetes manifests.</p>
+
+<p>Also, note that KEDA will see the Redis queue length and scale Celery workers accordingly. From KEDA’s perspective, tasks might take a bit longer now (due to container overhead), but it will naturally compensate by maybe scaling more workers if queue grows. We might need to tune timeouts and concurrency. Each Celery worker might only handle one custom-engine task at a time if it’s busy waiting for an external container. We could allow Celery to be multi-threaded or multi-process (Celery worker pool) so one worker pod can manage multiple engine jobs in parallel. However, that could potentially overload a node if many heavy containers start at once. We can manage concurrency via Celery configurations or by limiting the number of simultaneous jobs a worker launches (to avoid resource exhaustion).</p>
+
+<p><strong>Alternative: In-Process with Subprocess Sandbox.</strong> For completeness, another way to implement dynamic execution (if we had not chosen full containers) would be to run the untrusted code in a **subprocess** with restricted permissions. For example, the worker could fork a subprocess, drop privileges, apply Linux seccomp filters to limit syscalls, set resource limits (CPU time, memory) via <code>setrlimit</code>, then <code>exec()</code> the engine code:contentReference[oaicite:14]{index=14}. This is essentially a form of lightweight sandboxing inside the same container. While this can mitigate some risks (and is what the blog by Andrew Healey explores, using seccomp to prevent dangerous syscalls:contentReference[oaicite:15]{index=15}:contentReference[oaicite:16]{index=16}), it’s complex to get right and still not as foolproof as container or VM isolation. Many CVEs have shown escapes from such sandboxes:contentReference[oaicite:17]{index=17}. Therefore, our recommended solution sticks with container isolation, which is more straightforward to implement securely using Kubernetes.</p>
+
+<h3>4. Client Deployment Workflow</h3>
+
+<p>From a user (client) perspective, how do they get their custom engine running on the system? The process would be:</p>
+
+<ol>
+  <li><strong>Implement the Engine:</strong> Write the Python code following the interface. Test it locally (perhaps we provide a small harness for them to simulate a task input).</li>
+  <li><strong>Containerize the Engine:</strong> Create a Docker image using our provided base. Test the container locally or in a test AKS environment: for example, run <code>docker run -v $(pwd)/sample_input.json:/mnt/task/input.json -v $(pwd)/output.json:/mnt/task/output.json myregistry/engine-acme:1.0</code> to see that it produces the expected output.</li>
+  <li><strong>Publish the Image:</strong> Push the image to an Azure Container Registry (or whichever registry the AKS cluster can pull from). Ensure they use proper tagging and perhaps latest tags for convenience when updating.</li>
+  <li><strong>Register the Engine:</strong> Inform the system of the new engine. This could be done via a configuration file or a REST API endpoint in the main system where they provide:
+      - Engine name (a unique key, e.g., “acme_transformation”).
+      - Image URI (e.g., <code>myregistry.azurecr.io/acme/engine-transformation:1.0</code>).
+      - (Optionally) any resource requirements or limits specific to this engine (if, say, we know it needs a lot of memory, we might annotate that).
+      Once this registration is done, the system could update the <code>ENGINE_IMAGE_MAP</code> (perhaps it’s stored in a Kubernetes ConfigMap or pulled from a database). We might design this so that the Celery workers periodically reload the mapping (or we roll out a new deployment of workers with updated config). Since the requirement is dynamic integration, we should strive for minimal downtime – e.g., the worker can check a config each time or cache it and refresh periodically so new engines become available without restarting the cluster.</li>
+  <li><strong>Use the Engine in Tasks:</strong> The client can now submit tasks via the REST API specifying the engine name in the request. For example, a POST to the API might include a JSON body like <code>{"data": {"numbers": [1,2,3]}, "engine": "acme_transformation"}</code>. The REST API places a task on Redis with that payload. Celery will pick it up and route to the custom engine as implemented.</li>
+  <li><strong>Monitor and Iterate:</strong> Clients should monitor their engine’s performance. If they need to update the engine code, they would repeat the build and push process with a new version tag, update the registration (or perhaps we allow the “latest” tag to just roll forward). The system maintainers might impose some vetting or automated security scan of the image in this step (which is a security best practice to ensure the image has no known vulnerabilities or malicious content).</li>
+</ol>
+
+<p>From an operations standpoint, maintaining the base image and interface documentation is important. Whenever the base image (which might include the runner script and interface definitions) is updated (say to a new Python version or to improve the runner), clients might need to rebuild their images to incorporate those changes. Providing clear versioning for the base and backwards compatibility in the interface will smooth this process.</p>
+
+<h3>5. Required Changes to Celery Workers and Infrastructure</h3>
+
+<p>To implement this solution, several changes to the existing system are required:</p>
+
+<ul>
+  <li><strong>Celery Worker Image Update:</strong> The Celery worker container image must include the tools to launch jobs/containers. This means adding the Kubernetes Python client (if using the Kubernetes API approach) or the Docker client (if using Docker runtime approach). It also needs access to Kubernetes credentials. In AKS, the simplest way is to run the worker pod with the default service account and appropriate RBAC, as mentioned earlier, and use in-cluster config (the Kubernetes client can auto-load credentials when running inside the cluster). We also mount a volume or find an alternative for passing data to engine containers (if using the shared volume method).</li>
+  <li><strong>Celery Worker Code Logic:</strong> Integrate code similar to the pseudocode above: check engine in task kwargs, and call either local engine or container execution accordingly. This includes handling exceptions (if the engine container fails, we should catch that and possibly raise a Celery retry or a custom error). We may also add a small startup routine that loads the engine->image mapping (for example, reading from a ConfigMap or environment variable JSON). This mapping could also be kept up-to-date via a lightweight mechanism (for instance, the worker could query an API for current engine list every minute or so, caching it).</li>
+  <li><strong>Redis Task Payload:</strong> Ensure that when the REST API enqueues a task, it includes the engine identifier. This is likely a trivial change: add an “engine” field in the message. If the API currently doesn’t allow specifying engine, it will need to be extended to accept it from clients (with validation to ensure the engine name is known to the system).</li>
+  <li><strong>KEDA Configuration:</strong> KEDA scaling can remain largely the same, scaling on queue length. However, we might consider using KEDA’s ability to scale based on external metrics if needed – for example, if engine tasks are particularly heavy, maybe scale more aggressively. Also, if a particular engine becomes heavily used, we might think about scaling at a more granular level (like one queue per engine type with its own scaler), but that complicates the architecture and was explicitly something to avoid (since we didn’t want separate services per engine). So, continuing with a single queue (or a few queues) and one scaler is fine.</li>
+  <li><strong>Security Context:</strong> The worker pods and any engine job pods should be configured with appropriate security contexts. Engine pods should run as a non-root user and with restricted permissions (no privileged flag, no host mounts except perhaps the one for input if absolutely needed, and with read-only root filesystem if possible). The worker can create the Job spec to enforce these (Kubernetes allows specifying security context in the pod spec).</li>
+  <li><strong>Observability:</strong> We should enhance logging to trace task executions. For example, when a worker hands off to an engine container, log an info message like “Launching engine container for task X using image Y”. This will aid in debugging. We can also collect engine stdout/stderr logs for troubleshooting (especially if the engine fails; capturing those logs and perhaps storing them or showing them in the task result could be very helpful for clients debugging their engines).</li>
+</ul>
+
+<h3>6. Security and Sandboxing Considerations</h3>
+
+<p>Security is a paramount concern for this architecture, since we are executing code written by potentially untrusted parties. The containerization strategy already provides a strong foundation, but we must consider multiple layers of defense:</p>
+
+<ul>
+  <li><strong>Container Isolation:</strong> Each custom engine runs in its own container, isolated from the host and other containers. As noted, the container cannot easily access host files or other processes:contentReference[oaicite:18]{index=18}. We will use Kubernetes features to reinforce this isolation:
+      <ul>
+         <li>Run engine containers with a read-only root filesystem and a dedicated Linux user (no root). This prevents the code from altering the base image or accessing sensitive paths. If the engine needs write access (for temp files), mount a scratch <code>emptyDir</code> volume with limited scope.</li>
+         <li>Apply Kubernetes <code>NetworkPolicy</code> to engine pods (if they are in a separate namespace or have a label) to restrict their network access. For instance, engine containers might not need to call internal APIs or database directly – we can potentially block them from reaching anything except maybe public internet or specific endpoints. If engines shouldn’t make outbound calls at all, we can impose that limit. However, if some engines are meant to fetch data from somewhere, this could be relaxed per engine basis.</li>
+         <li>Utilize sandboxed container runtimes if available. While Azure AKS doesn’t natively offer gVisor or Kata Containers at the moment, we mentioned ACI as an option. If a highly untrusted engine needs an extra layer, we could schedule it on a Virtual Kubelet to ACI, which gives Hyper-V isolation (each engine container in ACI runs on its own hardware-virtualized kernel):contentReference[oaicite:19]{index=19}. This is a heavy but effective isolation – likely not needed for all, but worth noting.</li>
+      </ul>
+  </li>
+  <li><strong>Resource Limits &amp; Quotas:</strong> We will enforce resource limits on engine containers. Each engine deployment or job spec can include CPU and memory limits appropriate to the task. This prevents a malicious or buggy engine from consuming excessive resources on a node (e.g., a runaway memory allocation or an infinite loop consuming CPU). We might also use Kubernetes ResourceQuota to limit how many engine jobs can run concurrently if needed.</li>
+  <li><strong>Timeouts:</strong> Celery has task-level timeouts (hard and soft time limits). We should set a reasonable default timeout for tasks using custom engines, so that if an engine container hangs or runs too long, the Celery task will be marked failed and the container can be killed. Similarly, when we create the Kubernetes Job, we can set an activeDeadlineSeconds on the pod to ensure Kubernetes kills it after a certain time. This ensures that even if clients write code that doesn’t terminate, we won’t wait forever or leak resources.</li>
+  <li><strong>Engine Code Validation:</strong> As an additional layer, we could perform some validation or scanning on the engine code or image. For example, integrating Azure Security Center or similar to scan container images for vulnerabilities or disallowed binaries. We could also inspect the Python code for obviously dangerous patterns (though this is not foolproof). At minimum, require that the engine images are built from our base (so we know what’s in the base) and not running arbitrary OS services.</li>
+  <li><strong>Process Sandbox (optional):</strong> If for some reason we needed to run multiple engine executions inside one container (not our current design, but hypothetically to reuse a container), we could employ the same techniques Andrew Healey described: spawn a subprocess for each execution and use seccomp to block system calls, setrlimit to cap resources, etc. However, since we are isolating per container, we generally can let the container runtime and Kubernetes handle those concerns at the pod level.</li>
+  <li><strong>Data Access and Multi-Tenancy:</strong> We should ensure that engine containers have access only to the data for their task. For instance, if multiple engine containers run on the same node, they shouldn’t share volumes with each other (unless intentionally). Using unique file names or per-job volumes as in our design is important so one engine can’t read another engine’s input/output. Also, any secrets or sensitive info in the system should not be exposed to the engine containers. The engine pods should not mount any secrets from the main app. If they need credentials (e.g., to fetch something), consider providing temporary, scoped credentials.</li>
+</ul>
+
+<p>By combining these measures, we create a layered security approach. In essence, the design mimics a “sandbox-as-a-service” for client code. Each engine container is a sandbox. Even if an engine tries something malicious, it should be constrained by the container boundaries (for example, trying to delete files will only affect the container’s filesystem, not the host:contentReference[oaicite:20]{index=20}). And if it tries to use excessive CPU or memory, the limits will throttle or kill it. This follows the principle of least privilege and defense in depth.</p>
+
+<h3>7. Diagram: Updated Architecture</h3>
+
+<p>For clarity, here is an overview of the final architecture incorporating the changes:</p>
+
+<ul>
+  <li>**REST API:** Receives task submission from clients (including which engine to use) and enqueues tasks to Redis.</li>
+  <li>**Redis Queue:** Holds tasks with payload and engine ID.</li>
+  <li>**Celery Workers (AKS, scaled by KEDA):** Pull tasks from Redis. When a task is received:
+      <ul>
+        <li>If engine is standard (or some built-in default): process immediately using the internal engine code (as today).</li>
+        <li>If engine is custom: look up the container image for that engine (from config), create a Kubernetes Job (or similar) to run the engine container. Pass the task data to the container, wait for completion, then collect result.</li>
+      </ul>
+  These workers are essentially the control logic, and they can handle many different engines by launching the appropriate container for each task.</li>
+  <li>**Engine Containers (dynamic):** Each custom engine, when triggered, runs in its own isolated container/pod either on the AKS cluster or in ACI (depending on config). It executes the client’s code and produces a result, then terminates.</li>
+  <li>**Result Flow:** The result from the engine execution is returned to the Celery worker (via file, log, or direct output capture). The Celery task then completes, and the result can be stored or returned to the REST API’s caller (depending on how results are retrieved in the existing system – e.g., perhaps the API polls or the client gets a task ID to fetch result later).</li>
+</ul>
+
+<p>This architecture ensures that adding a new engine doesn’t require spinning up a dedicated service for it – it’s dynamically handled within the existing Celery infrastructure. It also means we maintain a single Celery queue system rather than separate queues per engine, which keeps KEDA scaling simpler (based on one central queue length).</p>
+
+<h2>Step-by-Step Implementation Guide</h2>
+
+<p>Finally, let’s provide a step-by-step guide to implementing the chosen approach:</p>
+
+<ol>
+  <li><strong>Prepare Base Components:</strong>
+      <ul>
+        <li>Create the <code>engine_interface.py</code> module defining the engine contract (function or class as decided). Add this module to the Celery worker image and also make it available for clients (e.g., publish it as a pip package or include it in a SDK for them).</li>
+        <li>Develop the <code>run_engine.py</code> script for the base container. This script should parse arguments (input path, output path, engine module name), load the engine module, execute the engine’s <code>process_task</code> on the input data, and write the output. Test this script with a dummy engine to ensure it works within a container environment.</li>
+        <li>Build the base Docker image (Dockerfile) that includes the Python runtime, engine_interface, and run_engine.py. For example:
+          <pre><code class="language-docker">FROM python:3.10-slim
+COPY engine_interface.py /app/engine_interface.py
+COPY run_engine.py /app/run_engine.py
+RUN pip install kubernetes  # if the engine container itself needs k8s client (likely not, only workers do)
+ENV PYTHONPATH=/app
+ENTRYPOINT ["python", "/app/run_engine.py"]</code></pre>
+          (We might not need Kubernetes client in engine container; the comment is just illustrative. The engine container typically just runs the engine code and exits.)
+        </li>
+        <li>Push the base image to Azure Container Registry (ACR) so that clients can use it as a foundation.</li>
+      </ul>
+  </li>
+  <li><strong>Update Celery Worker Deployment:</strong>
+      <ul>
+        <li>Modify the Celery worker code as discussed: add the logic to differentiate engine types and call external containers. Integrate the Kubernetes client usage. Make sure to handle errors (e.g., job failure or image not found).</li>
+        <li>Extend the worker’s Kubernetes deployment YAML to mount any necessary volumes (for passing data if using hostPath or PVC) and to include needed environment (maybe the engine map as an environment variable in JSON form, or mount a ConfigMap).
+            Example snippet for a ConfigMap volume:
+            <pre><code class="language-yaml">...
+env:
+- name: ENGINE_IMAGE_MAP
+  valueFrom:
+    configMapKeyRef:
+      name: engine-image-map
+      key: engines.json
+...
+</code></pre>
+            The code could then load <code>os.environ['ENGINE_IMAGE_MAP']</code> (which might be a JSON string) and parse it to get the dictionary of engine names to images.
+        </li>
+        <li>Ensure the worker’s ServiceAccount has RBAC to create/delete Jobs and read pods/logs. For instance, define a Role allowing:
+            <pre><code class="language-yaml">apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: engine-executor
+  namespace: default
+rules:
+- apiGroups: ["batch"]
+  resources: ["jobs"]
+  verbs: ["create", "delete", "get", "list", "watch"]
+- apiGroups: [""]
+  resources: ["pods", "pods/log"]
+  verbs: ["get", "list", "watch"]</code></pre>
+            and bind this Role to the worker’s ServiceAccount with a RoleBinding.
+        </li>
+        <li>Deploy the updated Celery worker to AKS. Initially, test with a dummy engine to ensure it can launch a container and retrieve results.</li>
+      </ul>
+  </li>
+  <li><strong>Implement Client Onboarding Process:</strong>
+      <ul>
+        <li>Provide documentation or an example repository for clients, including:
+            <ul>
+              <li>The interface specification (what function/class to implement, what the input/output format is).</li>
+              <li>Instructions to write their engine code.</li>
+              <li>Dockerfile template based on the base image.</li>
+              <li>How to build and push to ACR (including any naming conventions or Azure authentication needed).</li>
+              <li>How to inform us of their engine. Possibly, we offer a command-line script or API: e.g., <code>register_engine --name acme_transformation --image myregistry.azurecr.io/acme/engine-transformation:1.0</code>, which our system uses to update the central mapping.</li>
+            </ul>
+        </li>
+        <li>On receiving a new engine registration, update the configuration for Celery workers:
+            <ul>
+              <li>If using a ConfigMap, edit the ConfigMap to add the new entry. Then either restart workers (downtime) or if the workers are coded to fetch updates dynamically, they will pick it up (for example, worker could read the ConfigMap periodically or on each task fetch from a central source). A simple approach is to redeploy the Celery workers with the updated ConfigMap, but that might momentarily interrupt processing – a rolling update can minimize impact.</li>
+              <li>Alternatively, store engine mappings in a database and have the worker query it when an unknown engine is requested. But this introduces a runtime dependency that might slow down tasks. Caching and only updating on changes is preferable.</li>
+            </ul>
+        </li>
+        <li>Double-check that the new engine image is pullable by the cluster’s nodes (the nodes need permission to ACR – in AKS, this can be set up via ACR integration or using a pull secret). If using ACI for isolation, ensure the AKS has the ACI connector configured.</li>
+      </ul>
+  </li>
+  <li><strong>Testing and Validation:</strong>
+      <ul>
+        <li>Test with a benign custom engine first (like the sum example) to verify end-to-end flow: Submit task via API, ensure Celery launches the engine container, gets result, and the result is correct. Monitor logs and adjust as needed.</li>
+        <li>Introduce some failure scenarios to test robustness:
+            <ul>
+              <li>Engine code throws an exception – ensure the exception propagates or is logged appropriately. Possibly capture the stderr of the container in the Celery task result or log, so clients can see their error trace.</li>
+              <li>Engine container image does not exist or pull fails – Celery should catch this (Kubernetes job will go to failed state); ensure the task fails gracefully with a clear message.</li>
+              <li>Engine runs too long or uses too much memory – verify that timeouts and limits kick in. For example, set a low memory limit and have an engine allocate more to see it OOMs and the task fails. Or put an intentional sleep longer than the timeout to see if it gets killed.</li>
+            </ul>
+        </li>
+        <li>Security testing: attempt some malicious behavior in a sandbox engine (in a controlled way):
+            <ul>
+              <li>Try to read a file outside allowed volume – the container should not find host files (if run properly, it won’t have them mounted).</li>
+              <li>Try to open a shell or make a network call to an internal service – if network policies are set, it should be blocked or logged.</li>
+            </ul>
+        </li>
+      </ul>
+  </li>
+</ol>
+
+<p>Through these steps, we incrementally build confidence that the system meets the requirements: clients can bring their custom logic, deploy it easily, and the system will route tasks to execute that logic in isolation, scaling as needed, without compromising the rest of the application.</p>
+
+<h2>Conclusion</h2>
+
+<p>In conclusion, the best solution for integrating client-deployed engines into the AKS-based Celery application is to adopt a **containerized plugin architecture**. This approach strikes a balance between flexibility and safety: it leverages dynamic loading principles (each engine is a plugin module) while enforcing isolation via containers. It is scalable (thanks to Kubernetes and KEDA), secure (containers act as sandboxes with restricted permissions), maintainable (engines are decoupled and packaged cleanly), and relatively straightforward for clients to adopt (using standard Docker packaging and a clear interface). By using Azure-native features like AKS and ACR, and open-source tools like Docker, Kubernetes, and Celery, we ensure the solution fits well into the existing ecosystem.</p>
+
+<p>While there is some added complexity in orchestrating containers for each task, this overhead is justified by the need to run untrusted code safely in a multi-tenant environment. As an Azure enhancement, if needed, we can even offload engine execution to Azure Container Instances for an extra layer of isolation:contentReference[oaicite:21]{index=21}. However, even within AKS, proper configuration provides a robust sandbox. This design also future-proofs the system: if in the future we allow other languages or heavier workloads, they can be accommodated by the container interface without major changes to the core system.</p>
+
+<p>In summary, the dynamic engine integration is achieved by treating engines as on-demand, containerized plugins. This gives clients freedom to innovate with custom logic, without sacrificing the reliability or security of the platform. With the implementation plan outlined above, the development team and client developers have a clear path to roll out this capability.</p>
+
+<p><small>Sources: We drew on best practices and examples from container sandboxing literature, such as using Docker for isolating untrusted code:contentReference[oaicite:22]{index=22}, and considered plugin architecture principles:contentReference[oaicite:23]{index=23}. The importance of strong isolation for untrusted code was highlighted by community discussions (e.g., running code in VMs or hypervisor-isolated containers):contentReference[oaicite:24]{index=24}:contentReference[oaicite:25]{index=25}. Python-specific sandboxing challenges and solutions (like using separate processes and seccomp) were informed by Healey’s 2023 article on running untrusted Python:contentReference[oaicite:26]{index=26}:contentReference[oaicite:27]{index=27}. These insights guided us to the chosen design.</small></p>
